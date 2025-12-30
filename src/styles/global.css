@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #86c99c;
+  --color-primary-light: #b9e2c6;
+  --color-primary-dark: #5a9e72;
+  --color-secondary-mint: #e6f2ed;
+  
+  --color-text-main-light: #333d4e;
+  --color-text-main-dark: #eaf5f0;
+  
+  --color-background-light: #fefefe;
+  --color-background-dark: #1f2a2f;
+  
+  --color-pearl-grey: #e7e9ed;
+
+  --font-display: "Great Vibes", cursive;
+  --font-body: "Poppins", sans-serif;
+
+  --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
+  --animate-fade-in: fadeIn 0.4s ease-out forwards;
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Base Styles setup for Dark Mode leveraging the variables */
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  @apply bg-background-light text-text-main-light font-body transition-colors duration-200;
+}
+
+/* Dark mode handling if system preference or class strategy is used */
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-background-dark text-text-main-dark;
+  }
+}
+
+/* Explicit class-based dark mode if needed (e.g. .dark body) */
+.dark body {
+  @apply bg-background-dark text-text-main-dark;
+}

@@ -1,0 +1,98 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="faq" class="py-24 px-4 md:px-10 lg:px-40 bg-background-light dark:bg-background-dark">
+    <div class="max-w-240 mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+        <div class="flex flex-col gap-4">
+            <span class="text-primary font-body font-medium uppercase tracking-widest text-sm">{t('faq.subtitle')}</span>
+            <h2 class="text-4xl font-body font-semibold leading-tight text-text-main-light dark:text-text-main-dark">
+                {t('faq.title')}
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400 mt-2 font-body font-light leading-relaxed">
+                {t('faq.intro')}
+            </p>
+            
+            <div class="mt-8">
+                <div class="w-full aspect-square rounded-xl bg-secondary-mint dark:bg-gray-800 overflow-hidden relative border border-pearl-grey dark:border-white/10">
+                    <img alt="Mapa indicando la ubicación de Villa del Balbianello en el Lago de Como" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnNysRRhE8mk_tKdgAC5iqBOJKoL8tUlZKe-Zc1mYkpoZ5EaCQoYH_ZcKsrpgtROLyoooCzb6lJYRpA05_hA2mgaEUFYnc_BaJy0FQd5JvChHfRfK0PiLYjjhmewnbkWTuk_wIyYOmdMiG9ZqXgU7bT4fgBHgq3kvhsI7YjRZlCC9zVOKVRSRyxHGKsZVYgtw_gqzhSxleawoT1iAZq-lyL6ZT_rcCE7OjRRPZyaFH_Othi5D7ENBZSy2thMoz-cJcNKzIqriv1AI" />
+                    <div class="absolute bottom-4 left-4 bg-white dark:bg-gray-900 p-3 rounded-lg shadow-md flex items-center gap-3 border border-pearl-grey dark:border-white/10">
+                        <span class="material-symbols-outlined text-primary">location_on</span>
+                        <div>
+                            <p class="text-xs font-bold text-gray-900 dark:text-white font-body">{t('faq.venue')}</p>
+                            <p class="text-[10px] text-gray-500 font-body">{t('faq.address')}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-6">
+            <div class="group border-b border-pearl-grey dark:border-white/10 pb-6">
+                <details class="group">
+                    <summary class="flex items-center justify-between cursor-pointer list-none py-2 text-xl font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors">
+                        <span>{t('faq.q1')}</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180">
+                            <span class="material-symbols-outlined">expand_more</span>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed animate-fade-in font-body font-light" set:html={t('faq.a1')}></div>
+                </details>
+            </div>
+
+            <div class="group border-b border-pearl-grey dark:border-white/10 pb-6">
+                <details class="group">
+                    <summary class="flex items-center justify-between cursor-pointer list-none py-2 text-xl font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors">
+                        <span>{t('faq.q2')}</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180">
+                            <span class="material-symbols-outlined">expand_more</span>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed animate-fade-in font-body font-light">
+                        <span set:html={t('faq.a2')}></span>
+                        <br/><br/>
+                        <a class="text-primary font-bold hover:underline inline-flex items-center gap-1 font-body" href="#">
+                            {t('faq.guide_link')} <span class="material-symbols-outlined text-sm">arrow_outward</span>
+                        </a>
+                    </div>
+                </details>
+            </div>
+
+            <div class="group border-b border-pearl-grey dark:border-white/10 pb-6">
+                <details class="group">
+                    <summary class="flex items-center justify-between cursor-pointer list-none py-2 text-xl font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors">
+                        <span>{t('faq.q3')}</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180">
+                            <span class="material-symbols-outlined">expand_more</span>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed animate-fade-in font-body font-light" set:html={t('faq.a3')}></div>
+                </details>
+            </div>
+
+            <div class="group border-b border-pearl-grey dark:border-white/10 pb-6">
+                <details class="group">
+                    <summary class="flex items-center justify-between cursor-pointer list-none py-2 text-xl font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors">
+                        <span>{t('faq.q4')}</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180">
+                            <span class="material-symbols-outlined">expand_more</span>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed animate-fade-in font-body font-light" set:html={t('faq.a4')}></div>
+                </details>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    details > summary {
+        list-style: none;
+    }
+    details > summary::-webkit-details-marker {
+        display: none;
+    }
+</style>

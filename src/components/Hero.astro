@@ -1,0 +1,48 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="hero" class="relative w-full h-[85vh] overflow-hidden flex items-center justify-center bg-gray-900 group">
+    <div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" 
+         style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRYrcZGjcjoLvdvJTeXjkklYqc_OknCoV0qi6-a1HquRriHQeGZ5syH6D5znfwdD2AV9OXRg9_l2c-pjUsrwj5wxdpeqrai1sBpj9yabOfCvc6ESE_7_hLHQrQYMCNOYVt2TmKBxdY7Cd5p5xHwUWhYggPRpE-J6pEfJFWHnWQLU6xPr2_Yq8G75JhDXjb5goBVbbRK88_LVYfXdIeRobLnHzBgRm_mrKsrEOYGsAD8bQt2d3AdJQIxH_F_LIlghg7cV4RikVkoQM');"
+         role="img"
+         aria-label="Paisaje romántico de Lago de Como al atardecer"
+    >
+        <div class="absolute inset-0 bg-black/20 dark:bg-black/40 bg-linear-to-t from-black/10 to-transparent"></div>
+    </div>
+    
+    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto text-white flex flex-col items-center gap-6 animate-fade-in-up">
+        <div class="uppercase tracking-[0.2em] text-sm font-body font-light text-white/90 mb-2">{t('hero.subtitle')}</div>
+        <h1 class="text-6xl md:text-7xl lg:text-8xl font-display font-normal tracking-tight leading-tight">
+            Marina <span class="text-primary-light font-display mx-2">{t('hero.title_connector')}</span> Oswald
+        </h1>
+        <p class="text-xl md:text-2xl font-body font-medium text-primary-light mt-2 tracking-wide drop-shadow-lg">
+            {t('hero.slogan')}
+        </p>
+        <p class="text-lg md:text-xl font-body font-light text-white/90 mt-2 tracking-wide">
+            {t('hero.sub_slogan')}
+        </p>
+        
+        <div class="mt-8 flex items-center gap-2 text-white/80 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+            <span class="material-symbols-outlined text-sm">location_on</span>
+            <span class="text-sm font-body font-light tracking-wide">{t('hero.location')}</span>
+        </div>
+        
+        <div class="mt-8">
+            <button 
+                class="flex items-center justify-center rounded-full size-16 bg-white/20 hover:bg-primary/80 backdrop-blur-md text-white transition-all duration-300 group-hover:scale-110 cursor-pointer focus-visible:ring-4 focus-visible:ring-primary"
+                aria-label={t('hero.story')}
+            >
+                <span class="material-symbols-outlined text-[32px]! ml-1" aria-hidden="true">play_arrow</span>
+            </button>
+            <p class="mt-3 text-xs tracking-widest uppercase opacity-70 font-body">{t('hero.story')}</p>
+        </div>
+    </div>
+    
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/50">
+        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+    </div>
+</section>
