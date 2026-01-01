@@ -5,18 +5,19 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section id="hero" class="relative w-full h-[85vh] overflow-hidden flex items-center justify-center bg-gray-900 group">
+<section id="hero" class="relative w-full h-[85vh] overflow-hidden flex items-center justify-center bg-gray-900 group flex-col">
+    <div class="flex-1"></div>
     <div class="absolute inset-0 w-full h-full overflow-hidden">
         <video 
             autoplay 
             muted 
             loop 
             playsinline 
-            poster="https://lh3.googleusercontent.com/aida-public/AB6AXuDRYrcZGjcjoLvdvJTeXjkklYqc_OknCoV0qi6-a1HquRriHQeGZ5syH6D5znfwdD2AV9OXRg9_l2c-pjUsrwj5wxdpeqrai1sBpj9yabOfCvc6ESE_7_hLHQrQYMCNOYVt2TmKBxdY7Cd5p5xHwUWhYggPRpE-J6pEfJFWHnWQLU6xPr2_Yq8G75JhDXjb5goBVbbRK88_LVYfXdIeRobLnHzBgRm_mrKsrEOYGsAD8bQt2d3AdJQIxH_F_LIlghg7cV4RikVkoQM"
+            poster="/poster-finca.webp"
             class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             aria-label="Video de la finca del evento"
         >
-            <source src="/video-finca.mp4" type="video/mp4" />
+            <source src="/video-finca-3.mp4" type="video/mp4" />
         </video>
         <div class="absolute inset-0 bg-black/20 dark:bg-black/40 bg-linear-to-t from-black/20 to-transparent"></div>
     </div>
@@ -29,26 +30,19 @@ const t = useTranslations(lang);
         <p class="text-xl md:text-2xl font-body font-medium text-primary-light mt-2 tracking-wide drop-shadow-lg">
             {t('hero.slogan')}
         </p>
-        <p class="text-lg md:text-xl font-body font-light text-white/90 mt-2 tracking-wide">
-            {t('hero.sub_slogan')}
-        </p>
-        
-        <div class="mt-8 flex items-center gap-2 text-white/80 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+    </div>
+    <div class="flex-1">
+        <a 
+            href="https://www.google.com/maps/place/Finca+Condado+de+Cubillana/@40.1532901,-4.1928795,17z/data=!3m1!4b1!4m6!3m5!1s0xd41c67fc51eff7f:0x11f0564aff136bfe!8m2!3d40.1532901!4d-4.1928795!16s%2Fg%2F11c1nh_w30?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cursor-pointer absolute inset-x-0 w-max m-auto bottom-20 mt-8 flex items-center gap-2 text-white/80 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20 transition-all hover:bg-white/20 hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            aria-label={`Abrir ubicación de ${t('hero.location')} en Google Maps`}
+        >
             <span class="material-symbols-outlined text-sm">location_on</span>
             <span class="text-sm font-body font-light tracking-wide">{t('hero.location')}</span>
-        </div>
-        
-        <div class="mt-8">
-            <button 
-                class="flex items-center justify-center rounded-full size-16 bg-white/20 hover:bg-primary/80 backdrop-blur-md text-white transition-all duration-300 group-hover:scale-110 cursor-pointer focus-visible:ring-4 focus-visible:ring-primary"
-                aria-label={t('hero.story')}
-            >
-                <span class="material-symbols-outlined text-[32px]! ml-1" aria-hidden="true">play_arrow</span>
-            </button>
-            <p class="mt-3 text-xs tracking-widest uppercase opacity-70 font-body">{t('hero.story')}</p>
-        </div>
+        </a>
     </div>
-    
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/50">
         <span class="material-symbols-outlined">keyboard_arrow_down</span>
     </div>

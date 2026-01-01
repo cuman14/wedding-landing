@@ -15,7 +15,7 @@ export const ui = {
     "hero.title_connector": "&",
     "hero.slogan": "¡Nuestro sueño, vuestra compañía!",
     "hero.sub_slogan": "Enlazando almas por siempre",
-    "hero.location": "Lago de Como, Italia",
+    "hero.location": "Finca Condado de Cubillana, Toledo",
     "hero.story": "Nuestra historia de amor",
     "countdown.date": "10 de Octubre de 2026",
     "countdown.title": "El Mágico Inicio de un Para Siempre",

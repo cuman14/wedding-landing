@@ -49,7 +49,11 @@ const formattedDate = new Intl.DateTimeFormat(lang, {
         </div>
 
         <div class="mt-4">
-            <button class="flex items-center gap-3 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-lg font-bold shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5 font-body cursor-pointer">
+            <button 
+                id="save-date-btn"
+                class="flex items-center gap-3 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-lg font-bold shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5 font-body cursor-pointer focus-visible:ring-4 focus-visible:ring-primary/50"
+                aria-label={t('countdown.saveDate')}
+            >
                 <span class="material-symbols-outlined">calendar_month</span>
                 <span>{t('countdown.saveDate')}</span>
             </button>
@@ -82,6 +86,48 @@ const formattedDate = new Intl.DateTimeFormat(lang, {
         if(els.hours) els.hours.textContent = hours.toString();
         if(els.minutes) els.minutes.textContent = minutes.toString();
         if(els.seconds) els.seconds.textContent = seconds.toString();
+    }
+
+    const saveDateBtn = document.getElementById('save-date-btn');
+    if (saveDateBtn) {
+        saveDateBtn.addEventListener('click', () => {
+            const event = {
+                title: 'Boda Oswald y Marina',
+                start: '20261010T163000',
+                duration: 'PT8H',
+                location: 'Finca Condado de Cubillana, Toledo',
+                description: '¡Nuestro gran día! No faltéis.',
+            };
+
+            const icsContent = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'PRODID:-//Oswald Marina//Wedding//ES',
+                'BEGIN:VEVENT',
+                `SUMMARY:${event.title}`,
+                `DTSTART:${event.start}`,
+                `DURATION:${event.duration}`,
+                `LOCATION:${event.location}`,
+                `DESCRIPTION:${event.description}`,
+                'BEGIN:VALARM',
+                'TRIGGER:-P30D', // Approximate 1 month (30 days)
+                'ACTION:DISPLAY',
+                'DESCRIPTION:Recordatorio Boda Oswald y Marina',
+                'END:VALARM',
+                'END:VEVENT',
+                'END:VCALENDAR'
+            ].join('\r\n');
+
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'boda-oswald-marina.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        });
     }
 
     setInterval(updateCountdown, 1000);
