@@ -1,17 +1,21 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 @theme {
   --color-primary: #86c99c;
   --color-primary-light: #b9e2c6;
   --color-primary-dark: #5a9e72;
   --color-secondary-mint: #e6f2ed;
-  
+
   --color-text-main-light: #333d4e;
   --color-text-main-dark: #eaf5f0;
-  
+
   --color-background-light: #fefefe;
   --color-background-dark: #1f2a2f;
-  
+
   --color-pearl-grey: #e7e9ed;
 
   --font-display: "Great Vibes", cursive;
@@ -39,8 +43,12 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Base Styles setup for Dark Mode leveraging the variables */
