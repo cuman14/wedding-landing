@@ -48,7 +48,7 @@ export const ui = {
     "faq.q4": "¿Cuál es el atuendo para la ocasión?",
     "faq.a4":
       "El código es <strong>Etiqueta Rigurosa Opcional (Black Tie Optional)</strong>. Sugerimos esmoquin o traje oscuro para caballeros, y vestidos largos o cóctel elegantes para las damas. La ceremonia será al aire libre sobre césped, así que elegid vuestro calzado con la magia en mente.",
-    "footer.msg": "¡No podemos esperar a veros ahí, amados!",
+    "footer.msg": "¡No podemos esperar a veros ahí!",
     "footer.links.confirm": "Confirmar",
     "footer.links.gifts": "Regalos",
     "footer.links.contact": "Contacto",
