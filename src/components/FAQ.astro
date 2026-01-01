@@ -18,7 +18,7 @@ const t = useTranslations(lang);
             
             <div class="mt-8">
                 <div class="w-full aspect-square rounded-xl bg-secondary-mint dark:bg-gray-800 overflow-hidden relative border border-pearl-grey dark:border-white/10">
-                    <img alt="Mapa indicando la ubicación de Villa del Balbianello en el Lago de Como" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnNysRRhE8mk_tKdgAC5iqBOJKoL8tUlZKe-Zc1mYkpoZ5EaCQoYH_ZcKsrpgtROLyoooCzb6lJYRpA05_hA2mgaEUFYnc_BaJy0FQd5JvChHfRfK0PiLYjjhmewnbkWTuk_wIyYOmdMiG9ZqXgU7bT4fgBHgq3kvhsI7YjRZlCC9zVOKVRSRyxHGKsZVYgtw_gqzhSxleawoT1iAZq-lyL6ZT_rcCE7OjRRPZyaFH_Othi5D7ENBZSy2thMoz-cJcNKzIqriv1AI" />
+                    <img alt="Mapa de ubicación de Finca Condado de Cubillana" class="w-full h-full object-cover opacity-80" src="/cubillana.webp" />
                     <div class="absolute bottom-4 left-4 bg-white dark:bg-gray-900 p-3 rounded-lg shadow-md flex items-center gap-3 border border-pearl-grey dark:border-white/10">
                         <span class="material-symbols-outlined text-primary">location_on</span>
                         <div>
@@ -39,7 +39,26 @@ const t = useTranslations(lang);
                             <span class="material-symbols-outlined">expand_more</span>
                         </span>
                     </summary>
-                    <div class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed animate-fade-in font-body font-light" set:html={t('faq.a1')}></div>
+                    <div class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed animate-fade-in font-body font-light">
+                        <div set:html={t('faq.a1')}></div>
+                        
+                        <!-- Miniatura con botón de ampliar -->
+                        <div class="relative group/map mt-4">
+                            <img 
+                                id="faq-map-img"
+                                src="/mapa-cubillana.webp" 
+                                alt="Mapa Condado de Cubillana" 
+                                class="rounded-lg w-full h-auto shadow-md border border-pearl-grey dark:border-white/10 cursor-zoom-in"
+                            />
+                            <button 
+                                id="btn-expand-map"
+                                class="absolute top-2 right-2 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm p-2 rounded-full shadow-lg opacity-0 group-hover/map:opacity-100 transition-opacity hover:bg-primary hover:text-white cursor-pointer flex items-center justify-center"
+                                aria-label="Ampliar mapa"
+                            >
+                                <span class="material-symbols-outlined text-xl">zoom_in</span>
+                            </button>
+                        </div>
+                    </div>
                 </details>
             </div>
 
@@ -86,7 +105,58 @@ const t = useTranslations(lang);
             </div>
         </div>
     </div>
+
+    <!-- Modal Lightbox -->
+    <div id="map-modal" class="fixed inset-0 z-100 hidden bg-black/90 backdrop-blur-sm items-center justify-center p-4 cursor-zoom-out animate-fade-in">
+        <button id="close-modal" class="absolute top-6 right-6 text-white p-2 hover:text-primary transition-colors cursor-pointer flex items-center justify-center">
+            <span class="material-symbols-outlined text-4xl">close</span>
+        </button>
+        <img id="modal-img" src="/mapa-cubillana.webp" class="max-w-[95%] max-h-[90vh] object-contain rounded-lg shadow-2xl" />
+    </div>
 </section>
+
+<script>
+    const mapImg = document.getElementById('faq-map-img');
+    const expandBtn = document.getElementById('btn-expand-map');
+    const modal = document.getElementById('map-modal');
+    const closeModal = document.getElementById('close-modal');
+
+    function openModal() {
+        modal?.classList.remove('hidden');
+        modal?.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeM() {
+        modal?.classList.add('hidden');
+        modal?.classList.remove('flex');
+        document.body.style.overflow = '';
+    }
+
+    mapImg?.addEventListener('click', openModal);
+    expandBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal();
+    });
+    
+    modal?.addEventListener('click', (e) => {
+        if (e.target === modal || e.target === document.getElementById('modal-img')) {
+            closeM();
+        }
+    });
+
+    closeModal?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeM();
+    });
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+            closeM();
+        }
+    });
+</script>
 
 <style>
     details > summary {

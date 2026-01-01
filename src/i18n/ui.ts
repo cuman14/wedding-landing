@@ -33,11 +33,11 @@ export const ui = {
     "faq.title": "Detalles de la Celebración",
     "faq.intro":
       "Respuestas a vuestras preguntas, para que la magia fluya sin preocupaciones.",
-    "faq.venue": "Villa del Balbianello",
-    "faq.address": "Via Guido Monzino, 1",
-    "faq.q1": "¿Dónde se encuentra este paraíso?",
+    "faq.venue": "Condado de Cubillana",
+    "faq.address": "45920 La Torre de Esteban Hambrán, Toledo",
+    "faq.q1": "¿Cuál es la ubicación del evento?",
     "faq.a1":
-      "La ceremonia y la celebración se desplegarán en la majestuosa <strong>Villa del Balbianello</strong> en Lenno, Lago de Como. Habrá barcos que os transportarán desde el muelle principal de Lenno a partir de las 3:00 PM. Vuestra puntualidad es esencial, ya que el barco es la única vía a la villa.",
+      "Tanto la ceremonia como la celebración tendrán lugar en la finca <strong>Condado de Cubillana</strong>, ubicada en la zona de Torres de Esteban Hambrán (Toledo).",
     "faq.q2": "¿Dónde podemos soñar mientras dura la magia?",
     "faq.a2":
       'Hemos reservado un número de habitaciones en el <strong>Grand Hotel Tremezzo</strong> y <strong>Albergo Lenno</strong>. Mencionad la "Boda de Marina & Oswald" para acceder a una tarifa especial. También encontraréis encantadores Airbnbs en Lenno y Tremezzo para una experiencia más íntima.',
@@ -80,11 +80,11 @@ export const ui = {
     "faq.subtitle": "Your Modern Guide",
     "faq.title": "Celebration Details",
     "faq.intro": "Answers to your questions, so the magic flows without worry.",
-    "faq.venue": "Villa del Balbianello",
+    "faq.venue": "Condado de Cubillana",
     "faq.address": "Via Guido Monzino, 1",
     "faq.q1": "Where is this paradise located?",
     "faq.a1":
-      "The ceremony and celebration will unfold at the majestic <strong>Villa del Balbianello</strong> in Lenno, Lake Como. Boats will transport you from the main Lenno pier starting at 3:00 PM. Your punctuality is essential, as the boat is the only way to the villa.",
+      "The ceremony and celebration will unfold at the majestic <strong>Condado de Cubillana</strong> in Lenno, Lake Como. Boats will transport you from the main Lenno pier starting at 3:00 PM. Your punctuality is essential, as the boat is the only way to the villa.",
     "faq.q2": "Where can we dream while the magic lasts?",
     "faq.a2":
       'We have reserved a number of rooms at the <strong>Grand Hotel Tremezzo</strong> and <strong>Albergo Lenno</strong>. Mention the "Marina & Oswald Wedding" to access a special rate. You will also find charming Airbnbs in Lenno and Tremezzo for a more intimate experience.',
