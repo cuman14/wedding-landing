@@ -1,168 +1,163 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Map from "./Map.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const fincaUrl =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3056.26252994406!2d-4.225964823438343!3d39.99252398141235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd40167fc71eff7f%3A0x11f0564aff136bfe!2sFinca%20Condado%20de%20Cubillana!5e0!3m2!1ses!2ses!4v1704571234567!5m2!1ses!2ses";
 ---
 
-<section id="faq" class="py-24 px-4 md:px-10 lg:px-40 bg-background-light dark:bg-background-dark">
-    <div class="max-w-240 mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
-        <div class="flex flex-col gap-4">
-            <span class="text-primary font-body font-medium uppercase tracking-widest text-sm">{t('faq.subtitle')}</span>
-            <h2 class="text-4xl font-body font-semibold leading-tight text-text-main-light dark:text-text-main-dark">
-                {t('faq.title')}
-            </h2>
-            <p class="text-gray-600 dark:text-gray-400 mt-2 font-body font-light leading-relaxed">
-                {t('faq.intro')}
-            </p>
-            
-            <div class="mt-8">
-                <div class="w-full aspect-square rounded-xl bg-secondary-mint dark:bg-gray-800 overflow-hidden relative border border-pearl-grey dark:border-white/10">
-                    <img alt="Mapa de ubicación de Finca Condado de Cubillana" class="w-full h-full object-cover opacity-80" src="/cubillana.webp" />
-                    <div class="absolute bottom-4 left-4 bg-white dark:bg-gray-900 p-3 rounded-lg shadow-md flex items-center gap-3 border border-pearl-grey dark:border-white/10">
-                        <span class="material-symbols-outlined text-primary">location_on</span>
-                        <div>
-                            <p class="text-xs font-bold text-gray-900 dark:text-white font-body">{t('faq.venue')}</p>
-                            <p class="text-[10px] text-gray-500 font-body">{t('faq.address')}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex flex-col gap-6">
-            <div class="group border-b border-pearl-grey dark:border-white/10 pb-6">
-                <details class="group">
-                    <summary class="flex items-center justify-between cursor-pointer list-none py-2 text-xl font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors">
-                        <span>{t('faq.q1')}</span>
-                        <span class="transition-transform duration-300 group-open:rotate-180">
-                            <span class="material-symbols-outlined">expand_more</span>
-                        </span>
-                    </summary>
-                    <div class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed animate-fade-in font-body font-light">
-                        <div set:html={t('faq.a1')}></div>
-                        
-                        <!-- Miniatura con botón de ampliar -->
-                        <div class="relative group/map mt-4">
-                            <img 
-                                id="faq-map-img"
-                                src="/mapa-cubillana.webp" 
-                                alt="Mapa Condado de Cubillana" 
-                                class="rounded-lg w-full h-auto shadow-md border border-pearl-grey dark:border-white/10 cursor-zoom-in"
-                            />
-                            <button 
-                                id="btn-expand-map"
-                                class="absolute top-2 right-2 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm p-2 rounded-full shadow-lg opacity-0 group-hover/map:opacity-100 transition-opacity hover:bg-primary hover:text-white cursor-pointer flex items-center justify-center"
-                                aria-label="Ampliar mapa"
-                            >
-                                <span class="material-symbols-outlined text-xl">zoom_in</span>
-                            </button>
-                        </div>
-                    </div>
-                </details>
-            </div>
-
-            <div class="group border-b border-pearl-grey dark:border-white/10 pb-6">
-                <details class="group">
-                    <summary class="flex items-center justify-between cursor-pointer list-none py-2 text-xl font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors">
-                        <span>{t('faq.q2')}</span>
-                        <span class="transition-transform duration-300 group-open:rotate-180">
-                            <span class="material-symbols-outlined">expand_more</span>
-                        </span>
-                    </summary>
-                    <div class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed animate-fade-in font-body font-light">
-                        <span set:html={t('faq.a2')}></span>
-                        <br/><br/>
-                        <a class="text-primary font-bold hover:underline inline-flex items-center gap-1 font-body" href="#">
-                            {t('faq.guide_link')} <span class="material-symbols-outlined text-sm">arrow_outward</span>
-                        </a>
-                    </div>
-                </details>
-            </div>
-
-            <div class="group border-b border-pearl-grey dark:border-white/10 pb-6">
-                <details class="group">
-                    <summary class="flex items-center justify-between cursor-pointer list-none py-2 text-xl font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors">
-                        <span>{t('faq.q3')}</span>
-                        <span class="transition-transform duration-300 group-open:rotate-180">
-                            <span class="material-symbols-outlined">expand_more</span>
-                        </span>
-                    </summary>
-                    <div class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed animate-fade-in font-body font-light" set:html={t('faq.a3')}></div>
-                </details>
-            </div>
-
-            <div class="group border-b border-pearl-grey dark:border-white/10 pb-6">
-                <details class="group">
-                    <summary class="flex items-center justify-between cursor-pointer list-none py-2 text-xl font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors">
-                        <span>{t('faq.q4')}</span>
-                        <span class="transition-transform duration-300 group-open:rotate-180">
-                            <span class="material-symbols-outlined">expand_more</span>
-                        </span>
-                    </summary>
-                    <div class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed animate-fade-in font-body font-light" set:html={t('faq.a4')}></div>
-                </details>
-            </div>
-        </div>
+<section
+  id="faq"
+  class="py-24 px-4 md:px-10 lg:px-40 bg-background-light dark:bg-background-dark"
+>
+  <div class="max-w-240 mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+    <div class="flex flex-col gap-4">
+      <span
+        class="text-primary font-body font-medium uppercase tracking-widest text-sm"
+        >{t("faq.subtitle")}</span
+      >
+      <h2
+        class="text-4xl font-body font-semibold leading-tight text-text-main-light dark:text-text-main-dark"
+      >
+        {t("faq.title")}
+      </h2>
+      <p
+        class="text-gray-600 dark:text-gray-400 mt-2 font-body font-light leading-relaxed"
+      >
+        {t("faq.intro")}
+      </p>
+      <div class="mt-8">
+        <Map url={fincaUrl} />
+      </div>
     </div>
 
-    <!-- Modal Lightbox -->
-    <div id="map-modal" class="fixed inset-0 z-100 hidden bg-black/90 backdrop-blur-sm items-center justify-center p-4 cursor-zoom-out animate-fade-in">
-        <button id="close-modal" class="absolute top-6 right-6 text-white p-2 hover:text-primary transition-colors cursor-pointer flex items-center justify-center">
-            <span class="material-symbols-outlined text-4xl">close</span>
-        </button>
-        <img id="modal-img" src="/mapa-cubillana.webp" class="max-w-[95%] max-h-[90vh] object-contain rounded-lg shadow-2xl" />
+    <div class="flex flex-col gap-6">
+      <div class="group border-b border-pearl-grey dark:border-white/10 pb-6">
+        <details class="group">
+          <summary
+            class="flex items-center justify-between cursor-pointer list-none py-2 text-xl font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors"
+          >
+            <span>{t("faq.q1")}</span>
+            <span
+              class="transition-transform duration-300 group-open:rotate-180"
+            >
+              <span class="material-symbols-outlined">expand_more</span>
+            </span>
+          </summary>
+          <div
+            class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed animate-fade-in font-body font-light"
+          >
+            <div set:html={t("faq.a1")} />
+
+            <!-- Miniatura con botón de ampliar -->
+            <div class="relative group/map mt-4">
+              <img
+                id="faq-map-img"
+                src="/mapa-cubillana.webp"
+                alt="Mapa Condado de Cubillana"
+                class="rounded-lg w-full h-auto shadow-md border border-pearl-grey dark:border-white/10 cursor-zoom-in"
+              />
+              <button
+                id="btn-expand-map"
+                class="absolute top-2 right-2 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm p-2 rounded-full shadow-lg opacity-0 group-hover/map:opacity-100 transition-opacity hover:bg-primary hover:text-white cursor-pointer flex items-center justify-center"
+                aria-label="Ampliar mapa"
+              >
+                <span class="material-symbols-outlined text-xl">zoom_in</span>
+              </button>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div class="group border-b border-pearl-grey dark:border-white/10 pb-6">
+        <details class="group">
+          <summary
+            class="flex items-center justify-between cursor-pointer list-none py-2 text-xl font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors"
+          >
+            <span>{t("faq.q2")}</span>
+            <span
+              class="transition-transform duration-300 group-open:rotate-180"
+            >
+              <span class="material-symbols-outlined">expand_more</span>
+            </span>
+          </summary>
+          <div
+            class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed animate-fade-in font-body font-light"
+          >
+            <span set:html={t("faq.a2")} />
+          </div>
+        </details>
+      </div>
+
+      <div class="group border-b border-pearl-grey dark:border-white/10 pb-6">
+        <details class="group">
+          <summary
+            class="flex items-center justify-between cursor-pointer list-none py-2 text-xl font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors"
+          >
+            <span>{t("faq.q3")}</span>
+            <span
+              class="transition-transform duration-300 group-open:rotate-180"
+            >
+              <span class="material-symbols-outlined">expand_more</span>
+            </span>
+          </summary>
+          <div
+            class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed animate-fade-in font-body font-light"
+            set:html={t("faq.a3")}
+          />
+          <br />
+          <a
+            class="text-primary font-bold hover:underline inline-flex items-center gap-1 font-body"
+            href="#"
+          >
+            {t("faq.guide_link")}
+            <span class="material-symbols-outlined text-sm">arrow_outward</span>
+          </a>
+        </details>
+      </div>
+
+      <div class="group border-b border-pearl-grey dark:border-white/10 pb-6">
+        <details class="group">
+          <summary
+            class="flex items-center justify-between cursor-pointer list-none py-2 text-xl font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors"
+          >
+            <span>{t("faq.q4")}</span>
+            <span
+              class="transition-transform duration-300 group-open:rotate-180"
+            >
+              <span class="material-symbols-outlined">expand_more</span>
+            </span>
+          </summary>
+          <div
+            class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed animate-fade-in font-body font-light"
+            set:html={t("faq.a4")}
+          />
+        </details>
+      </div>
+
+      <div class="border-b border-pearl-grey dark:border-white/10 pb-6">
+        <div
+          class="py-2 text-xl font-body font-medium text-text-main-light dark:text-text-main-dark"
+        >
+          {t("faq.contact_title")}
+        </div>
+        <div
+          class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed font-body font-light"
+        >
+          {t("faq.contact_text")}
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<script>
-    const mapImg = document.getElementById('faq-map-img');
-    const expandBtn = document.getElementById('btn-expand-map');
-    const modal = document.getElementById('map-modal');
-    const closeModal = document.getElementById('close-modal');
-
-    function openModal() {
-        modal?.classList.remove('hidden');
-        modal?.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeM() {
-        modal?.classList.add('hidden');
-        modal?.classList.remove('flex');
-        document.body.style.overflow = '';
-    }
-
-    mapImg?.addEventListener('click', openModal);
-    expandBtn?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openModal();
-    });
-    
-    modal?.addEventListener('click', (e) => {
-        if (e.target === modal || e.target === document.getElementById('modal-img')) {
-            closeM();
-        }
-    });
-
-    closeModal?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeM();
-    });
-
-    // Cerrar con Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
-            closeM();
-        }
-    });
-</script>
-
 <style>
-    details > summary {
-        list-style: none;
-    }
-    details > summary::-webkit-details-marker {
-        display: none;
-    }
+  details > summary {
+    list-style: none;
+  }
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
 </style>

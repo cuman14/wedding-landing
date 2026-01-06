@@ -1,0 +1,151 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+/**
+ * Componente de Progreso Automatizado
+ * Calcula el estado basándose en la fecha actual del servidor/cliente.
+ */
+const now = new Date();
+
+const steps = [
+  {
+    date: new Date("2026-01-10"),
+    label: t("progress.step1_label"),
+    icon: "info",
+    displayDate: t("progress.step1_date"),
+  },
+  {
+    date: new Date("2026-04-01"),
+    label: t("progress.step2_label"),
+    icon: "mail",
+    displayDate: t("progress.step2_date"),
+  },
+  {
+    date: new Date("2026-08-01"),
+    label: t("progress.step3_label"),
+    icon: "check_circle",
+    displayDate: t("progress.step3_date"),
+  },
+  {
+    date: new Date("2026-09-01"),
+    label: t("progress.step4_label"),
+    icon: "celebration",
+    displayDate: t("progress.step4_date"),
+  },
+  {
+    date: new Date("2026-10-10"),
+    label: t("progress.step5_label"),
+    icon: "favorite",
+    displayDate: t("progress.step5_date"),
+  },
+];
+
+const activeIndex = steps.findLastIndex((step) => now >= step.date);
+const progressWidth =
+  activeIndex === -1 ? 0 : (activeIndex / (steps.length - 1)) * 100;
+---
+
+<section class="w-full py-16 px-4 bg-transparent overflow-hidden">
+  <div class="max-w-4xl mx-auto">
+    <h3
+      class="text-2xl font-serif text-center mb-16 italic text-gray-800 dark:text-white"
+    >
+      {t("progress.title")}
+    </h3>
+
+    <div class="relative">
+      <div
+        class="absolute inset-0 top-1/2 -translate-y-1/2 h-1 bg-gray-200 dark:bg-white/10 rounded-full"
+      >
+      </div>
+
+      <div
+        class="progress-bar absolute inset-0 top-1/2 -translate-y-1/2 h-1 bg-black dark:bg-white rounded-full transition-all duration-1000"
+        style={`--target-width: ${progressWidth}%`}
+      >
+      </div>
+
+      <div class="relative flex justify-between items-center w-full">
+        {
+          steps.map((step, index) => {
+            const isCompleted = now >= step.date;
+            const isNext = activeIndex + 1 === index;
+
+            return (
+              <div class="flex flex-col items-center flex-1 min-w-0 z-10">
+                <span
+                  class={`text-[9px] sm:text-xs mb-3 font-mono uppercase tracking-widest transition-colors duration-500 ${
+                    isCompleted
+                      ? "text-black dark:text-white font-bold"
+                      : "text-gray-400"
+                  }`}
+                >
+                  {step.displayDate}
+                </span>
+
+                <div
+                  class={`
+                size-9 sm:size-11 rounded-full flex items-center justify-center border-2 transition-all duration-700 delay-[${
+                  index * 100
+                }ms]
+                ${
+                  isCompleted
+                    ? "bg-black border-black text-white dark:bg-white dark:border-white dark:text-black shadow-xl scale-110"
+                    : "bg-white border-gray-200 text-gray-300 dark:bg-slate-900 dark:border-gray-700"
+                }
+                ${isNext ? "ring-4 ring-black/5 animate-pulse" : ""}
+              `}
+                >
+                  <span class="material-symbols-outlined text-sm! sm:text-lg!">
+                    {step.icon}
+                  </span>
+                </div>
+
+                <span
+                  class={`
+                text-[9px] sm:text-xs font-medium text-center mt-4 leading-tight px-2 transition-colors duration-500
+                ${
+                  isCompleted
+                    ? "text-black dark:text-white font-bold"
+                    : "text-gray-400"
+                }
+              `}
+                >
+                  {step.label}
+                </span>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .progress-bar {
+    width: 0%;
+    animation: fillProgress 1.5s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes fillProgress {
+    from {
+      width: 0%;
+    }
+    to {
+      width: var(--target-width);
+    }
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings:
+      "FILL" 1,
+      "wght" 400,
+      "GRAD" 0,
+      "opsz" 24;
+  }
+</style>

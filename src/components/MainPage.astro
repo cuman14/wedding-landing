@@ -1,26 +1,28 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from './Header.astro';
-import Hero from './Hero.astro';
-import Countdown from './Countdown.astro';
-import ParallaxSection from './ParallaxSection.astro';
-import FAQ from './FAQ.astro';
-import Footer from './Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import Countdown from "./Countdown.astro";
+import FAQ from "./FAQ.astro";
+import Footer from "./Footer.astro";
+import Header from "./Header.astro";
+import Hero from "./Hero.astro";
+import ParallaxSection from "./ParallaxSection.astro";
+import Progress from "./Progress.astro";
 
 interface Props {
-  lang: 'es' | 'en';
+  lang: "es" | "en";
 }
 
 const { lang } = Astro.props;
 ---
 
 <Layout title="Un Sueño Moderno - Marina & Oswald">
-	<Header />
-	<main class="flex flex-col min-h-screen w-full pt-16">
-        <Hero />
-        <Countdown />
-        <ParallaxSection />
-        <FAQ />
-        <Footer />
-	</main>
+  <Header />
+  <main class="flex flex-col min-h-screen w-full pt-16">
+    <Hero />
+    <Countdown />
+    <Progress />
+    <ParallaxSection />
+    <FAQ />
+    <Footer />
+  </main>
 </Layout>
