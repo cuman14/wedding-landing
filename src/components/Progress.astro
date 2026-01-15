@@ -12,7 +12,7 @@ const now = new Date();
 
 const steps = [
   {
-    date: new Date("2026-01-10"),
+    date: new Date("2026-01-16"),
     label: t("progress.step1_label"),
     icon: "info",
     displayDate: t("progress.step1_date"),
@@ -57,27 +57,45 @@ const progressWidth =
     </h3>
 
     <div class="relative">
+      <!-- Línea base - Horizontal (Desktop) -->
       <div
-        class="absolute inset-0 top-1/2 -translate-y-1/2 h-1 bg-gray-200 dark:bg-white/10 rounded-full"
+        class="hidden md:block absolute inset-0 top-1/2 -translate-y-1/2 h-1 bg-gray-200 dark:bg-white/10 rounded-full"
       >
       </div>
 
+      <!-- Línea base - Vertical (Móvil) -->
       <div
-        class="progress-bar absolute inset-0 top-1/2 -translate-y-1/2 h-1 bg-black dark:bg-white rounded-full transition-all duration-1000"
+        class="md:hidden absolute left-5.5 top-0 bottom-0 w-1 bg-gray-200 dark:bg-white/10 rounded-full"
+      >
+      </div>
+
+      <!-- Progreso - Horizontal (Desktop) -->
+      <div
+        class="progress-bar-h hidden md:block absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-black dark:bg-white rounded-full"
         style={`--target-width: ${progressWidth}%`}
       >
       </div>
 
-      <div class="relative flex justify-between items-center w-full">
+      <!-- Progreso - Vertical (Móvil) -->
+      <div
+        class="progress-bar-v md:hidden absolute left-5.5 top-0 w-1 bg-black dark:bg-white rounded-full"
+        style={`--target-height: ${progressWidth}%`}
+      >
+      </div>
+
+      <div
+        class="relative flex flex-col md:flex-row justify-between items-start md:items-center w-full space-y-12 md:space-y-0"
+      >
         {
           steps.map((step, index) => {
             const isCompleted = now >= step.date;
             const isNext = activeIndex + 1 === index;
 
             return (
-              <div class="flex flex-col items-center flex-1 min-w-0 z-10">
+              <div class="flex flex-row md:flex-col items-center md:items-center w-full md:flex-1 min-w-0 z-10 group">
+                {/* Fecha - Izquierda en móvil, Arriba en Desktop */}
                 <span
-                  class={`text-[9px] sm:text-xs mb-3 font-mono uppercase tracking-widest transition-colors duration-500 ${
+                  class={`text-xs md:text-xs mb-0 md:mb-3 font-mono uppercase tracking-widest transition-colors duration-500 w-20 md:w-auto text-right md:text-center mr-4 md:mr-0 ${
                     isCompleted
                       ? "text-black dark:text-white font-bold"
                       : "text-gray-400"
@@ -86,9 +104,10 @@ const progressWidth =
                   {step.displayDate}
                 </span>
 
+                {/* Círculo con Icono */}
                 <div
                   class={`
-                size-9 sm:size-11 rounded-full flex items-center justify-center border-2 transition-all duration-700 delay-[${
+                relative z-20 size-11 md:size-11 rounded-full flex items-center justify-center border-2 transition-all duration-700 delay-[${
                   index * 100
                 }ms]
                 ${
@@ -99,14 +118,15 @@ const progressWidth =
                 ${isNext ? "ring-4 ring-black/5 animate-pulse" : ""}
               `}
                 >
-                  <span class="material-symbols-outlined text-sm! sm:text-lg!">
+                  <span class="material-symbols-outlined text-lg!">
                     {step.icon}
                   </span>
                 </div>
 
+                {/* Etiqueta - Derecha en móvil, Abajo en Desktop */}
                 <span
                   class={`
-                text-[9px] sm:text-xs font-medium text-center mt-4 leading-tight px-2 transition-colors duration-500
+                flex-1 md:flex-none text-sm md:text-xs font-medium text-left md:text-center ml-4 md:ml-0 md:mt-4 leading-tight transition-colors duration-500
                 ${
                   isCompleted
                     ? "text-black dark:text-white font-bold"
@@ -126,18 +146,33 @@ const progressWidth =
 </section>
 
 <style>
-  .progress-bar {
+  .progress-bar-h {
     width: 0%;
-    animation: fillProgress 1.5s ease-out forwards;
+    animation: fillProgressH 1.5s ease-out forwards;
     animation-delay: 0.5s;
   }
 
-  @keyframes fillProgress {
+  .progress-bar-v {
+    height: 0%;
+    animation: fillProgressV 1.5s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes fillProgressH {
     from {
       width: 0%;
     }
     to {
       width: var(--target-width);
+    }
+  }
+
+  @keyframes fillProgressV {
+    from {
+      height: 0%;
+    }
+    to {
+      height: var(--target-height);
     }
   }
 

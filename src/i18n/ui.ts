@@ -40,14 +40,14 @@ export const ui = {
       "Tanto la ceremonia como la celebración tendrán lugar en la finca Condado de Cubillana, ubicada en la zona de Torres de Esteban Hambrán (Toledo). Podéis acudir en vuestro propio coche (dispone de parking gratuito) o utilizar el servicio de autobuses que hemos organizado.",
     "faq.q2": "¿Qué rutas y horarios tendrán los autobuses?",
     "faq.a2":
-      "Habrá dos rutas de autobús con salida desde Atocha (Madrid Centro) y el Hotel Sede en Alcorcón. Las plazas son limitadas y el sistema de reserva se activará en cuanto recibáis la invitación física con vuestro código QR. Los horarios de salida de los buses se publicarán aquí más adelante.",
+      "Queremos que disfrutéis de la fiesta de principio a fin sin preocuparos por el coche. Por eso, pondremos a vuestra disposición un servicio de autobús para los trayectos de ida y vuelta con dos rutas diferentes:<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>directions_bus</span>Ruta 1: Madrid Centro (Atocha).<br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>directions_bus</span>Ruta 2: Alcorcón.<br/><br/>Las plazas son limitadas, por lo que podréis reservar la vuestra en cuanto recibáis la invitación física a través del código QR.<br/><br/>Los horarios exactos de salida y los turnos de regreso los publicaremos en esta misma sección un poquito más adelante. <b>¡Estad atentos!</b>",
     "faq.guide_link": "Guía de Alojamiento",
-    "faq.q3": "¿Dónde se encuentra el alojamiento recomendado?",
+    "faq.q3": "¿Hay opciones de alojamiento en la propia finca?",
     "faq.a3":
-      'Hemos establecido el Hotel NH Madrid Alcorcón como "Hotel Sede" para facilitar la organización. Es el punto de salida de una de las rutas de autobús y tiene conexión directa con transporte público.',
+      "Si os apetece despertar en la propia finca, disponemos de dos casitas de invitados con plazas muy limitadas para la noche del evento (incluyen desayuno):<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>home</span><b>Casa Kentia (960€)</b>: Para 12 personas (6 habitaciones dobles). Distribuida en dos plantas con 3 habitaciones y 2 baños en cada una.<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>home</span><b>Casa Hiedra (480€)</b>: Para 4-6 personas (2 habitaciones dobles y sofá cama doble).<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>info</span><b>Información clave</b>: Estancia exclusiva para la noche del sábado. Entrada a las 09:00h y salida el domingo a las 12:00h. Incluye ropa de cama, toallas y requiere fianza.<br/><br/>¿Os interesa? Contactad directamente con nosotros para gestionar vuestra reserva de forma personalizada.",
     "faq.q4": "¿Cuándo y a qué hora se celebra la boda?",
     "faq.a4":
-      "La boda es de día y tendrá lugar el sábado 10 de octubre de 2026. La ceremonia civil comenzará previsiblemente a las 13:00h en la misma finca, aunque os confirmaremos la hora exacta más adelante.",
+      "<span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>event</span>La boda es de día y tendrá lugar el sábado 10 de octubre de 2026.<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>schedule</span>La ceremonia civil comenzará previsiblemente a las 13:00h en la misma finca, aunque os confirmaremos la hora exacta más adelante.",
     "faq.contact_title": "¿Tienes alguna duda?",
     "faq.contact_text": "Si tenéis cualquier duda, contactad con nosotros.",
     "map.address_default":
@@ -105,14 +105,14 @@ export const ui = {
       "Both the ceremony and the celebration will take place at Condado de Cubillana estate, located near Torres de Esteban Hambrán (Toledo). You can drive there (free parking available) or use the shuttle bus service we have arranged.",
     "faq.q2": "What bus routes and schedules will there be?",
     "faq.a2":
-      "There will be two bus routes departing from Atocha (Madrid city center) and from the designated hotel in Alcorcón. Seats are limited and the reservation system will be activated once you receive the physical invitation with your QR code. Departure times will be published here later.",
+      "We want you to enjoy the party from start to finish without worrying about the car. Therefore, we will provide a shuttle bus service for the round trip with two different routes:<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>directions_bus</span>Route 1: Madrid Center (Atocha).<br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>directions_bus</span>Route 2: Alcorcón.<br/><br/>Seats are limited, so you can reserve yours as soon as you receive the physical invitation via the QR code.<br/><br/>The exact departure times and return shifts will be published in this same section a bit later. <b>Stay tuned!</b>",
     "faq.guide_link": "Accommodation Guide",
-    "faq.q3": "Where is the recommended accommodation located?",
+    "faq.q3": "Are there accommodation options on the estate itself?",
     "faq.a3":
-      "We have set NH Madrid Alcorcón as the designated hotel to make planning easier. It is the departure point for one of the bus routes and has a direct connection to public transport.",
+      "If you feel like waking up on the estate itself, we have two guest houses with very limited spots for the night of the event (including breakfast):<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>home</span><b>Casa Kentia (€960)</b>: For 12 people (6 double rooms). Distributed over two floors with 3 rooms and 2 bathrooms in each.<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>home</span><b>Casa Hiedra (€480)</b>: For 4-6 people (2 double rooms and a double sofa bed).<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>info</span><b>Key Information</b>: Exclusive stay for Saturday night. Check-in at 09:00 AM and check-out on Sunday at 12:00 PM. Includes bed linen, towels and requires a deposit.<br/><br/>Interested? Contact us directly to manage your personalized reservation.",
     "faq.q4": "When and what time is the wedding?",
     "faq.a4":
-      "The wedding is during the day and will take place on Saturday, October 10, 2026. The civil ceremony is expected to start at 1:00 PM at the estate, although we will confirm the exact time later.",
+      "<span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>event</span>The wedding is during the day and will take place on Saturday, October 10, 2026.<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>schedule</span>The civil ceremony is expected to start at 1:00 PM at the estate, although we will confirm the exact time later.",
     "faq.contact_title": "Any questions?",
     "faq.contact_text": "If you have any questions, please contact us.",
     "map.address_default":
