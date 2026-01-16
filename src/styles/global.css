@@ -23,11 +23,39 @@ html {
 
   --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
   --animate-fade-in: fadeIn 0.4s ease-out forwards;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-shimmer: shimmer 8s linear infinite;
 }
 
 @layer utilities {
   .text-shadow {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Wax seal styling using primary palette */
+  .wax-seal-shape {
+    border-radius: 50% 45% 55% 40% / 45% 55% 45% 55%;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3),
+      inset 2px 2px 5px rgba(255, 255, 255, 0.4),
+      inset -2px -2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .wax-engraved-text {
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4),
+      -1px -1px 0px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-dark) 0%,
+      var(--color-primary) 50%,
+      var(--color-primary-dark) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .wax-rim {
+    border-radius: 50% 48% 52% 46% / 48% 52% 48% 52%;
   }
 }
 
@@ -48,6 +76,25 @@ html {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }
 

@@ -5,8 +5,9 @@ import FAQ from "./FAQ.astro";
 import Footer from "./Footer.astro";
 import Header from "./Header.astro";
 import Hero from "./Hero.astro";
-import ParallaxSection from "./ParallaxSection.astro";
+import IntroGate from "./IntroGate.astro";
 import Progress from "./Progress.astro";
+import VideoSection from "./VideoSection.astro";
 
 interface Props {
   lang: "es" | "en";
@@ -16,12 +17,13 @@ const { lang } = Astro.props;
 ---
 
 <Layout title="Un Sueño Moderno - Marina & Oswald">
+  <IntroGate />
   <Header />
   <main class="flex flex-col min-h-screen w-full pt-16">
     <Hero />
+    <VideoSection />
     <Countdown />
     <Progress />
-    <ParallaxSection />
     <FAQ />
     <Footer />
   </main>

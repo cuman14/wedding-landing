@@ -7,22 +7,23 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<header class="fixed flex top-0 left-0 w-full z-50 bg-background-light/90 max-h-16 dark:bg-background-dark/90 backdrop-blur-md">
+<header class="fixed flex top-0 left-0 w-full z-50 bg-background-light/95 max-h-16 dark:bg-background-dark/95 backdrop-blur-md border-b border-pearl-grey dark:border-white/10 shadow-sm transition-all duration-300">
     <div class="px-4 lg:px-40 flex justify-center flex-1 items-center py-0">
-        <div class="flex flex-col flex-1">
-            <div class="flex items-center justify-between whitespace-nowrap px-4 lg:px-10 py-4">
-                <div class="flex items-center gap-4">
-                    <div class="size-6 text-primary">
+        <div class="flex flex-col flex-1 max-w-300">
+            <div class="flex items-center justify-between whitespace-nowrap px-2 md:px-4 lg:px-10 py-4">
+                <div class="flex items-center gap-2 md:gap-3">
+                    <div class="size-6 text-primary animate-pulse">
                         <span class="material-symbols-outlined">favorite</span>
                     </div>
-                    <h2 class="text-xl font-display font-medium leading-tight tracking-normal">Marina & Oswald</h2>
+                    <h2 class="text-lg md:text-2xl font-display font-medium leading-tight tracking-normal text-text-main-light dark:text-white">Marina & Oswald</h2>
                 </div>
                 
                 <nav class="hidden md:flex flex-1 justify-end gap-8 items-center">
                     <div class="flex items-center gap-9">
-                        <a class="text-sm font-body font-normal hover:text-primary transition-colors" href="#hero">{t('nav.home')}</a>
-                        <a class="text-sm font-body font-normal hover:text-primary transition-colors" href="#countdown">{t('nav.countdown')}</a>
-                        <a class="text-sm font-body font-normal hover:text-primary transition-colors" href="#faq">{t('nav.details')}</a>
+                        <a class="text-sm font-body font-normal text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#hero">{t('nav.home')}</a>
+                        <a class="text-sm font-body font-normal text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#video-section">{t('nav.place')}</a>
+                        <a class="text-sm font-body font-normal text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#countdown">{t('nav.countdown')}</a>
+                        <a class="text-sm font-body font-normal text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#faq">{t('nav.details')}</a>
                     </div>
                     
                     <!-- Language Switcher -->
