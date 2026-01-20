@@ -4,36 +4,93 @@
 
 <div
   id="top-flap"
-  class="absolute inset-0 z-30 origin-top transition-all duration-1500 ease-in-out"
+  class="absolute inset-x-0 top-0 h-full z-30 origin-top transition-all duration-1500 ease-in-out"
   style="transform-style: preserve-3d;"
 >
+  <!-- Hi-Fi Organic Wax Seal (Profound Volume) -->
   <div
     id="wax-seal"
-    class="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 size-24 md:size-32 wax-seal-shape bg-linear-to-br from-primary-dark via-primary to-primary-dark flex items-center justify-center z-40 cursor-pointer transition-all duration-500 group-hover:scale-105"
+    class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 size-32 md:size-48 z-40 cursor-pointer transition-all duration-800 group-hover:scale-105"
   >
+    <!-- Organic Wax Base -->
     <div
-      class="absolute inset-1 wax-rim bg-linear-to-tl from-primary-dark to-primary-light opacity-50"
+      class="absolute inset-0 bg-[#7c883f] rounded-[47%_53%_44%_56%/56%_47%_53%_44%] shadow-[0_20px_45px_rgba(0,0,0,0.6),inset_0_-10px_20px_rgba(0,0,0,0.5),inset_0_6px_20px_rgba(255,255,255,0.3)] border-2 border-black/25 flex items-center justify-center animate-subtle-drift"
     >
-    </div>
-    <div
-      class="absolute inset-3 md:inset-4 rounded-full shadow-[inset_2px_2px_4px_rgba(0,0,0,0.3),inset_-1px_-1px_2px_rgba(255,255,255,0.4)] bg-primary flex items-center justify-center border border-primary-dark/20"
-    >
+      <!-- Pressed Cavity -->
       <div
-        class="absolute inset-2 rounded-full border border-primary-dark/40 shadow-[0_1px_1px_rgba(255,255,255,0.3)]"
+        class="absolute inset-5 md:inset-8 rounded-full bg-[#7c883f] shadow-[inset_0_8px_20px_rgba(0,0,0,0.7),0_3px_6px_rgba(255,255,255,0.2)] border border-black/25 flex items-center justify-center overflow-hidden"
+      >
+        <!-- Textures -->
+        <div
+          class="absolute inset-0 bg-linear-to-tr from-black/30 via-transparent to-white/15 opacity-40"
+        >
+        </div>
+        <div
+          class="absolute size-[85%] rounded-full border border-black/20 opacity-30"
+        >
+        </div>
+        <div
+          class="absolute size-[40%] rounded-full bg-black/10 blur-sm opacity-20"
+        >
+        </div>
+      </div>
+
+      <!-- Realistic Highlights -->
+      <div
+        class="absolute top-[12%] left-[12%] size-[35%] bg-white/20 blur-xl rounded-full pointer-events-none"
       >
       </div>
-      <span
-        class="font-display text-3xl md:text-5xl font-bold pt-1 md:pt-2 opacity-95 wax-engraved-text relative z-10 drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)]"
-      ></span>
       <div
-        class="absolute inset-0 rounded-full bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12 animate-shimmer pointer-events-none"
+        class="absolute top-[8%] left-[28%] size-[20%] bg-white/25 blur-md rounded-full pointer-events-none"
       >
       </div>
     </div>
   </div>
+
+  <!-- Fullscreen Top Flap (Extreme Paper Relief) -->
   <div
-    class="absolute top-0 left-0 right-0 h-full bg-linear-to-b from-secondary-mint to-primary-light [clip-path:polygon(0_0,100%_0,50%_55%)] drop-shadow-md"
+    class="absolute top-0 left-0 right-0 h-full bg-[#ecc18d] [clip-path:polygon(0_0,100%_0,50%_50%)] shadow-[0_25px_50px_rgba(0,0,0,0.45)]"
   >
-    <!-- Wax seal -->
+    <!-- Surface lighting -->
+    <div
+      class="absolute inset-0 bg-linear-to-b from-white/20 via-transparent to-black/25 opacity-90 pointer-events-none"
+    >
+    </div>
+
+    <!-- Edge highlight (Top light) -->
+    <div
+      class="absolute bottom-0 left-0 right-0 h-[4px] bg-white/40 blur-[1px]"
+    >
+    </div>
+
+    <!-- Deep contact shadow -->
+    <div
+      class="absolute bottom-0 left-0 right-0 h-full bg-linear-to-t from-black/30 via-transparent to-transparent opacity-50"
+    >
+    </div>
+
+    <!-- Realistic micro-texture simulation -->
+    <div
+      class="absolute inset-0 opacity-[0.05] mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]"
+    >
+    </div>
   </div>
 </div>
+
+<style>
+  @keyframes subtle-drift {
+    0%,
+    100% {
+      transform: scale(1) rotate(0deg);
+    }
+    33% {
+      transform: scale(1.04) rotate(1.5deg);
+    }
+    66% {
+      transform: scale(0.97) rotate(-1.5deg);
+    }
+  }
+  .animate-subtle-drift {
+    animation: subtle-drift 6s ease-in-out infinite;
+  }
+</style>
