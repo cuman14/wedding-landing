@@ -8,12 +8,12 @@ const t = useTranslations(lang);
 
 <div
   id="intro-gate"
-  class="fixed inset-0 z-100 bg-[#ecc18d] flex flex-col items-center justify-center transition-opacity duration-1500 ease-in-out"
+  class="fixed inset-0 z-100 bg-[#b48c3c] flex flex-col items-center justify-center transition-opacity duration-1500 ease-in-out"
 >
   <div
     id="envelope-wrapper"
     class="relative group cursor-pointer flex flex-col items-center justify-center w-full h-full overflow-hidden"
-    style="perspective: 3500px;"
+    style="perspective: 2500px;"
   >
     <!-- Tap hint -->
     <div
@@ -21,101 +21,83 @@ const t = useTranslations(lang);
       class="absolute top-12 md:top-20 z-100 animate-pulse transition-opacity duration-700 group-hover:opacity-80"
     >
       <p
-        class="font-body text-[#7c883f] uppercase tracking-[0.3em] md:tracking-[0.6em] text-[10px] md:text-sm font-bold drop-shadow-[0_4px_6px_rgba(0,0,0,0.3)]"
+        class="font-body text-white/40 uppercase tracking-[0.3em] md:tracking-[0.5em] text-[10px] md:text-sm font-bold"
       >
         {t("intro.tapToOpen")}
       </p>
     </div>
 
-    <!-- Ultra Hi-Fi Fullscreen Envelope Structure -->
+    <!-- Modella Style Fullscreen Envelope Structure -->
     <div
       class="relative w-full h-full transition-transform duration-1200 ease-out"
     >
-      <!-- Envelope Cavity (Deep Internal) -->
+      <!-- Envelope Background / Base with vertical texture -->
       <div
-        class="absolute inset-0 bg-[#d9af7a] shadow-[inset_0_0_200px_rgba(0,0,0,0.4)]"
+        class="absolute inset-0 bg-[#b48c3c] shadow-[inset_0_0_100px_rgba(0,0,0,0.15)]"
+        style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);"
       >
-        <!-- Paper texture overlay -->
+        <!-- Subtle paper noise -->
         <div
-          class="absolute inset-0 opacity-[0.08] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/paper.png')]"
+          class="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/paper.png')]"
         >
         </div>
       </div>
 
-      <!-- Invitation card inside -->
+      <!-- Invitation card inside (Maintains Dark Mode) -->
       <div
         id="invitation-card"
-        class="absolute inset-x-6 md:inset-x-32 bottom-12 md:bottom-32 h-[80%] bg-background-dark shadow-[0_40px_80px_rgba(0,0,0,0.6),0_15px_30px_rgba(0,0,0,0.4)] rounded-sm z-10 flex flex-col items-center justify-center transition-transform duration-1200 ease-in-out border border-white/10"
+        class="absolute inset-x-6 md:inset-x-28 bottom-12 md:bottom-28 h-[80%] bg-background-dark shadow-[0_30px_60px_rgba(0,0,0,0.5)] rounded-sm z-10 flex flex-col items-center justify-center transition-transform duration-1200 ease-in-out border border-white/10 overflow-hidden"
       >
         <div
-          class="font-display text-5xl md:text-9xl text-white drop-shadow-lg"
+          class="font-display text-5xl md:text-8xl text-white drop-shadow-sm"
         >
           M & O
         </div>
-        <div class="w-16 md:w-32 h-px bg-white/30 my-10 md:my-16"></div>
+        <div class="w-12 md:w-20 h-px bg-white/20 my-10 md:my-14"></div>
         <div
-          class="font-body text-sm md:text-xl text-white/70 uppercase tracking-[0.4em] md:tracking-[0.6em]"
+          class="font-body text-sm md:text-xl text-white/60 uppercase tracking-[0.3em] md:tracking-[0.5em]"
         >
           {t("countdown.date")}
         </div>
         <div
-          class="font-body text-xs md:text-sm text-white/50 uppercase tracking-[0.2em] md:tracking-[0.4em] mt-8"
+          class="font-body text-xs md:text-sm text-white/40 uppercase tracking-[0.15em] md:tracking-[0.2em] mt-6"
         >
           {t("hero.location")}
         </div>
       </div>
 
-      <!-- SIDE FLAPS (Profound Depth) -->
+      <!-- Side Flaps (Fine minimalist reliefs) -->
       <div class="absolute inset-0 z-20 pointer-events-none">
         <!-- Left Flap -->
         <div
-          class="absolute left-0 top-0 bottom-0 w-2/3 bg-[#ecc18d] [clip-path:polygon(0_0,0_100%,100%_50%)] shadow-[-20px_0_60px_rgba(0,0,0,0.35)] border-r border-black/20"
+          class="absolute left-0 top-0 bottom-0 w-2/3 bg-[#b48c3c] [clip-path:polygon(0_0,0_100%,100%_50%)] shadow-[-5px_0_15px_rgba(0,0,0,0.1)] border-r border-black/5"
+          style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);"
         >
           <div
-            class="absolute inset-0 bg-linear-to-r from-black/20 via-black/5 to-transparent"
-          >
-          </div>
-          <div
-            class="absolute inset-0 bg-linear-to-b from-white/15 via-transparent to-black/15"
+            class="absolute inset-0 bg-linear-to-r from-black/5 via-transparent to-transparent"
           >
           </div>
         </div>
         <!-- Right Flap -->
         <div
-          class="absolute right-0 top-0 bottom-0 w-2/3 bg-[#ecc18d] [clip-path:polygon(100%_0,100%_100%,0_50%)] shadow-[20px_0_60px_rgba(0,0,0,0.35)] border-l border-black/20"
+          class="absolute right-0 top-0 bottom-0 w-2/3 bg-[#b48c3c] [clip-path:polygon(100%_0,100%_100%,0_50%)] shadow-[5px_0_15px_rgba(0,0,0,0.1)] border-l border-black/5"
+          style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);"
         >
           <div
-            class="absolute inset-0 bg-linear-to-l from-black/25 via-black/5 to-transparent"
-          >
-          </div>
-          <div
-            class="absolute inset-0 bg-linear-to-b from-white/15 via-transparent to-black/15"
+            class="absolute inset-0 bg-linear-to-l from-black/5 via-transparent to-transparent"
           >
           </div>
         </div>
       </div>
 
-      <!-- BOTTOM FLAP (Extreme Relief) -->
+      <!-- Bottom Flap (Over the sides) -->
       <div class="absolute inset-0 z-20 pointer-events-none">
         <div
-          class="absolute left-0 right-0 bottom-0 h-3/5 bg-[#ecc18d] [clip-path:polygon(0_100%,100%_100%,50%_0)] shadow-[0_-30px_70px_rgba(0,0,0,0.35)] border-t border-white/30"
+          class="absolute left-0 right-0 bottom-0 h-3/5 bg-[#b48c3c] [clip-path:polygon(0_100%,100%_100%,50%_0)] shadow-[0_-8px_20px_rgba(0,0,0,0.1)] border-t border-white/10"
+          style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);"
         >
-          <!-- Realistic highlight on top edge of fold -->
           <div
-            class="absolute top-0 left-0 right-0 h-[3px] bg-white/50 blur-[1px]"
-          >
-          </div>
-          <div
-            class="absolute inset-0 shadow-[inset_0_15px_30px_rgba(0,0,0,0.1)]"
-          >
-          </div>
-          <div
-            class="absolute inset-0 bg-linear-to-t from-black/15 via-transparent to-transparent"
-          >
-          </div>
-          <!-- Secondary depth shadow for superimposition -->
-          <div
-            class="absolute inset-0 bg-linear-to-br from-black/5 to-transparent opacity-50"
+            class="absolute inset-0 bg-linear-to-t from-black/10 via-transparent to-transparent"
           >
           </div>
         </div>
@@ -130,11 +112,11 @@ const t = useTranslations(lang);
       class="absolute bottom-10 z-50 flex flex-col items-center gap-2 animate-float opacity-0 transition-opacity duration-1000 delay-200"
     >
       <span
-        class="text-[10px] md:text-xs uppercase tracking-widest text-[#7c883f] font-body font-bold drop-shadow-md"
+        class="text-[10px] md:text-xs uppercase tracking-widest text-white/40 font-body font-bold"
         >{t("intro.scrollHint")}</span
       >
       <span
-        class="material-symbols-outlined text-[#7c883f] text-4xl animate-bounce"
+        class="material-symbols-outlined text-white/40 text-3xl animate-bounce"
         >keyboard_arrow_down</span
       >
     </div>
@@ -157,36 +139,35 @@ const t = useTranslations(lang);
         if (scrollHint) scrollHint.style.opacity = "0";
 
         if (topFlap) {
-          topFlap.style.transition = "all 1.6s cubic-bezier(0.5, 0, 0.1, 1)";
+          topFlap.style.transition = "all 1.4s cubic-bezier(0.4, 0, 0.2, 1)";
           topFlap.style.transform = "rotateX(180deg)";
           topFlap.style.zIndex = "1";
         }
 
         if (seal) {
           seal.style.transition =
-            "opacity 0.7s ease-out, transform 0.7s ease-out";
+            "opacity 0.5s ease-out, transform 0.5s ease-out";
           seal.style.opacity = "0";
-          seal.style.transform =
-            "translate(-50%, -70%) scale(1.1) rotate(8deg)";
+          seal.style.transform = "translate(-50%, -50%) scale(1.1)";
         }
 
         setTimeout(() => {
           if (card) {
-            card.style.transform = "translateY(-45%)";
+            card.style.transform = "translateY(-40%)";
             card.style.zIndex = "25";
           }
-        }, 1400);
+        }, 1200);
 
         setTimeout(() => {
           if (gate) {
             gate.style.opacity = "0";
             gate.style.pointerEvents = "none";
           }
-        }, 3800);
+        }, 3400);
 
         setTimeout(() => {
           gate?.remove();
-        }, 6500);
+        }, 5500);
       });
     }
   });
