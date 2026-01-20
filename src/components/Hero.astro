@@ -1,60 +1,96 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section id="hero" class="relative w-full h-[85vh] md:h-[90vh] overflow-hidden flex items-center justify-center bg-gray-900 group">
-    <!-- Image background -->
-    <div class="absolute inset-0 w-full h-full overflow-hidden">
-        <img 
-            src="/foto-hero.webp"
-            alt="Marina & Oswald Hero"
-            class="absolute inset-0 w-full h-full object-cover transition-transform duration-2000 ease-out scale-105 group-hover:scale-110 will-change-transform"
-        />
-        <div class="absolute inset-0 bg-black/30 dark:bg-black/50 bg-linear-to-t from-black/40 via-transparent to-black/20 mix-blend-multiply"></div>
+<section
+  id="hero"
+  class="relative w-full h-[85vh] md:h-[90vh] overflow-hidden flex items-center justify-center bg-gray-900 group"
+>
+  <!-- Image background -->
+  <div class="absolute inset-0 w-full h-full overflow-hidden">
+    <img
+      src="/foto-hero.webp"
+      alt="Marina & Oswald Hero"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-2000 ease-out scale-105 group-hover:scale-110 will-change-transform"
+    />
+    <div
+      class="absolute inset-0 bg-black/30 dark:bg-black/50 bg-linear-to-t from-black/40 via-transparent to-black/20 mix-blend-multiply"
+    >
     </div>
-    
-    <!-- Content -->
-    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto text-white flex flex-col items-center gap-72 md:gap-72 animate-fade-in-up">
-        <div class="w-full flex flex-col items-center">
-            <!-- Save The Date badge -->
-            <span class="uppercase tracking-[0.2em] md:tracking-[0.3em] text-[10px] md:text-xs font-body font-medium text-white/90 mb-3 md:mb-4 border-b border-white/30 pb-2">{t('hero.subtitle')}</span>
-            
-            <!-- Names -->
-            <h1 class="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-display font-normal tracking-wide leading-none drop-shadow-2xl opacity-95">
-                Marina <span class="text-primary-light font-display text-3xl md:text-5xl lg:text-7xl align-middle mx-1 md:mx-2 opacity-80">&</span> Oswald
-            </h1>
-            
-            <!-- Slogan -->
-            <p class="text-lg md:text-2xl lg:text-3xl font-display text-primary-light mt-4 md:mt-6 tracking-wide drop-shadow-lg italic opacity-90">
-                "{t('hero.slogan')}"
-            </p>
-        </div>
+  </div>
 
-        <!-- Info card -->
-        <div class="mt-6 md:mt-8 backdrop-blur-md bg-white/10 p-4 md:p-6 rounded-xl md:rounded-2xl border border-white/10 shadow-xl flex flex-col md:flex-row gap-4 md:gap-6 items-center">
-            <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary-light">calendar_month</span>
-                <div class="text-left">
-                    <p class="text-[10px] md:text-xs uppercase tracking-wider text-white/70">{lang === 'es' ? 'Fecha' : 'Date'}</p>
-                    <p class="text-sm md:text-lg font-medium">{t('countdown.date')}</p>
-                </div>
-            </div>
-            <div class="w-full md:w-px h-px md:h-10 bg-white/20"></div>
-            <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary-light">location_on</span>
-                <div class="text-left">
-                    <p class="text-[10px] md:text-xs uppercase tracking-wider text-white/70">{lang === 'es' ? 'Lugar' : 'Venue'}</p>
-                    <p class="text-sm md:text-lg font-medium">{t('hero.location')}</p>
-                </div>
-            </div>
-        </div>
+  <!-- Content -->
+  <div
+    class="relative z-10 text-center px-4 max-w-5xl mx-auto text-white flex flex-col items-center gap-48 md:gap-72 animate-fade-in-up"
+  >
+    <div class="w-full flex flex-col items-center">
+      <!-- Save The Date badge -->
+      <span
+        class="uppercase tracking-[0.2em] md:tracking-[0.3em] text-[10px] md:text-xs font-body font-medium text-white/90 mb-3 md:mb-4 border-b border-white/30 pb-2"
+        >{t("hero.subtitle")}</span
+      >
+
+      <!-- Names -->
+      <h1
+        class="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-display font-normal tracking-wide leading-none drop-shadow-2xl opacity-95"
+      >
+        Marina <span
+          class="text-primary-light font-display text-3xl md:text-5xl lg:text-7xl align-middle mx-1 md:mx-2 opacity-80"
+          >&</span
+        > Oswald
+      </h1>
+
+      <!-- Slogan -->
+      <p
+        class="text-lg md:text-2xl lg:text-3xl font-display text-primary-light mt-4 md:mt-6 tracking-wide drop-shadow-lg italic opacity-90"
+      >
+        "{t("hero.slogan")}"
+      </p>
     </div>
 
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/70">
-        <span class="material-symbols-outlined text-2xl md:text-3xl">keyboard_arrow_down</span>
+    <!-- Info card -->
+    <div
+      class="mt-6 md:mt-8 backdrop-blur-md bg-white/10 p-4 md:p-6 rounded-xl md:rounded-2xl border border-white/10 shadow-xl flex flex-col md:flex-row gap-4 md:gap-6 items-center"
+    >
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary-light"
+          >calendar_month</span
+        >
+        <div class="text-left">
+          <p
+            class="text-[10px] md:text-xs uppercase tracking-wider text-white/70"
+          >
+            {lang === "es" ? "Fecha" : "Date"}
+          </p>
+          <p class="text-sm md:text-lg font-medium">{t("countdown.date")}</p>
+        </div>
+      </div>
+      <div class="w-full md:w-px h-px md:h-10 bg-white/20"></div>
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary-light"
+          >location_on</span
+        >
+        <div class="text-left">
+          <p
+            class="text-[10px] md:text-xs uppercase tracking-wider text-white/70"
+          >
+            {lang === "es" ? "Lugar" : "Venue"}
+          </p>
+          <p class="text-sm md:text-lg font-medium">{t("hero.location")}</p>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div
+    class="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/70"
+  >
+    <span class="material-symbols-outlined text-2xl md:text-3xl"
+      >keyboard_arrow_down</span
+    >
+  </div>
 </section>

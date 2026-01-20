@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import IntroFlap from "./IntroFlap.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -7,17 +8,17 @@ const t = useTranslations(lang);
 
 <div
   id="intro-gate"
-  class="fixed inset-0 z-[100] bg-secondary-mint flex flex-col items-center justify-center transition-opacity duration-[1500ms] ease-in-out"
+  class="fixed inset-0 z-100 bg-secondary-mint flex flex-col items-center justify-center transition-opacity duration-1500 ease-in-out"
 >
   <div
     id="envelope-wrapper"
-    class="relative group cursor-pointer flex flex-col items-center justify-center"
+    class="relative group cursor-pointer flex flex-col items-center justify-center w-full h-full"
     style="perspective: 1500px;"
   >
     <!-- Tap hint -->
     <div
       id="tap-hint"
-      class="mb-8 md:mb-16 animate-pulse transition-opacity duration-700 group-hover:opacity-80"
+      class="absolute top-10 md:top-20 z-50 animate-pulse transition-opacity duration-700 group-hover:opacity-80"
     >
       <p
         class="font-body text-primary-dark/60 uppercase tracking-[0.3em] md:tracking-[0.4em] text-[10px] md:text-xs font-medium"
@@ -26,40 +27,40 @@ const t = useTranslations(lang);
       </p>
     </div>
 
-    <!-- Envelope container -->
+    <!-- Envelope container (Fullscreen) -->
     <div
-      class="relative w-[90vw] max-w-[400px] md:max-w-[700px] aspect-[1.5/1] transition-transform duration-700 hover:scale-[1.02]"
+      class="relative w-full h-full transition-transform duration-700 overflow-hidden"
     >
       <!-- Shadow -->
       <div
-        class="absolute inset-0 bg-primary-dark/20 shadow-2xl rounded-sm transform translate-y-2 translate-x-1 opacity-40 blur-sm"
+        class="absolute inset-0 bg-primary-dark/10 opacity-40 blur-sm pointer-events-none"
       >
       </div>
 
       <!-- Envelope body -->
       <div
-        class="absolute inset-0 bg-linear-to-b from-secondary-mint to-primary-light/40 rounded-sm shadow-xl border border-white/40"
+        class="absolute inset-0 bg-linear-to-b from-secondary-mint to-primary-light/40 shadow-xl"
       >
       </div>
 
-      <!-- Invitation card inside -->
+      <!-- Invitation card inside (Forced Dark Mode) -->
       <div
         id="invitation-card"
-        class="absolute left-4 right-4 md:left-6 md:right-6 bottom-2 md:bottom-3 h-[92%] bg-white shadow-inner rounded-sm z-10 flex flex-col items-center justify-start pt-10 md:pt-16 transition-transform duration-1200 ease-in-out border border-gray-50"
+        class="absolute inset-x-4 md:inset-x-10 bottom-4 md:bottom-10 h-[85%] bg-background-dark shadow-2xl rounded-sm z-10 flex flex-col items-center justify-center transition-transform duration-1200 ease-in-out border border-white/5"
       >
         <div
-          class="font-display text-5xl md:text-7xl text-primary drop-shadow-sm"
+          class="font-display text-5xl md:text-8xl text-white drop-shadow-sm"
         >
           M & O
         </div>
-        <div class="w-12 md:w-16 h-px bg-primary/30 my-6 md:my-8"></div>
+        <div class="w-12 md:w-20 h-px bg-white/20 my-8 md:my-12"></div>
         <div
-          class="font-body text-xs md:text-sm text-gray-400 uppercase tracking-[0.2em] md:tracking-[0.25em]"
+          class="font-body text-sm md:text-lg text-white/60 uppercase tracking-[0.2em] md:tracking-[0.3em]"
         >
           {t("countdown.date")}
         </div>
         <div
-          class="font-body text-[10px] md:text-xs text-gray-300 uppercase tracking-[0.15em] md:tracking-[0.2em] mt-2"
+          class="font-body text-xs md:text-sm text-white/40 uppercase tracking-[0.15em] md:tracking-[0.2em] mt-4"
         >
           {t("hero.location")}
         </div>
@@ -85,49 +86,13 @@ const t = useTranslations(lang);
         </div>
       </div>
 
-      <!-- Top flap with seal -->
-      <div
-        id="top-flap"
-        class="absolute inset-0 z-30 origin-top transition-all duration-1500 ease-in-out"
-        style="transform-style: preserve-3d;"
-      >
-        <div
-          id="wax-seal"
-          class="absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 size-24 md:size-36 wax-seal-shape bg-gradient-to-br from-primary-dark via-primary to-primary-dark flex items-center justify-center z-40 cursor-pointer transition-all duration-500 group-hover:scale-105"
-        >
-          <div
-            class="absolute inset-1 wax-rim bg-gradient-to-tl from-primary-dark to-primary-light opacity-50"
-          >
-          </div>
-          <div
-            class="absolute inset-3 md:inset-4 rounded-full shadow-[inset_2px_2px_4px_rgba(0,0,0,0.3),inset_-1px_-1px_2px_rgba(255,255,255,0.4)] bg-primary flex items-center justify-center border border-primary-dark/20"
-          >
-            <div
-              class="absolute inset-2 rounded-full border border-primary-dark/40 shadow-[0_1px_1px_rgba(255,255,255,0.3)]"
-            >
-            </div>
-            <span
-              class="font-display text-3xl md:text-5xl font-bold pt-1 md:pt-2 opacity-95 wax-engraved-text relative z-10 drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)]"
-              >MO</span
-            >
-            <div
-              class="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 animate-shimmer pointer-events-none"
-            >
-            </div>
-          </div>
-        </div>
-        <div
-          class="absolute top-0 left-0 right-0 h-full bg-linear-to-b from-secondary-mint to-primary-light [clip-path:polygon(0_0,100%_0,50%_55%)] drop-shadow-md"
-        >
-          <!-- Wax seal -->
-        </div>
-      </div>
+      <IntroFlap />
     </div>
 
     <!-- Scroll hint -->
     <div
       id="scroll-hint"
-      class="absolute -bottom-16 md:-bottom-24 flex flex-col items-center gap-2 md:gap-3 animate-float opacity-0 transition-opacity duration-1000 delay-200"
+      class="absolute bottom-10 z-50 flex flex-col items-center gap-2 md:gap-3 animate-float opacity-0 transition-opacity duration-1000 delay-200"
     >
       <span
         class="text-[10px] md:text-xs uppercase tracking-widest text-gray-400 font-body"
@@ -173,7 +138,8 @@ const t = useTranslations(lang);
         // Slide card up
         setTimeout(() => {
           if (card) {
-            card.style.transform = "translateY(-100px)";
+            // Full screen vertical slide
+            card.style.transform = "translateY(-40%)";
             card.style.zIndex = "25";
           }
         }, 1000);
@@ -186,7 +152,7 @@ const t = useTranslations(lang);
           }
         }, 2800);
 
-        // Remove gate
+        // Remove gate from DOM
         setTimeout(() => {
           gate?.remove();
         }, 4500);
