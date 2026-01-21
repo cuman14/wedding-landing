@@ -1,51 +1,68 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div id="mobile-menu" class="fixed inset-0 z-40 bg-background-light dark:bg-background-dark transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-center items-center gap-8">
-    <button 
-        id="close-menu" 
-        class="absolute top-6 right-6 p-2 text-primary focus-visible:ring-2 focus-visible:ring-primary rounded-full"
-        aria-label="Cerrar menú"
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-100 bg-background-light dark:bg-background-dark transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-center items-center gap-8"
+>
+  <button
+    id="close-menu"
+    class="absolute top-6 right-6 p-2 text-primary focus-visible:ring-2 focus-visible:ring-primary rounded-full"
+    aria-label="Cerrar menú"
+  >
+    <span class="material-symbols-outlined text-3xl" aria-hidden="true"
+      >close</span
     >
-        <span class="material-symbols-outlined text-3xl" aria-hidden="true">close</span>
-    </button>
+  </button>
 
-    <nav class="flex flex-col items-center gap-6">
-        <a class="text-2xl font-body font-medium hover:text-primary transition-colors mobile-link" href="#hero">{t('nav.home')}</a>
-        <a class="text-2xl font-body font-medium hover:text-primary transition-colors mobile-link" href="#video-section">{t('nav.place')}</a>
-        <a class="text-2xl font-body font-medium hover:text-primary transition-colors mobile-link" href="#countdown">{t('nav.countdown')}</a>
-        <a class="text-2xl font-body font-medium hover:text-primary transition-colors mobile-link" href="#faq">{t('nav.details')}</a>
-    </nav>
+  <nav class="flex flex-col items-center gap-6">
+    <a
+      class="text-2xl font-body font-medium hover:text-primary transition-colors mobile-link"
+      href="#hero">{t("nav.home")}</a
+    >
+    <a
+      class="text-2xl font-body font-medium hover:text-primary transition-colors mobile-link"
+      href="#video-section">{t("nav.place")}</a
+    >
+    <a
+      class="text-2xl font-body font-medium hover:text-primary transition-colors mobile-link"
+      href="#countdown">{t("nav.countdown")}</a
+    >
+    <a
+      class="text-2xl font-body font-medium hover:text-primary transition-colors mobile-link"
+      href="#faq">{t("nav.details")}</a
+    >
+  </nav>
 
-    <button 
+  <!--  <button 
         class="mt-4 flex min-w-30 cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-primary hover:bg-primary-dark text-white text-lg font-bold transition-colors shadow-lg shadow-primary/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         aria-label={t('nav.confirm')}
     >
         <span class="truncate">{t('nav.confirm')}</span>
-    </button>
+    </button> -->
 </div>
 
 <script>
-    const menu = document.getElementById('mobile-menu');
-    const closeBtn = document.getElementById('close-menu');
-    const links = document.querySelectorAll('.mobile-link');
+  const menu = document.getElementById("mobile-menu");
+  const closeBtn = document.getElementById("close-menu");
+  const links = document.querySelectorAll(".mobile-link");
 
-    function close() {
-        menu?.classList.add('translate-x-full');
-    }
+  function close() {
+    menu?.classList.add("translate-x-full");
+  }
 
-    closeBtn?.addEventListener('click', close);
-    
-    links.forEach(link => {
-        link.addEventListener('click', close);
-    });
+  closeBtn?.addEventListener("click", close);
 
-    // Listen for open event custom
-    document.addEventListener('open-mobile-menu', () => {
-        menu?.classList.remove('translate-x-full');
-    });
+  links.forEach((link) => {
+    link.addEventListener("click", close);
+  });
+
+  // Listen for open event custom
+  document.addEventListener("open-mobile-menu", () => {
+    menu?.classList.remove("translate-x-full");
+  });
 </script>

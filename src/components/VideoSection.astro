@@ -31,45 +31,58 @@ const t = useTranslations(lang);
     <!-- Video card -->
     <div
       id="video-container"
-      class="relative w-full aspect-video rounded-xl md:rounded-2xl overflow-hidden shadow-2xl group cursor-pointer bg-black"
+      class="relative w-full aspect-video rounded-xl md:rounded-2xl overflow-hidden shadow-2xl group bg-black"
     >
+      <!-- Video Element with Native Controls Enabled -->
       <video
         id="main-video"
-        class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-60 transition-opacity duration-500 transform group-hover:scale-105"
+        class="absolute inset-0 w-full h-full object-cover opacity-80 transition-opacity duration-500"
         preload="metadata"
         poster="/poster-finca.webp"
-        muted
         loop
         playsinline
+        controls
         aria-label={t("video.venue")}
       >
         <source src="/video-finca-4-compressed.mp4" type="video/mp4" />
       </video>
 
-      <!-- Play/Pause overlay -->
+      <!-- Custom Play overlay (Initial state) -->
       <div
         id="video-overlay"
-        class="absolute inset-0 bg-black/20 flex items-center justify-center transition-opacity duration-300"
+        class="absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-500 z-10 cursor-pointer"
       >
         <div
-          class="size-16 md:size-20 lg:size-24 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-[0_0_30px_rgba(0,0,0,0.3)]"
+          class="size-16 md:size-24 lg:size-28 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-[0_0_40px_rgba(0,0,0,0.4)]"
         >
           <span
             id="play-icon"
-            class="material-symbols-outlined text-white text-4xl md:text-5xl ml-1 md:ml-2"
+            class="material-symbols-outlined text-white text-4xl md:text-6xl ml-1 md:ml-2"
             >play_arrow</span
           >
         </div>
+
+        <!-- Fullscreen hint -->
+        <div
+          class="absolute bottom-6 right-6 text-white/60 flex items-center gap-2"
+        >
+          <span
+            class="text-[10px] md:text-xs uppercase tracking-widest font-body"
+            >{t("video.fullscreen") || "Pantalla Completa"}</span
+          >
+          <span class="material-symbols-outlined text-xl">fullscreen</span>
+        </div>
       </div>
 
-      <!-- Caption bar -->
+      <!-- Caption bar (Only visible when overlay is present or video is paused) -->
       <div
-        class="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-linear-to-t from-black/80 to-transparent pointer-events-none"
+        id="video-caption"
+        class="absolute bottom-0 left-0 right-0 p-4 md:p-8 bg-linear-to-t from-black/90 to-transparent pointer-events-none z-5 transition-opacity duration-500"
       >
-        <p class="text-white font-body font-medium text-base md:text-lg">
+        <p class="text-white font-body font-medium text-lg md:text-2xl">
           {t("video.venue")}
         </p>
-        <p class="text-white/70 text-xs md:text-sm font-light">
+        <p class="text-white/70 text-xs md:text-base font-light">
           {t("video.venueDesc")}
         </p>
       </div>
@@ -81,29 +94,37 @@ const t = useTranslations(lang);
   const container = document.getElementById("video-container");
   const video = document.getElementById("main-video") as HTMLVideoElement;
   const overlay = document.getElementById("video-overlay");
-  const icon = document.getElementById("play-icon");
+  const caption = document.getElementById("video-caption");
 
-  if (container && video && overlay && icon) {
-    container.addEventListener("click", () => {
-      if (video.paused) {
-        video.play();
-        overlay.style.opacity = "0";
-        setTimeout(() => {
-          overlay.classList.add("hidden");
-        }, 300);
-      } else {
-        video.pause();
-        overlay.classList.remove("hidden");
-        setTimeout(() => {
-          overlay.style.opacity = "1";
-        }, 10);
-      }
+  if (video && overlay && caption) {
+    // Start video and hide overlay
+    overlay.addEventListener("click", () => {
+      video.play();
+      overlay.style.opacity = "0";
+      caption.style.opacity = "0";
+      setTimeout(() => {
+        overlay.style.pointerEvents = "none";
+      }, 500);
     });
 
-    // Show overlay when video ends (if not looping) or if needed
+    // Handle video events to show/hide UI
+    video.addEventListener("play", () => {
+      overlay.style.opacity = "0";
+      caption.style.opacity = "0";
+      overlay.style.pointerEvents = "none";
+    });
+
     video.addEventListener("pause", () => {
-      overlay.classList.remove("hidden");
       overlay.style.opacity = "1";
+      caption.style.opacity = "1";
+      overlay.style.pointerEvents = "auto";
+    });
+
+    // Optional: Fullscreen trigger via double click if desired
+    container?.addEventListener("dblclick", () => {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      }
     });
   }
 </script>

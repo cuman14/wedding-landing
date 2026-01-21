@@ -13,7 +13,7 @@ const t = useTranslations(lang);
   <div
     id="envelope-wrapper"
     class="relative group cursor-pointer flex flex-col items-center justify-center w-full h-full overflow-hidden"
-    style="perspective: 2500px;"
+    style="perspective: 3500px;"
   >
     <!-- Tap hint -->
     <div
@@ -21,83 +21,135 @@ const t = useTranslations(lang);
       class="absolute top-12 md:top-20 z-100 animate-pulse transition-opacity duration-700 group-hover:opacity-80"
     >
       <p
-        class="font-body text-white/40 uppercase tracking-[0.3em] md:tracking-[0.5em] text-[10px] md:text-sm font-bold"
+        class="font-body text-white/40 uppercase tracking-[0.3em] md:tracking-[0.6em] text-[10px] md:text-sm font-bold drop-shadow-[0_4px_6px_rgba(0,0,0,0.3)]"
       >
         {t("intro.tapToOpen")}
       </p>
     </div>
 
-    <!-- Modella Style Fullscreen Envelope Structure -->
+    <!-- Hyper-Realistic "Modella" Golden Envelope -->
     <div
       class="relative w-full h-full transition-transform duration-1200 ease-out"
     >
-      <!-- Envelope Background / Base with vertical texture -->
+      <!-- Envelope Cavity (Internal Deep Shading) -->
       <div
-        class="absolute inset-0 bg-[#b48c3c] shadow-[inset_0_0_100px_rgba(0,0,0,0.15)]"
-        style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);"
+        class="absolute inset-0 bg-[#a68245] shadow-[inset_0_0_200px_rgba(0,0,0,0.5)]"
       >
-        <!-- Subtle paper noise -->
+        <!-- Ribbed texture -->
         <div
-          class="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/paper.png')]"
+          class="absolute inset-0"
+          style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);"
+        >
+        </div>
+        <!-- Micro-texture noise layer -->
+        <div
+          class="absolute inset-0 opacity-[0.08] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]"
         >
         </div>
       </div>
 
-      <!-- Invitation card inside (Maintains Dark Mode) -->
+      <!-- Invitation card inside (Premium Dark) -->
       <div
         id="invitation-card"
-        class="absolute inset-x-6 md:inset-x-28 bottom-12 md:bottom-28 h-[80%] bg-background-dark shadow-[0_30px_60px_rgba(0,0,0,0.5)] rounded-sm z-10 flex flex-col items-center justify-center transition-transform duration-1200 ease-in-out border border-white/10 overflow-hidden"
+        class="absolute inset-x-6 md:inset-x-32 bottom-12 md:bottom-32 h-[80%] bg-background-dark shadow-[0_45px_90px_rgba(0,0,0,0.7),0_15px_30px_rgba(0,0,0,0.4)] rounded-sm z-10 flex flex-col items-center justify-center transition-transform duration-1400 ease-in-out border border-white/10 overflow-hidden"
       >
         <div
-          class="font-display text-5xl md:text-8xl text-white drop-shadow-sm"
+          class="font-display text-5xl md:text-9xl text-white drop-shadow-lg"
         >
           M & O
         </div>
-        <div class="w-12 md:w-20 h-px bg-white/20 my-10 md:my-14"></div>
+        <div class="w-16 md:w-32 h-px bg-white/30 my-10 md:my-16"></div>
         <div
-          class="font-body text-sm md:text-xl text-white/60 uppercase tracking-[0.3em] md:tracking-[0.5em]"
+          class="font-body text-sm md:text-xl text-white/70 uppercase tracking-[0.4em] md:tracking-[0.7em]"
         >
           {t("countdown.date")}
         </div>
         <div
-          class="font-body text-xs md:text-sm text-white/40 uppercase tracking-[0.15em] md:tracking-[0.2em] mt-6"
+          class="font-body text-xs md:text-sm text-white/50 uppercase tracking-[0.2em] md:tracking-[0.4em] mt-8"
         >
           {t("hero.location")}
         </div>
       </div>
 
-      <!-- Side Flaps (Fine minimalist reliefs) -->
+      <!-- SIDE FLAPS (Ambient Occlusion & Fiber Realism) -->
       <div class="absolute inset-0 z-20 pointer-events-none">
         <!-- Left Flap -->
         <div
-          class="absolute left-0 top-0 bottom-0 w-2/3 bg-[#b48c3c] [clip-path:polygon(0_0,0_100%,100%_50%)] shadow-[-5px_0_15px_rgba(0,0,0,0.1)] border-r border-black/5"
-          style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);"
+          class="absolute left-0 top-0 bottom-0 w-2/3 bg-[#b48c3c] [clip-path:polygon(0_0,0_100%,100%_50%)] shadow-[-15px_0_45px_rgba(0,0,0,0.3)] border-r border-black/15"
+          style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);"
         >
+          <!-- Parchment fiber overlay -->
           <div
-            class="absolute inset-0 bg-linear-to-r from-black/5 via-transparent to-transparent"
+            class="absolute inset-0 opacity-[0.06] mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/handmade-paper.png')]"
+          >
+          </div>
+          <!-- Realistic light falloff (Soft occlusion) -->
+          <div
+            class="absolute inset-0 bg-linear-to-r from-black/15 via-black/5 to-transparent"
+          >
+          </div>
+          <div
+            class="absolute inset-0 bg-linear-to-b from-white/12 via-transparent to-black/12"
+          >
+          </div>
+          <!-- Fold edge highlight (Catching light on paper fibers) -->
+          <div
+            class="absolute top-0 right-0 bottom-0 w-[1.5px] bg-white/25 blur-[0.3px]"
           >
           </div>
         </div>
+
         <!-- Right Flap -->
         <div
-          class="absolute right-0 top-0 bottom-0 w-2/3 bg-[#b48c3c] [clip-path:polygon(100%_0,100%_100%,0_50%)] shadow-[5px_0_15px_rgba(0,0,0,0.1)] border-l border-black/5"
-          style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);"
+          class="absolute right-0 top-0 bottom-0 w-2/3 bg-[#b48c3c] [clip-path:polygon(100%_0,100%_100%,0_50%)] shadow-[15px_0_45px_rgba(0,0,0,0.3)] border-l border-black/15"
+          style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);"
         >
+          <!-- Parchment fiber overlay -->
           <div
-            class="absolute inset-0 bg-linear-to-l from-black/5 via-transparent to-transparent"
+            class="absolute inset-0 opacity-[0.06] mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/handmade-paper.png')]"
+          >
+          </div>
+          <!-- Realistic light falloff (Soft occlusion) -->
+          <div
+            class="absolute inset-0 bg-linear-to-l from-black/15 via-black/5 to-transparent"
+          >
+          </div>
+          <div
+            class="absolute inset-0 bg-linear-to-b from-white/12 via-transparent to-black/12"
+          >
+          </div>
+          <!-- Fold edge highlight -->
+          <div
+            class="absolute top-0 left-0 bottom-0 w-[1.5px] bg-white/25 blur-[0.3px]"
           >
           </div>
         </div>
       </div>
 
-      <!-- Bottom Flap (Over the sides) -->
+      <!-- BOTTOM FLAP (Extreme Thickness & Surface Depth) -->
       <div class="absolute inset-0 z-20 pointer-events-none">
         <div
-          class="absolute left-0 right-0 bottom-0 h-3/5 bg-[#b48c3c] [clip-path:polygon(0_100%,100%_100%,50%_0)] shadow-[0_-8px_20px_rgba(0,0,0,0.1)] border-t border-white/10"
-          style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);"
+          class="absolute left-0 right-0 bottom-0 h-3/5 bg-[#b48c3c] [clip-path:polygon(0_100%,100%_100%,50%_0)] shadow-[0_-25px_60px_rgba(0,0,0,0.35)] border-t border-white/10"
+          style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);"
         >
+          <!-- Fiber overlay -->
           <div
-            class="absolute inset-0 bg-linear-to-t from-black/10 via-transparent to-transparent"
+            class="absolute inset-0 opacity-[0.06] mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/handmade-paper.png')]"
+          >
+          </div>
+          <!-- Realistic highlight on top edge of fold -->
+          <div
+            class="absolute top-0 left-0 right-0 h-[2px] bg-white/40 blur-[0.8px]"
+          >
+          </div>
+          <!-- Inner relief shadow -->
+          <div
+            class="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent opacity-80"
+          >
+          </div>
+          <!-- Side occlusion shadow simulation (Layered) -->
+          <div
+            class="absolute inset-0 bg-linear-to-br from-black/15 via-transparent to-transparent opacity-60"
           >
           </div>
         </div>
@@ -112,11 +164,11 @@ const t = useTranslations(lang);
       class="absolute bottom-10 z-50 flex flex-col items-center gap-2 animate-float opacity-0 transition-opacity duration-1000 delay-200"
     >
       <span
-        class="text-[10px] md:text-xs uppercase tracking-widest text-white/40 font-body font-bold"
+        class="text-[10px] md:text-xs uppercase tracking-widest text-white/30 font-body font-bold drop-shadow-md"
         >{t("intro.scrollHint")}</span
       >
       <span
-        class="material-symbols-outlined text-white/40 text-3xl animate-bounce"
+        class="material-symbols-outlined text-white/30 text-4xl animate-bounce"
         >keyboard_arrow_down</span
       >
     </div>
@@ -139,35 +191,37 @@ const t = useTranslations(lang);
         if (scrollHint) scrollHint.style.opacity = "0";
 
         if (topFlap) {
-          topFlap.style.transition = "all 1.4s cubic-bezier(0.4, 0, 0.2, 1)";
+          topFlap.style.transition =
+            "all 1.7s cubic-bezier(0.45, 0.05, 0.55, 0.95)";
           topFlap.style.transform = "rotateX(180deg)";
           topFlap.style.zIndex = "1";
         }
 
         if (seal) {
           seal.style.transition =
-            "opacity 0.5s ease-out, transform 0.5s ease-out";
+            "opacity 0.7s ease-out, transform 0.7s ease-out";
           seal.style.opacity = "0";
-          seal.style.transform = "translate(-50%, -50%) scale(1.1)";
+          seal.style.transform =
+            "translate(-50%, -80%) scale(1.1) rotate(5deg)";
         }
 
         setTimeout(() => {
           if (card) {
-            card.style.transform = "translateY(-40%)";
+            card.style.transform = "translateY(-45%)";
             card.style.zIndex = "25";
           }
-        }, 1200);
+        }, 1400);
 
         setTimeout(() => {
           if (gate) {
             gate.style.opacity = "0";
             gate.style.pointerEvents = "none";
           }
-        }, 3400);
+        }, 3800);
 
         setTimeout(() => {
           gate?.remove();
-        }, 5500);
+        }, 6500);
       });
     }
   });

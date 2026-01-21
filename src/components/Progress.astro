@@ -44,97 +44,97 @@ const steps = [
 ];
 
 const activeIndex = steps.findLastIndex((step) => now >= step.date);
-const progressPercent = activeIndex === -1 ? 0 : (activeIndex / (steps.length - 1)) * 100;
+const progressPercent =
+  activeIndex === -1 ? 0 : (activeIndex / (steps.length - 1)) * 100;
 ---
 
-<section id="countdown" class="w-full py-16 md:py-24 px-4 bg-transparent overflow-hidden">
+<section
+  id="countdown"
+  class="w-full py-16 md:py-24 px-4 bg-transparent overflow-hidden"
+>
   <div class="max-w-4xl mx-auto">
     <h3
-      class="text-2xl md:text-3xl font-body font-semibold text-center mb-12 md:mb-20 text-text-main-light dark:text-white"
+      class="text-2xl md:text-3xl font-display font-semibold text-center mb-12 md:mb-20 text-text-main-light dark:text-white"
     >
       {t("progress.agenda_title")}
     </h3>
 
-    <div class="relative px-4 md:px-0">
+    <div class="relative px-2 md:px-0">
       <!-- Línea base - Horizontal (Desktop) -->
       <div
-        class="hidden md:block absolute top-[43%] left-0 right-0 h-1 bg-pearl-grey dark:bg-white/10 rounded-full"
+        class="hidden md:block absolute top-[43.5%] left-0 right-0 h-1 bg-pearl-grey dark:bg-white/10 rounded-full"
       >
       </div>
 
       <!-- Línea base - Vertical (Móvil) -->
       <div
-        class="md:hidden absolute left-[2.45rem] top-5 bottom-5 w-1 bg-pearl-grey dark:bg-white/10 rounded-full"
+        class="md:hidden absolute left-[7.4rem] top-6 bottom-6 w-1 bg-pearl-grey dark:bg-white/10 rounded-full"
       >
       </div>
 
       <!-- Progreso - Horizontal (Desktop) -->
       <div
-        class="progress-bar-h hidden md:block absolute left-0 top-[43%] h-1 bg-primary rounded-full transition-all duration-1000 origin-left"
+        class="progress-bar-h hidden md:block absolute left-0 top-[43.5%] h-1 bg-primary rounded-full transition-all duration-1000 origin-left"
         style={`--target-width: ${progressPercent}%`}
       >
       </div>
 
       <!-- Progreso - Vertical (Móvil) -->
       <div
-        class="progress-bar-v md:hidden absolute left-[2.45rem] top-5 w-1 bg-primary rounded-full transition-all duration-1000 origin-top"
+        class="progress-bar-v md:hidden absolute left-[7.4rem] top-6 w-1 bg-primary rounded-full transition-all duration-1000 origin-top"
         style={`--target-height: ${progressPercent}%`}
       >
       </div>
 
       <div
-        class="relative flex flex-col md:flex-row justify-between items-stretch md:items-start w-full space-y-12 md:space-y-0"
+        class="relative flex flex-col md:flex-row justify-between items-stretch md:items-start w-full gap-y-10 md:gap-y-0"
       >
         {
-          steps.map((step, index) => {
+          steps.map((step) => {
             const isCompleted = now >= step.date;
-            
+
             return (
-              <div class="flex flex-row md:flex-col items-center md:items-center w-full md:flex-1 min-w-0 z-10 group">
-                {/* Fecha - Izquierda en móvil, Arriba en Desktop */}
-                <div class="flex flex-col items-end md:items-center w-16 md:w-full mr-4 md:mr-0 md:mb-6">
-                    <span
-                    class={`text-[10px] md:text-xs  tracking-[0.2em] transition-colors duration-500 text-right md:text-center font-medium ${
-                        isCompleted
+              <div class="flex flex-row md:flex-col items-center w-full md:flex-1 min-w-0 z-10 group">
+                {/* Fecha */}
+                <div class="flex flex-col items-end md:items-center w-24 md:w-full mr-4 md:mr-0 md:mb-6 shrink-0">
+                  <span
+                    class:list={[
+                      "text-xs tracking-widest font-medium transition-colors duration-500 text-right md:text-center uppercase",
+                      isCompleted
                         ? "text-primary"
-                        : "text-gray-400 dark:text-gray-500"
-                    }`}
-                    >
+                        : "text-gray-400 dark:text-gray-500",
+                    ]}
+                  >
                     {step.displayDate}
-                    </span>
+                  </span>
                 </div>
 
                 {/* Círculo con Icono */}
                 <div
-                  class={`
-                relative z-20 size-10 md:size-12 rounded-full flex items-center justify-center border-4 transition-all duration-700 shrink-0
-                ${
-                  isCompleted
-                    ? "bg-primary border-white dark:border-background-dark text-white shadow-lg scale-110"
-                    : "bg-white dark:bg-background-dark border-pearl-grey dark:border-white/10 text-gray-300"
-                }
-                group-hover:scale-115
-              `}
+                  class:list={[
+                    "relative z-20 size-10 md:size-12 rounded-full flex items-center justify-center border-4 border-solid transition-all duration-700 shrink-0 group-hover:scale-110",
+                    isCompleted
+                      ? "bg-primary border-white dark:border-background-dark text-white shadow-lg scale-105 md:scale-110"
+                      : "bg-white dark:bg-background-dark border-pearl-grey dark:border-white/10 text-gray-300",
+                  ]}
                 >
-                  <span class="material-symbols-outlined text-lg md:text-xl!">
+                  <span class="material-symbols-outlined text-base md:text-xl!">
                     {step.icon}
                   </span>
                 </div>
 
-                {/* Etiqueta - Derecha en móvil, Abajo en Desktop */}
-                <div class="flex-1 md:w-full ml-4 md:ml-0 md:mt-6">
-                    <span
-                    class={`
-                        block text-xs md:text-sm font-semibold tracking-wide text-left md:text-center leading-tight transition-colors duration-500
-                        ${
-                        isCompleted
-                            ? "text-text-main-light dark:text-text-main-dark"
-                            : "text-gray-400"
-                        }
-                    `}
-                    >
+                {/* Etiqueta */}
+                <div class="flex-1 md:w-full ml-5 md:ml-0 md:mt-6">
+                  <span
+                    class:list={[
+                      "block text-xs font-semibold tracking-wide text-left md:text-center leading-tight transition-colors duration-500",
+                      isCompleted
+                        ? "text-text-main-light dark:text-white"
+                        : "text-gray-400",
+                    ]}
+                  >
                     {step.label}
-                    </span>
+                  </span>
                 </div>
               </div>
             );
@@ -148,13 +148,13 @@ const progressPercent = activeIndex === -1 ? 0 : (activeIndex / (steps.length - 
 <style>
   .progress-bar-h {
     width: 0%;
-    animation: fillProgressH 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: fillProgressH 1.8s cubic-bezier(0.4, 0.45, 0.15, 1) forwards;
     animation-delay: 0.8s;
   }
 
   .progress-bar-v {
     height: 0%;
-    animation: fillProgressV 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: fillProgressV 1.8s cubic-bezier(0.4, 0.45, 0.15, 1) forwards;
     animation-delay: 0.8s;
   }
 
