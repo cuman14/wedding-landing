@@ -73,7 +73,7 @@ export const ui = {
     "intro.scrollHint": "Haz scroll para descubrir más",
     "nav.place": "Lugar",
     "video.subtitle": "El Escenario",
-    "video.title": "Donde los sueños cobran vida",
+    "video.title": "Donde nuestro historia cobra forma",
     "video.description":
       "Para un día tan especial, buscábamos un lugar que respirara historia y naturaleza a partes iguales. La Finca Condado de Cubillana, situada en el corazón de la provincia de Toledo, es un antiguo caserío rodeado de olivos milenarios y viñedos que nos cautivó desde el primer momento.",
     "video.venue": "Finca Condado de Cubillana",
@@ -153,7 +153,7 @@ export const ui = {
     "intro.scrollHint": "Scroll to discover more",
     "nav.place": "Venue",
     "video.subtitle": "The Setting",
-    "video.title": "Where dreams come alive",
+    "video.title": "Where our story takes shape",
     "video.description":
       "For such a special day, we were looking for a place that breathed both history and nature in equal measure. The Finca Condado de Cubillana, located in the heart of the province of Toledo, is an ancient farmhouse surrounded by millennial olive trees and vineyards that captivated us from the first moment.",
     "video.venue": "Finca Condado de Cubillana",
