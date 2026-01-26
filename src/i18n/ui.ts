@@ -11,7 +11,10 @@ export const ui = {
     "nav.countdown": "Momento",
     "nav.details": "Detalles",
     "nav.confirm": "Confirmar",
-    "hero.subtitle": "Un Amor Moderno",
+    "site.title": "Marina & Oswald | La Boda de 2026",
+    "site.description":
+      "Marina & Oswald: Compromiso serio, barra libre garantizada. ¡Te esperamos el 10 de octubre!",
+    "hero.subtitle": "Compromiso serio, barra libre garantizada",
     "hero.title_connector": "&",
     "hero.slogan": "¡Nuestro sueño, vuestra compañía!",
     "hero.sub_slogan": "Enlazando almas por siempre",
@@ -90,7 +93,10 @@ export const ui = {
     "nav.countdown": "Moment",
     "nav.details": "Details",
     "nav.confirm": "RSVP",
-    "hero.subtitle": "A Modern Love",
+    "site.title": "Marina & Oswald | The Wedding 2026",
+    "site.description":
+      "Marina & Oswald: Official I Do's (and an epic party). Join us on October 10th!",
+    "hero.subtitle": "Official I Do's (and an epic party)",
     "hero.title_connector": "&",
     "hero.slogan": "Our dream, your company!",
     "hero.sub_slogan": "Binding souls forever",
