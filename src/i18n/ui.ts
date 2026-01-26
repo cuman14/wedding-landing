@@ -12,8 +12,7 @@ export const ui = {
     "nav.details": "Detalles",
     "nav.confirm": "Confirmar",
     "site.title": "Marina & Oswald | La Boda de 2026",
-    "site.description":
-      "Marina & Oswald: Compromiso serio, barra libre garantizada. ¡Te esperamos el 10 de octubre!",
+    "site.description": "¡Te esperamos el 10 de octubre!",
     "hero.subtitle": "Compromiso serio, barra libre garantizada",
     "hero.title_connector": "&",
     "hero.slogan": "¡Nuestro sueño, vuestra compañía!",
@@ -94,8 +93,7 @@ export const ui = {
     "nav.details": "Details",
     "nav.confirm": "RSVP",
     "site.title": "Marina & Oswald | The Wedding 2026",
-    "site.description":
-      "Marina & Oswald: Official I Do's (and an epic party). Join us on October 10th!",
+    "site.description": "Join us on October 10th!",
     "hero.subtitle": "Official I Do's (and an epic party)",
     "hero.title_connector": "&",
     "hero.slogan": "Our dream, your company!",
