@@ -46,7 +46,7 @@ export const ui = {
     "faq.guide_link": "Guía de Alojamiento",
     "faq.q3": "¿Hay opciones de alojamiento en la propia finca?",
     "faq.a3":
-      "Si os apetece despertar en la propia finca, disponemos de dos casitas de invitados con plazas muy limitadas para la noche del evento (incluyen desayuno):<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>home</span><b>Casa Kentia (960€)</b>: Para 12 personas (6 habitaciones dobles). Distribuida en dos plantas con 3 habitaciones y 2 baños en cada una.<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>home</span><b>Casa Hiedra (480€)</b>: Para 4-6 personas (2 habitaciones dobles y sofá cama doble).<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>info</span><b>Información clave</b>: Estancia exclusiva para la noche del sábado. Entrada a las 09:00h y salida el domingo a las 12:00h. Incluye ropa de cama, toallas y requiere fianza.<br/><br/>¿Os interesa? Contactad directamente con nosotros para gestionar vuestra reserva de forma personalizada.",
+      "Si os apetece despertar en la propia finca, disponemos de dos casas de invitados con plazas muy limitadas para la noche del evento (incluyen desayuno):<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>home</span><b>Casa Kentia (960€)</b>: Para 12 personas (6 habitaciones dobles). Distribuida en dos plantas con 3 habitaciones y 2 baños en cada una.<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>home</span><b>Casa Hiedra (480€)</b>: Para 4-6 personas (2 habitaciones dobles y sofá cama doble).<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>info</span><b>Información clave</b>: Estancia exclusiva para la noche del sábado. Entrada a las 09:00h y salida el domingo a las 12:00h. Incluye ropa de cama, toallas y requiere fianza.<br/><br/>¿Os interesa? Contactad directamente con nosotros para gestionar vuestra reserva",
     "faq.q4": "¿Cuándo y a qué hora se celebra la boda?",
     "faq.a4":
       "<span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>event</span>La boda es de día y tendrá lugar el sábado 10 de octubre de 2026.<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>schedule</span>La ceremonia civil comenzará previsiblemente a las 13:00h en la misma finca, aunque os confirmaremos la hora exacta más adelante.",
@@ -59,7 +59,7 @@ export const ui = {
     "map.get_directions": "Cómo llegar",
     "progress.title": "Estado de los preparativos",
     "progress.step1_label": "Despegue: Todo lo que necesitas saber",
-    "progress.step1_date": "26 de Enero",
+    "progress.step1_date": "27 de Enero",
     "progress.step2_label": "¡Ya en camino! Recibe tu invitación",
     "progress.step2_date": "Abril / Mayo",
     "progress.step3_label": "Check-in: Confirma tu asistencia",
@@ -126,7 +126,7 @@ export const ui = {
     "faq.guide_link": "Accommodation Guide",
     "faq.q3": "Are there accommodation options on the estate itself?",
     "faq.a3":
-      "If you feel like waking up on the estate itself, we have two guest houses with very limited spots for the night of the event (including breakfast):<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>home</span><b>Casa Kentia (€960)</b>: For 12 people (6 double rooms). Distributed over two floors with 3 rooms and 2 bathrooms in each.<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>home</span><b>Casa Hiedra (€480)</b>: For 4-6 people (2 double rooms and a double sofa bed).<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>info</span><b>Key Information</b>: Exclusive stay for Saturday night. Check-in at 09:00 AM and check-out on Sunday at 12:00 PM. Includes bed linen, towels and requires a deposit.<br/><br/>Interested? Contact us directly to manage your personalized reservation.",
+      "If you feel like waking up on the estate itself, we have two guest houses with very limited spots for the night of the event (including breakfast):<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>home</span><b>Casa Kentia (€960)</b>: For 12 people (6 double rooms). Distributed over two floors with 3 rooms and 2 bathrooms in each.<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>home</span><b>Casa Hiedra (€480)</b>: For 4-6 people (2 double rooms and a double sofa bed).<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>info</span><b>Key Information</b>: Exclusive stay for Saturday night. Check-in at 09:00 AM and check-out on Sunday at 12:00 PM. Includes bed linen, towels and requires a deposit.<br/><br/>Interested? Contact us directly to manage",
     "faq.q4": "When and what time is the wedding?",
     "faq.a4":
       "<span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>event</span>The wedding is during the day and will take place on Saturday, October 10, 2026.<br/><br/><span class='material-symbols-outlined align-middle text-[1.2em] mr-1'>schedule</span>The civil ceremony is expected to start at 1:00 PM at the estate, although we will confirm the exact time later.",
@@ -139,7 +139,7 @@ export const ui = {
     "map.get_directions": "Get directions",
     "progress.title": "Preparation status",
     "progress.step1_label": "Takeoff: Everything you need to know",
-    "progress.step1_date": "January 26",
+    "progress.step1_date": "January 27",
     "progress.step2_label": "On the way! Receive your invitation",
     "progress.step2_date": "April / May",
     "progress.step3_label": "Check-in: Confirm your attendance",
