@@ -21,10 +21,9 @@ const t = useTranslations(lang);
 
 const metaTitle = title || t("site.title");
 const metaDescription = description || t("site.description");
-const canonicalURL = new URL(
-  Astro.url.pathname,
-  Astro.site || "https://wedding-landing-ashen.vercel.app",
-);
+const canonicalBase =
+  Astro.url?.origin || Astro.site || "https://wedding-landing-ashen.vercel.app";
+const canonicalURL = new URL(Astro.url.pathname, canonicalBase);
 ---
 
 <!doctype html>
