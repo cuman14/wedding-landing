@@ -12,7 +12,9 @@ const fincaUrl =
   id="faq"
   class="py-16 md:py-24 px-4 md:px-10 lg:px-40 bg-background-light dark:bg-background-dark"
 >
-  <div class="max-w-240 mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+  <div
+    class="max-w-240 mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16"
+  >
     <!-- Left column: Title and Map -->
     <div class="flex flex-col gap-4 md:gap-6">
       <span
@@ -29,23 +31,39 @@ const fincaUrl =
       >
         {t("faq.intro")}
       </p>
-      <div class="mt-4 md:mt-8">
-        <Map url={fincaUrl} />
-      </div>
+      <Map url={fincaUrl} />
     </div>
 
     <!-- Right column: Tabs and FAQs -->
     <div class="flex flex-col gap-6 md:gap-8">
       <!-- Tab buttons -->
-      <div class="flex border-b border-pearl-grey dark:border-white/10 overflow-x-auto">
-        <button class="tab-button cursor-pointer flex-1 py-3 md:py-4 text-center text-xs md:text-base font-medium border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-primary transition-colors data-[active=true]:text-primary data-[active=true]:border-primary whitespace-nowrap px-2" data-active="true" data-tab="logistica">{t('faq.tab_logistics')}</button>
-        <button class="tab-button cursor-pointer flex-1 py-3 md:py-4 text-center text-xs md:text-base font-medium border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-primary transition-colors data-[active=true]:text-primary data-[active=true]:border-primary whitespace-nowrap px-2" data-tab="alojamiento">{t('faq.tab_accommodation')}</button>
-        <button class="tab-button cursor-pointer flex-1 py-3 md:py-4 text-center text-xs md:text-base font-medium border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-primary transition-colors data-[active=true]:text-primary data-[active=true]:border-primary whitespace-nowrap px-2" data-tab="evento">{t('faq.tab_event')}</button>
+      <div
+        class="flex border-b border-pearl-grey dark:border-white/10 overflow-x-auto"
+      >
+        <button
+          class="tab-button cursor-pointer flex-1 py-3 md:py-4 text-center text-xs md:text-base font-medium border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-primary transition-colors data-[active=true]:text-primary data-[active=true]:border-primary whitespace-nowrap px-2"
+          data-active="true"
+          data-tab="logistica">{t("faq.tab_logistics")}</button
+        >
+        <button
+          class="tab-button cursor-pointer flex-1 py-3 md:py-4 text-center text-xs md:text-base font-medium border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-primary transition-colors data-[active=true]:text-primary data-[active=true]:border-primary whitespace-nowrap px-2"
+          data-tab="alojamiento">{t("faq.tab_accommodation")}</button
+        >
+        <button
+          class="tab-button cursor-pointer flex-1 py-3 md:py-4 text-center text-xs md:text-base font-medium border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-primary transition-colors data-[active=true]:text-primary data-[active=true]:border-primary whitespace-nowrap px-2"
+          data-tab="evento">{t("faq.tab_event")}</button
+        >
       </div>
 
       <!-- Tab: Logística -->
-      <div class="tab-content flex flex-col gap-4 md:gap-6" data-active="true" id="logistica">
-        <div class="group border-b border-pearl-grey dark:border-white/10 pb-4 md:pb-6">
+      <div
+        class="tab-content flex flex-col gap-4 md:gap-6"
+        data-active="true"
+        id="logistica"
+      >
+        <div
+          class="group border-b border-pearl-grey dark:border-white/10 pb-4 md:pb-6"
+        >
           <details class="group">
             <summary
               class="flex items-center justify-between cursor-pointer list-none py-2 text-base md:text-lg font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors"
@@ -81,14 +99,19 @@ const fincaUrl =
           </details>
         </div>
 
-        <div class="group border-b border-pearl-grey dark:border-white/10 pb-4 md:pb-6">
+        <div
+          class="group border-b border-pearl-grey dark:border-white/10 pb-4 md:pb-6"
+        >
           <details class="group">
             <summary
               class="flex items-center justify-between cursor-pointer list-none py-2 text-base md:text-lg font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors"
             >
               <div class="flex items-center gap-2">
                 <span>{t("faq.q2")}</span>
-                <span class="bg-primary text-white text-[8px] md:text-[10px] font-bold px-1.5 md:px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">{lang === 'es' ? 'Nuevo' : 'New'}</span>
+                <span
+                  class="bg-primary text-white text-[8px] md:text-[10px] font-bold px-1.5 md:px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm"
+                  >{lang === "es" ? "Nuevo" : "New"}</span
+                >
               </div>
               <span
                 class="transition-transform duration-300 group-open:rotate-180 text-gray-400"
@@ -107,7 +130,9 @@ const fincaUrl =
 
       <!-- Tab: Alojamiento -->
       <div class="tab-content flex-col gap-4 md:gap-6 hidden" id="alojamiento">
-        <div class="group border-b border-pearl-grey dark:border-white/10 pb-4 md:pb-6">
+        <div
+          class="group border-b border-pearl-grey dark:border-white/10 pb-4 md:pb-6"
+        >
           <details class="group" open>
             <summary
               class="flex items-center justify-between cursor-pointer list-none py-2 text-base md:text-lg font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors"
@@ -128,7 +153,6 @@ const fincaUrl =
               class="text-primary font-bold hover:underline inline-flex items-center gap-1 font-body text-sm"
               href="#"
             >
-             
             </a>
           </details>
         </div>
@@ -136,7 +160,9 @@ const fincaUrl =
 
       <!-- Tab: Evento -->
       <div class="tab-content flex-col gap-4 md:gap-6 hidden" id="evento">
-        <div class="group border-b border-pearl-grey dark:border-white/10 pb-4 md:pb-6">
+        <div
+          class="group border-b border-pearl-grey dark:border-white/10 pb-4 md:pb-6"
+        >
           <details class="group" open>
             <summary
               class="flex items-center justify-between cursor-pointer list-none py-2 text-base md:text-lg font-body font-medium text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors"
@@ -156,7 +182,9 @@ const fincaUrl =
         </div>
 
         <!-- Contacto -->
-        <div class="border-b border-pearl-grey dark:border-white/10 pb-4 md:pb-6">
+        <div
+          class="border-b border-pearl-grey dark:border-white/10 pb-4 md:pb-6"
+        >
           <div
             class="py-2 text-base md:text-xl font-body font-medium text-text-main-light dark:text-text-main-dark"
           >
@@ -183,24 +211,26 @@ const fincaUrl =
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    tabButtons.forEach(button => {
-      button.addEventListener('click', () => {
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
         const targetTab = (button as HTMLElement).dataset.tab;
-        
-        tabButtons.forEach(btn => (btn as HTMLElement).dataset.active = 'false');
-        (button as HTMLElement).dataset.active = 'true';
-        
-        tabContents.forEach(content => {
+
+        tabButtons.forEach(
+          (btn) => ((btn as HTMLElement).dataset.active = "false"),
+        );
+        (button as HTMLElement).dataset.active = "true";
+
+        tabContents.forEach((content) => {
           if ((content as HTMLElement).id === targetTab) {
-            content.classList.remove('hidden');
-            content.classList.add('flex');
+            content.classList.remove("hidden");
+            content.classList.add("flex");
           } else {
-            content.classList.add('hidden');
-            content.classList.remove('flex');
+            content.classList.add("hidden");
+            content.classList.remove("flex");
           }
         });
       });
