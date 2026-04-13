@@ -38,12 +38,25 @@ const t = useTranslations(lang);
     >
   </nav>
 
-  <!--  <button 
-        class="mt-4 flex min-w-30 cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-primary hover:bg-primary-dark text-white text-lg font-bold transition-colors shadow-lg shadow-primary/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-        aria-label={t('nav.confirm')}
+  <a
+    href="#confirmar"
+    class="mobile-link mt-4 flex items-center justify-center gap-2 font-body font-medium text-xl uppercase tracking-wide px-8 py-4 rounded-full text-[#7e97b8] bg-[#e0e8ef] border-2 border-white/30 shadow-[-4px_-2px_16px_0_#ffffff,4px_2px_16px_0_rgb(95_157_231/48%)] transition-all hover:bg-[#E5EDF5] active:shadow-none"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      stroke="currentColor"
+      stroke-width="2"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
     >
-        <span class="truncate">{t('nav.confirm')}</span>
-    </button> -->
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+    </svg>
+    {t("nav.confirm")}
+  </a>
 </div>
 
 <script>

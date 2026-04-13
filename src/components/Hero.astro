@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import BotonRSVP from "./BotonRSVP.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -81,10 +82,8 @@ const t = useTranslations(lang);
 
   <!-- Scroll indicator -->
   <div
-    class="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/70"
+    class="absolute bottom-6 md:bottom-8 top-1/2 z-20 left-1/2 -translate-x-1/2 text-white/70"
   >
-    <span class="material-symbols-outlined text-2xl md:text-3xl"
-      >keyboard_arrow_down</span
-    >
+    <BotonRSVP />
   </div>
 </section>

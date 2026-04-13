@@ -1,86 +1,107 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import { languages } from '../i18n/ui';
-import MobileMenu from './MobileMenu.astro';
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { languages } from "../i18n/ui";
+import MobileMenu from "./MobileMenu.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<header class="fixed flex top-0 left-0 w-full z-50 bg-background-light/95 max-h-16 dark:bg-background-dark/95 backdrop-blur-md border-b border-pearl-grey dark:border-white/10 shadow-sm transition-all duration-300">
-    <div class="px-4 lg:px-40 flex justify-center flex-1 items-center py-0">
-        <div class="flex flex-col flex-1 max-w-300">
-            <div class="flex items-center justify-between whitespace-nowrap px-2 md:px-4 lg:px-10 py-4">
-                <div class="flex items-center gap-2 md:gap-3">
-                    <div class="size-6 text-primary animate-pulse">
-                        <span class="material-symbols-outlined">favorite</span>
-                    </div>
-                    <h2 class="text-lg md:text-2xl font-display font-medium leading-tight tracking-normal text-text-main-light dark:text-white">Marina & Oswald</h2>
-                </div>
-                
-                <nav class="hidden md:flex flex-1 justify-end gap-8 items-center">
-                    <div class="flex items-center gap-9">
-                        <a class="text-sm font-body font-normal text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#hero">{t('nav.home')}</a>
-                        <a class="text-sm font-body font-normal text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#video-section">{t('nav.place')}</a>
-                        <a class="text-sm font-body font-normal text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#countdown">{t('nav.countdown')}</a>
-                        <a class="text-sm font-body font-normal text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#faq">{t('nav.details')}</a>
-                    </div>
-                    
-                    <!-- Language Switcher -->
-                    <div class="flex items-center gap-2 border-l border-pearl-grey dark:border-white/10 pl-4 h-6">
-                        {Object.entries(languages).map(([l, label]) => (
-                            <a 
-                                href={`/${l}/`} 
-                                class={`text-xs uppercase font-bold transition-colors ${lang === l ? 'text-primary' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200'}`}
-                                aria-label={`Switch to ${label}`}
-                            >
-                                {l}
-                            </a>
-                        ))}
-                    </div>
-<!-- 
-                    <button 
-                        class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-primary-dark text-white text-sm font-bold leading-normal tracking-[0.015em] transition-colors shadow-lg shadow-primary/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                        aria-label={t('nav.confirm')}
-                    >
-                        <span class="truncate">{t('nav.confirm')}</span>
-                    </button> -->
-                </nav>
-
-                <div class="flex items-center gap-4 md:hidden">
-                    <!-- Mobile Language Switcher -->
-                    <nav class="flex gap-2" aria-label="Language selection">
-                         {Object.entries(languages).map(([l, label]) => (
-                            <a 
-                                href={`/${l}/`} 
-                                class={`text-xs uppercase font-bold transition-colors ${lang === l ? 'text-primary' : 'text-gray-500'}`}
-                                aria-label={`Switch to ${label}`}
-                                aria-current={lang === l ? 'page' : undefined}
-                            >
-                                {l}
-                            </a>
-                        ))}
-                    </nav>
-                    <button 
-                        id="open-menu" 
-                        class="p-2 text-text-main-light dark:text-text-main-dark focus-visible:ring-2 focus-visible:ring-primary rounded-md"
-                        aria-label="Abrir menú"
-                        aria-expanded="false"
-                        aria-controls="mobile-menu"
-                    >
-                        <span class="material-symbols-outlined" aria-hidden="true">menu</span>
-                    </button>
-                </div>
-            </div>
+<header
+  class="fixed flex top-0 left-0 w-full z-50 bg-background-light/95 max-h-16 dark:bg-background-dark/95 backdrop-blur-md border-b border-pearl-grey dark:border-white/10 shadow-sm transition-all duration-300"
+>
+  <div class="px-4 lg:px-40 flex justify-center flex-1 items-center py-0">
+    <div class="flex flex-col flex-1 max-w-300">
+      <div
+        class="flex items-center justify-between whitespace-nowrap px-2 md:px-4 lg:px-10 py-4"
+      >
+        <div class="flex items-center gap-2 md:gap-3">
+          <div class="size-6 text-primary animate-pulse">
+            <span class="material-symbols-outlined">favorite</span>
+          </div>
+          <h2
+            class="text-lg md:text-2xl font-display font-medium leading-tight tracking-normal text-text-main-light dark:text-white"
+          >
+            Marina & Oswald
+          </h2>
         </div>
+
+        <nav class="hidden md:flex flex-1 justify-end gap-8 items-center">
+          <div class="flex items-center gap-9">
+            <a
+              class="text-sm font-body font-normal text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
+              href="#hero">{t("nav.home")}</a
+            >
+            <a
+              class="text-sm font-body font-normal text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
+              href="#video-section">{t("nav.place")}</a
+            >
+            <a
+              class="text-sm font-body font-normal text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
+              href="#countdown">{t("nav.countdown")}</a
+            >
+            <a
+              class="text-sm font-body font-normal text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
+              href="#faq">{t("nav.details")}</a
+            >
+          </div>
+
+          <!-- Language Switcher -->
+          <div
+            class="flex items-center gap-2 border-l border-pearl-grey dark:border-white/10 pl-4 h-6"
+          >
+            {
+              Object.entries(languages).map(([l, label]) => (
+                <a
+                  href={`/${l}/`}
+                  class={`text-xs uppercase font-bold transition-colors ${lang === l ? "text-primary" : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"}`}
+                  aria-label={`Switch to ${label}`}
+                >
+                  {l}
+                </a>
+              ))
+            }
+          </div>
+        </nav>
+
+        <div class="flex items-center gap-4 md:hidden">
+          <!-- Mobile Language Switcher -->
+          <nav class="flex gap-2" aria-label="Language selection">
+            {
+              Object.entries(languages).map(([l, label]) => (
+                <a
+                  href={`/${l}/`}
+                  class={`text-xs uppercase font-bold transition-colors ${lang === l ? "text-primary" : "text-gray-500"}`}
+                  aria-label={`Switch to ${label}`}
+                  aria-current={lang === l ? "page" : undefined}
+                >
+                  {l}
+                </a>
+              ))
+            }
+          </nav>
+          <button
+            id="open-menu"
+            class="p-2 text-text-main-light dark:text-text-main-dark focus-visible:ring-2 focus-visible:ring-primary rounded-md"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >menu</span
+            >
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
 </header>
 
 <MobileMenu />
 
 <script>
-    const openBtn = document.getElementById('open-menu');
-    openBtn?.addEventListener('click', () => {
-        document.dispatchEvent(new CustomEvent('open-mobile-menu'));
-    });
+  const openBtn = document.getElementById("open-menu");
+  openBtn?.addEventListener("click", () => {
+    document.dispatchEvent(new CustomEvent("open-mobile-menu"));
+  });
 </script>
