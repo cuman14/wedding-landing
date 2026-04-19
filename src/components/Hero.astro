@@ -8,10 +8,12 @@ const t = useTranslations(lang);
 
 <section
   id="hero"
-  class="relative w-full h-[85vh] md:h-[90vh] overflow-hidden flex items-center justify-center bg-gray-900 group"
+  class="relative w-full h-[85vh] md:h-[90vh] overflow-hidden flex items-center bg-gray-900 group flex-col gap-24 justify-end pb-16"
 >
   <!-- Image background -->
-  <div class="absolute inset-0 w-full h-full overflow-hidden">
+  <div
+    class="absolute inset-0 w-full h-full overflow-hidden md:h-[160%]"
+  >
     <img
       src="/IMG_3662.jpg"
       alt="Marina & Oswald Hero"
@@ -45,45 +47,10 @@ const t = useTranslations(lang);
         "{t("hero.slogan")}"
       </p>
     </div>
-
-    <!-- Info card -->
-    <div
-      class="mt-6 md:mt-8 backdrop-blur-md bg-white/10 p-4 md:p-6 rounded-xl md:rounded-2xl border border-white/10 shadow-xl flex flex-col md:flex-row gap-4 md:gap-6 items-center"
-    >
-      <div class="flex items-center gap-3">
-        <span class="material-symbols-outlined text-primary-light"
-          >calendar_month</span
-        >
-        <div class="text-left">
-          <p
-            class="text-[10px] md:text-xs uppercase tracking-wider text-white/70"
-          >
-            {lang === "es" ? "Fecha" : "Date"}
-          </p>
-          <p class="text-sm md:text-lg font-medium">{t("countdown.date")}</p>
-        </div>
-      </div>
-      <div class="w-full md:w-px h-px md:h-10 bg-white/20"></div>
-      <div class="flex items-center gap-3">
-        <span class="material-symbols-outlined text-primary-light"
-          >location_on</span
-        >
-        <div class="text-left">
-          <p
-            class="text-[10px] md:text-xs uppercase tracking-wider text-white/70"
-          >
-            {lang === "es" ? "Lugar" : "Venue"}
-          </p>
-          <p class="text-sm md:text-lg font-medium">{t("hero.location")}</p>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- Scroll indicator -->
-  <div
-    class="absolute bottom-6 md:bottom-8 top-1/2 z-20 left-1/2 -translate-x-1/2 text-white/70"
-  >
+  <div class="z-20">
     <BotonRSVP />
   </div>
 </section>

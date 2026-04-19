@@ -1,0 +1,271 @@
+---
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+<!-- Information Cards: Bento Grid Style -->
+<section
+  class="py-16 md:py-24 bg-background-light dark:bg-background-dark px-6 overflow-hidden"
+  id="details"
+>
+  <div class="max-w-6xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <span
+        class="text-primary font-body font-medium uppercase tracking-widest text-xs"
+        >{lang === "es" ? "Los detalles" : "The Details"}</span
+      >
+      <h2
+        class="text-3xl md:text-4xl font-body font-semibold text-text-main-light dark:text-text-main-dark mt-2"
+      >
+        {
+          lang === "es"
+            ? "Todo lo que necesitas saber"
+            : "Everything you need to know"
+        }
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+      <!-- Card 1: Ubicación -->
+      <div
+        class="md:col-span-7 bg-white dark:bg-background-dark/60 p-8 md:p-10 rounded-2xl shadow-sm border border-pearl-grey dark:border-white/5 flex flex-col justify-between relative group overflow-hidden"
+      >
+        <div
+          class="absolute -right-10 -top-10 w-44 h-44 bg-primary/5 rounded-full group-hover:scale-125 transition-transform duration-500"
+        >
+        </div>
+        <div>
+          <span
+            class="material-symbols-outlined text-primary text-3xl mb-4 block"
+            >location_on</span
+          >
+          <h4
+            class="font-body text-2xl md:text-3xl font-bold mb-4 text-text-main-light dark:text-text-main-dark"
+          >
+            {lang === "es" ? "Ubicación" : "Venue"}
+          </h4>
+          <p
+            class="text-gray-500 dark:text-gray-400 leading-relaxed font-light"
+          >
+            {
+              lang === "es" ? (
+                <>
+                  Nuestra celebración tendrá lugar en la{" "}
+                  <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
+                    Finca Condado de Cubillana, Toledo
+                  </strong>
+                  , un espacio rodeado de naturaleza. Os pedimos que estéis en
+                  el lugar a partir de las{" "}
+                  <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
+                    13:30h
+                  </strong>
+                  .
+                </>
+              ) : (
+                <>
+                  Our celebration will take place at{" "}
+                  <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
+                    Finca Condado de Cubillana, Toledo
+                  </strong>
+                  , a venue surrounded by nature. We ask you to be there from{" "}
+                  <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
+                    1:30 PM
+                  </strong>
+                  .
+                </>
+              )
+            }
+          </p>
+        </div>
+        <a
+          href="#faq"
+          class="mt-6 inline-flex items-center gap-2 text-sm font-body font-semibold text-primary hover:gap-4 transition-all group/link"
+        >
+          {lang === "es" ? "Más detalles" : "More details"}
+          <span
+            class="material-symbols-outlined text-base group-hover/link:translate-x-1 transition-transform"
+            >arrow_forward</span
+          >
+        </a>
+      </div>
+
+      <!-- Card 2: Fecha -->
+      <div
+        class="md:col-span-5 bg-secondary-mint/40 dark:bg-primary/10 p-8 md:p-10 rounded-2xl border border-primary/10 flex flex-col justify-center text-center"
+      >
+        <span
+          class="material-symbols-outlined text-primary text-4xl mb-6 mx-auto block"
+          >calendar_month</span
+        >
+        <p
+          class="font-body text-xs tracking-[0.4em] uppercase mb-2 text-gray-400"
+        >
+          {lang === "es" ? "Reserva la fecha" : "Save the date"}
+        </p>
+        <h4
+          class="font-body text-4xl md:text-5xl font-extrabold mb-2 text-text-main-light dark:text-text-main-dark"
+        >
+          {lang === "es" ? "Sábado 10" : "Saturday 10th"}
+        </h4>
+        <p class="font-display text-4xl md:text-5xl text-primary mb-4">
+          {lang === "es" ? "Octubre, 2026" : "October, 2026"}
+        </p>
+        <div class="h-px w-16 bg-primary/20 mx-auto my-4"></div>
+        <p
+          class="text-gray-500 dark:text-gray-400 font-medium text-sm font-body"
+        >
+          {
+            lang === "es"
+              ? "Boda de Día · Ceremonia Civil"
+              : "Daytime Wedding · Civil Ceremony"
+          }
+        </p>
+      </div>
+
+      <!-- Card 3: Hora de inicio -->
+      <div
+        class="md:col-span-4 bg-white dark:bg-background-dark/60 p-8 rounded-2xl shadow-sm border border-pearl-grey dark:border-white/5 flex flex-col justify-between relative overflow-hidden group"
+      >
+        <div
+          class="absolute -left-6 -bottom-6 w-28 h-28 bg-primary/5 rounded-full group-hover:scale-150 transition-transform duration-500"
+        >
+        </div>
+        <span class="material-symbols-outlined text-primary text-3xl mb-4 block"
+          >schedule</span
+        >
+        <div>
+          <p
+            class="font-body text-[10px] tracking-widest uppercase mb-2 text-gray-400"
+          >
+            {lang === "es" ? "Comienza" : "Starts at"}
+          </p>
+          <p
+            class="font-body text-5xl font-bold text-text-main-light dark:text-text-main-dark tabular-nums"
+          >
+            13:30h
+          </p>
+        </div>
+        <p class="text-gray-500 dark:text-gray-400 text-sm font-light mt-4">
+          {
+            lang === "es"
+              ? "Os esperamos a todos en el lugar a esta hora."
+              : "We'll be waiting for everyone at the venue at this time."
+          }
+        </p>
+      </div>
+
+      <!-- Card 4: Hora de fin -->
+      <div
+        class="md:col-span-4 bg-primary p-8 rounded-2xl flex flex-col justify-between relative overflow-hidden group"
+      >
+        <div
+          class="absolute -right-6 -top-6 w-28 h-28 bg-white/10 rounded-full group-hover:scale-150 transition-transform duration-500"
+        >
+        </div>
+        <span
+          class="material-symbols-outlined text-white/80 text-3xl mb-4 block"
+          >nightlight</span
+        >
+        <div>
+          <p
+            class="font-body text-[10px] tracking-widest uppercase mb-2 text-white/60"
+          >
+            {lang === "es" ? "Hasta las" : "Until"}
+          </p>
+          <p class="font-body text-5xl font-bold text-white tabular-nums">
+            23:30h
+          </p>
+        </div>
+        <p class="text-white/70 text-sm font-light mt-4">
+          {
+            lang === "es"
+              ? "¡Disfrutad hasta el final de la noche!"
+              : "Enjoy the celebration until the end of the night!"
+          }
+        </p>
+      </div>
+
+      <!-- Card 5: Transporte / Buses -->
+      <div
+        class="md:col-span-4 bg-white dark:bg-background-dark/60 p-8 rounded-2xl shadow-sm border border-pearl-grey dark:border-white/5 border-t-4 border-t-primary flex flex-col justify-between"
+      >
+        <div>
+          <span
+            class="material-symbols-outlined text-primary text-3xl mb-4 block"
+            >directions_bus</span
+          >
+          <h4
+            class="font-body text-xl font-bold mb-3 text-text-main-light dark:text-text-main-dark"
+          >
+            {lang === "es" ? "Transporte" : "Transport"}
+          </h4>
+          <p
+            class="text-gray-500 dark:text-gray-400 font-light text-sm leading-relaxed mb-4"
+          >
+            {
+              lang === "es" ? (
+                <>
+                  Habrá servicio de autobuses desde{" "}
+                  <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
+                    Atocha
+                  </strong>{" "}
+                  y{" "}
+                  <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
+                    Alcorcón
+                  </strong>
+                  . Las plazas son limitadas.
+                </>
+              ) : (
+                <>
+                  There will be bus services from{" "}
+                  <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
+                    Atocha
+                  </strong>{" "}
+                  and{" "}
+                  <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
+                    Alcorcón
+                  </strong>
+                  . Seats are limited.
+                </>
+              )
+            }
+          </p>
+        </div>
+        <div
+          class="flex items-center gap-4 p-4 bg-primary/5 rounded-xl border border-primary/10"
+        >
+          <div
+            class="w-14 h-14 shrink-0 bg-white dark:bg-background-dark rounded-lg flex items-center justify-center border border-pearl-grey dark:border-white/10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary/40"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M15 10v11l-5 -3l-5 3v-11a3 3 0 0 1 3 -3h4a3 3 0 0 1 3 3"
+              ></path>
+              <path d="M11 3h5a3 3 0 0 1 3 3v11"></path>
+            </svg>
+          </div>
+          <p class="text-sm font-body text-gray-500 dark:text-gray-400">
+            {
+              lang === "es"
+                ? "Puedes reservar tu plaza de bus en el formulario de confirmación de asistencia."
+                : "You can reserve your bus seat in the RSVP confirmation form."
+            }
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

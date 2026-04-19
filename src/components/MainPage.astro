@@ -5,6 +5,7 @@ import FAQ from "./FAQ.astro";
 import Footer from "./Footer.astro";
 import Header from "./Header.astro";
 import Hero from "./Hero.astro";
+import InfoCards from "./InfoCards.astro";
 import Progress from "./Progress.astro";
 import SeccionFormulario from "./SeccionFormulario.astro";
 import VideoSection from "./VideoSection.astro";
@@ -22,10 +23,11 @@ const { lang } = Astro.props;
   <main class="flex flex-col min-h-screen w-full pt-16">
     <Hero />
     <VideoSection />
+    <InfoCards />
+    <SeccionFormulario />
     <Countdown />
     <Progress />
     <FAQ />
-    <SeccionFormulario />
     <Footer />
   </main>
 </Layout>

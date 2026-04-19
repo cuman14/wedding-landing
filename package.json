@@ -9,10 +9,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.8",
     "@astrojs/vercel": "^9.0.2",
     "@fontsource/great-vibes": "^5.2.8",
     "@fontsource/poppins": "^5.2.7",
-    "astro": "^5.16.6"
+    "astro": "^5.16.6",
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
