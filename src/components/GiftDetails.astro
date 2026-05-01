@@ -1,0 +1,138 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section
+  class="py-16 md:py-24 bg-secondary-mint dark:bg-background-dark px-4 md:px-6"
+  id="regalos"
+>
+  <div class="max-w-3xl mx-auto text-center">
+    <span
+      class="material-symbols-outlined text-primary text-3xl md:text-4xl mb-4 md:mb-6"
+      >card_giftcard</span
+    >
+    <h2
+      class="font-display text-4xl md:text-5xl lg:text-6xl text-text-main-light dark:text-text-main-dark mb-4 md:mb-6"
+    >
+      {t("gifts.title")}
+    </h2>
+    <p
+      class="font-body text-gray-600 dark:text-gray-400 mb-8 md:mb-12 max-w-xl mx-auto leading-relaxed text-sm md:text-base"
+    >
+      {t("gifts.subtitle")}
+    </p>
+
+    <div
+      class="bg-white dark:bg-gray-800 p-6 md:p-8 lg:p-12 rounded-2xl shadow-xl border border-pearl-grey dark:border-white/10"
+    >
+      <div class="space-y-4 md:space-y-6">
+        <!-- Account Holder -->
+        <div class="flex flex-col gap-1">
+          <p
+            class="font-body text-[10px] tracking-widest uppercase text-gray-500 dark:text-gray-400"
+          >
+            {t("gifts.accountHolder")}
+          </p>
+          <p
+            class="font-body text-lg md:text-xl font-bold text-text-main-light dark:text-text-main-dark"
+          >
+            {t("gifts.accountHolderName")}
+          </p>
+        </div>
+
+        <!-- Concept -->
+        <div class="flex flex-col gap-1">
+          <p
+            class="font-body text-[10px] tracking-widest uppercase text-gray-500 dark:text-gray-400"
+          >
+            {t("gifts.concept")}
+          </p>
+          <p
+            class="font-body text-lg md:text-xl font-bold text-primary dark:text-primary-light"
+          >
+            {t("gifts.conceptText")}
+          </p>
+        </div>
+
+        <div class="h-px w-full bg-pearl-grey dark:bg-white/10"></div>
+
+        <!-- IBAN -->
+        <div class="flex flex-col gap-1">
+          <p
+            class="font-body text-[10px] tracking-widest uppercase text-gray-500 dark:text-gray-400"
+          >
+            {t("gifts.iban")}
+          </p>
+          <div
+            class="flex items-center justify-center gap-2 md:gap-3 flex-wrap"
+          >
+            <p
+              id="iban-text"
+              class="font-body text-base md:text-lg lg:text-xl font-medium tracking-wider text-text-main-light dark:text-text-main-dark select-all"
+            >
+              {t("gifts.ibanNumber")}
+            </p>
+            <button
+              id="copy-iban"
+              class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform p-1"
+              title={t("gifts.copy")}
+              aria-label={t("gifts.copy")}
+            >
+              content_copy
+            </button>
+          </div>
+        </div>
+
+        <div class="h-px w-full bg-pearl-grey dark:bg-white/10"></div>
+
+        <!-- BIC / SWIFT -->
+        <div class="flex flex-col gap-1 pt-2">
+          <p
+            class="font-body text-[10px] tracking-widest uppercase text-gray-500 dark:text-gray-400"
+          >
+            {t("gifts.bic")}
+          </p>
+          <p
+            class="font-body text-lg text-text-main-light dark:text-text-main-dark"
+          >
+            {t("gifts.bicNumber")}
+          </p>
+        </div>
+      </div>
+
+      <!-- Thank you message -->
+      <div class="mt-8 md:mt-10">
+        <p
+          class="font-body text-[10px] md:text-xs tracking-[0.2em] uppercase text-primary font-bold italic"
+        >
+          {t("gifts.thanks")}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const copyBtn = document.getElementById("copy-iban");
+    const ibanText = document.getElementById("iban-text");
+
+    if (copyBtn && ibanText) {
+      copyBtn.addEventListener("click", async () => {
+        const iban = ibanText.textContent?.trim() || "";
+        try {
+          await navigator.clipboard.writeText(iban);
+          copyBtn.textContent = "check";
+          setTimeout(() => {
+            copyBtn.textContent = "content_copy";
+          }, 2000);
+        } catch (err) {
+          console.error("Failed to copy IBAN:", err);
+        }
+      });
+    }
+  });
+</script>
