@@ -1,0 +1,53 @@
+﻿---
+import IntroGate from "../../../../components/IntroGate.astro";
+import Layout from "../../../../layouts/Layout.astro";
+
+export const prerender = false;
+
+interface Invitacion {
+  title: string;
+  description: string;
+  message: (persona: string) => string;
+  photo?: Record<string, string>;
+}
+
+const TEXTO_TRAJE =
+  "Son muchos los a&ntilde;os que nos unen, pero m&aacute;s a&uacute;n los momentos. Siempre has sido esa clase de persona a la que mirar y sentir orgullo de llamar amigo. Gracias a ti he tenido un pilar donde sentirme sostenido en mis peores momentos y donde sentirme c&oacute;modo en los mejores.<br/><br/>Es por eso que me encantar&iacute;a que vinieras a elegir el traje de novio que llevar&eacute; en el gran d&iacute;a.<br/><br/><em style='opacity:0.7;font-size:0.9em;'>Solo unos pocos tendr&aacute;n ese privilegio de saber c&oacute;mo ir&eacute; vestido antes del gran momento.</em><br/><br/><div style='border-top:1px solid rgba(255,255,255,0.12); padding-top:1.2em; margin-top:0.5em;'><span style='opacity:0.5; font-size:0.75em; text-transform:uppercase; letter-spacing:0.2em;'>Fechas disponibles</span><br/><br/><strong>23 de mayo</strong> &mdash; ma&ntilde;ana o tarde<br/><strong>30 de mayo</strong> &mdash; ma&ntilde;ana o tarde<br/><br/><a href='https://chat.whatsapp.com/JWpwgmgiveG7H3zXcTd76X?mode=gi_t' target='_blank' rel='noopener' style='display:inline-flex; align-items:center; gap:0.4em; background:rgba(37,211,102,0.15); border:1px solid rgba(37,211,102,0.3); color:rgba(37,211,102,0.9); padding:0.5em 1.2em; border-radius:999px; font-size:0.85em; font-weight:600; letter-spacing:0.05em; text-decoration:none; margin-top:0.5em;'>&#x1F4AC; &Uacute;nete al grupo de WhatsApp</a></div>";
+
+const invitaciones: Record<string, Invitacion> = {
+  traje2026: {
+    title: "Marina & Oswald &mdash; Visita al Traje",
+    description: "Te esperamos para elegir juntos el traje perfecto.",
+    message: (persona: string) =>
+      `Hola, <strong>${persona}</strong> &#x1F90D;<br/><br/>${TEXTO_TRAJE}`,
+    photo: {
+      litos: "/litos.webp",
+      tomas: "/tomas.webp",
+      mario: "/mario.webp",
+      rojas: "/rojas.webp",
+    },
+  },
+};
+
+const { titulo, hash, persona } = Astro.params;
+
+const invitacion = hash ? invitaciones[hash] : undefined;
+
+if (!invitacion) {
+  return Astro.redirect("/es/");
+}
+
+const nombreLegible = persona
+  ? decodeURIComponent(persona).replace(/-/g, " ")
+  : "";
+
+const message = invitacion.message(nombreLegible);
+const photo =
+  persona && invitacion.photo
+    ? invitacion.photo[persona.toLowerCase()]
+    : undefined;
+---
+
+<Layout title={invitacion.title} description={invitacion.description}>
+  <IntroGate message={message} photo={photo} staticMode={true} />
+</Layout>

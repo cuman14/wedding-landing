@@ -2,13 +2,21 @@
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import IntroFlap from "./IntroFlap.astro";
 
+interface Props {
+  message?: string;
+  photo?: string;
+  staticMode?: boolean;
+}
+
+const { message, photo, staticMode = false } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <div
   id="intro-gate"
-  class="fixed inset-0 z-100 bg-[#b48c3c] flex flex-col items-center justify-center transition-opacity duration-1500 ease-in-out"
+  data-static={staticMode ? "true" : "false"}
+  class="fixed inset-0 z-100 bg-[#4a7c5f] flex flex-col items-center justify-center transition-opacity duration-1500 ease-in-out"
 >
   <div
     id="envelope-wrapper"
@@ -33,7 +41,7 @@ const t = useTranslations(lang);
     >
       <!-- Envelope Cavity (Internal Deep Shading) -->
       <div
-        class="absolute inset-0 bg-[#a68245] shadow-[inset_0_0_200px_rgba(0,0,0,0.5)]"
+        class="absolute inset-0 bg-[#3d6b50] shadow-[inset_0_0_200px_rgba(0,0,0,0.5)]"
       >
         <!-- Ribbed texture -->
         <div
@@ -51,31 +59,60 @@ const t = useTranslations(lang);
       <!-- Invitation card inside (Premium Dark) -->
       <div
         id="invitation-card"
-        class="absolute inset-x-6 md:inset-x-32 bottom-12 md:bottom-32 h-[80%] bg-background-dark shadow-[0_45px_90px_rgba(0,0,0,0.7),0_15px_30px_rgba(0,0,0,0.4)] rounded-sm z-10 flex flex-col items-center justify-center transition-transform duration-1400 ease-in-out border border-white/10 overflow-hidden"
+        class="absolute inset-x-6 md:inset-x-32 bottom-12 md:bottom-32 h-[80%] bg-background-dark shadow-[0_45px_90px_rgba(0,0,0,0.7),0_15px_30px_rgba(0,0,0,0.4)] rounded-sm z-10 flex flex-col items-center justify-center border border-white/10 overflow-hidden"
+        style="transition: top 1.2s cubic-bezier(0.16,1,0.3,1), bottom 1.2s cubic-bezier(0.16,1,0.3,1), left 1.2s cubic-bezier(0.16,1,0.3,1), right 1.2s cubic-bezier(0.16,1,0.3,1), height 1.2s cubic-bezier(0.16,1,0.3,1), transform 1.2s cubic-bezier(0.16,1,0.3,1), z-index 0s;"
       >
-        <div
-          class="font-display text-5xl md:text-9xl text-white drop-shadow-lg"
-        >
-          M & O
-        </div>
-        <div class="w-16 md:w-32 h-px bg-white/30 my-10 md:my-16"></div>
-        <div
-          class="font-body text-sm md:text-xl text-white/70 uppercase tracking-[0.4em] md:tracking-[0.7em]"
-        >
-          {t("countdown.date")}
-        </div>
-        <div
-          class="font-body text-xs md:text-sm text-white/50 uppercase tracking-[0.2em] md:tracking-[0.4em] mt-8"
-        >
-          {t("hero.location")}
-        </div>
+        {
+          message ? (
+            <div class="relative flex flex-col w-full h-full">
+            <div id="card-scroll-body" class="flex flex-col items-center justify-start w-full h-full overflow-y-auto py-8 md:py-12 px-8 md:px-16" style="scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent;">
+              <div class="font-display text-4xl md:text-7xl text-white drop-shadow-lg shrink-0">
+                M & O
+              </div>
+              <div class="w-16 md:w-24 h-px bg-white/30 my-5 md:my-8 shrink-0" />
+              {photo && (
+                <img
+                  src={photo}
+                  alt=""
+                  class="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover border-2 border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.5)] mb-5 md:mb-8 shrink-0"
+                />
+              )}
+              <div
+                class="font-body text-sm md:text-lg text-white/80 text-center leading-relaxed pb-10"
+                set:html={message}
+              />
+            </div>
+            <!-- Scroll indicator -->
+            <div
+              id="card-scroll-indicator"
+              class="absolute bottom-0 left-0 right-0 flex flex-col items-center pb-3 pt-6 pointer-events-none"
+              style="background: linear-gradient(to bottom, transparent, rgba(15,25,30,0.95)); opacity: 0; transition: opacity 0.5s ease;"
+            >
+              <span class="material-symbols-outlined text-white/40 text-3xl animate-bounce">expand_more</span>
+            </div>
+            </div>
+          ) : (
+            <>
+              <div class="font-display text-5xl md:text-9xl text-white drop-shadow-lg">
+                M & O
+              </div>
+              <div class="w-16 md:w-32 h-px bg-white/30 my-10 md:my-16" />
+              <div class="font-body text-sm md:text-xl text-white/70 uppercase tracking-[0.4em] md:tracking-[0.7em]">
+                {t("countdown.date")}
+              </div>
+              <div class="font-body text-xs md:text-sm text-white/50 uppercase tracking-[0.2em] md:tracking-[0.4em] mt-8">
+                {t("hero.location")}
+              </div>
+            </>
+          )
+        }
       </div>
 
       <!-- SIDE FLAPS (Ambient Occlusion & Fiber Realism) -->
       <div class="absolute inset-0 z-20 pointer-events-none">
         <!-- Left Flap -->
         <div
-          class="absolute left-0 top-0 bottom-0 w-2/3 bg-[#b48c3c] [clip-path:polygon(0_0,0_100%,100%_50%)] shadow-[-15px_0_45px_rgba(0,0,0,0.3)] border-r border-black/15"
+          class="absolute left-0 top-0 bottom-0 w-2/3 bg-[#4a7c5f] [clip-path:polygon(0_0,0_100%,100%_50%)] shadow-[-15px_0_45px_rgba(0,0,0,0.3)] border-r border-black/15"
           style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);"
         >
           <!-- Parchment fiber overlay -->
@@ -101,7 +138,7 @@ const t = useTranslations(lang);
 
         <!-- Right Flap -->
         <div
-          class="absolute right-0 top-0 bottom-0 w-2/3 bg-[#b48c3c] [clip-path:polygon(100%_0,100%_100%,0_50%)] shadow-[15px_0_45px_rgba(0,0,0,0.3)] border-l border-black/15"
+          class="absolute right-0 top-0 bottom-0 w-2/3 bg-[#4a7c5f] [clip-path:polygon(100%_0,100%_100%,0_50%)] shadow-[15px_0_45px_rgba(0,0,0,0.3)] border-l border-black/15"
           style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);"
         >
           <!-- Parchment fiber overlay -->
@@ -129,7 +166,7 @@ const t = useTranslations(lang);
       <!-- BOTTOM FLAP (Extreme Thickness & Surface Depth) -->
       <div class="absolute inset-0 z-20 pointer-events-none">
         <div
-          class="absolute left-0 right-0 bottom-0 h-3/5 bg-[#b48c3c] [clip-path:polygon(0_100%,100%_100%,50%_0)] shadow-[0_-25px_60px_rgba(0,0,0,0.35)] border-t border-white/10"
+          class="absolute left-0 right-0 bottom-0 h-3/5 bg-[#4a7c5f] [clip-path:polygon(0_100%,100%_100%,50%_0)] shadow-[0_-25px_60px_rgba(0,0,0,0.35)] border-t border-white/10"
           style="background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);"
         >
           <!-- Fiber overlay -->
@@ -192,36 +229,67 @@ const t = useTranslations(lang);
 
         if (topFlap) {
           topFlap.style.transition =
-            "all 1.7s cubic-bezier(0.45, 0.05, 0.55, 0.95)";
+            "all 2.0s cubic-bezier(0.45, 0.05, 0.55, 0.95)";
           topFlap.style.transform = "rotateX(180deg)";
           topFlap.style.zIndex = "1";
         }
 
         if (seal) {
           seal.style.transition =
-            "opacity 0.7s ease-out, transform 0.7s ease-out";
+            "opacity 0.9s ease-out, transform 0.9s ease-out";
           seal.style.opacity = "0";
           seal.style.transform =
             "translate(-50%, -80%) scale(1.1) rotate(5deg)";
         }
 
+        const isStatic = gate?.dataset.static === "true";
+
         setTimeout(() => {
           if (card) {
-            card.style.transform = "translateY(-45%)";
+            if (isStatic) {
+              card.style.top = "50%";
+              card.style.bottom = "auto";
+              card.style.left = "5%";
+              card.style.right = "5%";
+              card.style.height = "85%";
+              card.style.transform = "translateY(-50%)";
+
+              const scrollBody = document.getElementById("card-scroll-body");
+              const indicator = document.getElementById("card-scroll-indicator");
+
+              const updateIndicator = () => {
+                if (!scrollBody || !indicator) return;
+                const atBottom =
+                  scrollBody.scrollTop + scrollBody.clientHeight >=
+                  scrollBody.scrollHeight - 8;
+                indicator.style.opacity = atBottom ? "0" : "1";
+              };
+
+              setTimeout(() => {
+                if (scrollBody) {
+                  updateIndicator();
+                  scrollBody.addEventListener("scroll", updateIndicator);
+                }
+              }, 800);
+            } else {
+              card.style.transform = "translateY(-45%)";
+            }
             card.style.zIndex = "25";
           }
-        }, 1400);
+        }, 1900);
 
-        setTimeout(() => {
-          if (gate) {
-            gate.style.opacity = "0";
-            gate.style.pointerEvents = "none";
-          }
-        }, 3800);
+        if (!isStatic) {
+          setTimeout(() => {
+            if (gate) {
+              gate.style.opacity = "0";
+              gate.style.pointerEvents = "none";
+            }
+          }, 4200);
 
-        setTimeout(() => {
-          gate?.remove();
-        }, 6500);
+          setTimeout(() => {
+            gate?.remove();
+          }, 7000);
+        }
       });
     }
   });

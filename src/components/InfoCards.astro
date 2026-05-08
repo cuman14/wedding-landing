@@ -79,16 +79,29 @@ const lang = getLangFromUrl(Astro.url);
             }
           </p>
         </div>
-        <a
-          href="#faq"
-          class="mt-6 inline-flex items-center gap-2 text-sm font-body font-semibold text-primary hover:gap-4 transition-all group/link"
-        >
-          {lang === "es" ? "Más detalles" : "More details"}
-          <span
-            class="material-symbols-outlined text-base group-hover/link:translate-x-1 transition-transform"
-            >arrow_forward</span
+        <div class="mt-6 flex flex-wrap gap-4">
+          <a
+            href="https://maps.app.goo.gl/TF5a1xyAm3Gy3Xn2A"
+            target="_blank"
+            class="inline-flex items-center gap-2 text-sm font-body font-semibold text-primary hover:gap-4 transition-all group/link"
           >
-        </a>
+            {lang === "es" ? "Cómo llegar" : "Get directions"}
+            <span
+              class="material-symbols-outlined text-base group-hover/link:translate-x-1 transition-transform"
+              >arrow_forward</span
+            >
+          </a>
+          <a
+            href="#faq"
+            class="inline-flex items-center gap-2 text-sm font-body font-semibold text-gray-400 hover:text-primary hover:gap-4 transition-all group/link"
+          >
+            {lang === "es" ? "Más detalles" : "More details"}
+            <span
+              class="material-symbols-outlined text-base group-hover/link:translate-x-1 transition-transform"
+              >arrow_forward</span
+            >
+          </a>
+        </div>
       </div>
 
       <!-- Card 2: Fecha -->
@@ -175,7 +188,7 @@ const lang = getLangFromUrl(Astro.url);
             {lang === "es" ? "Hasta las" : "Until"}
           </p>
           <p class="font-body text-5xl font-bold text-white tabular-nums">
-            23:30h
+            00:00h
           </p>
         </div>
         <p class="text-white/70 text-sm font-light mt-4">
@@ -201,38 +214,114 @@ const lang = getLangFromUrl(Astro.url);
           >
             {lang === "es" ? "Transporte" : "Transport"}
           </h4>
-          <p
-            class="text-gray-500 dark:text-gray-400 font-light text-sm leading-relaxed mb-4"
+          <div
+            class="text-gray-500 dark:text-gray-400 font-light text-sm leading-relaxed mb-4 space-y-2"
           >
             {
               lang === "es" ? (
                 <>
-                  Habrá servicio de autobuses desde{" "}
-                  <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
-                    Atocha
-                  </strong>{" "}
-                  y{" "}
-                  <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
-                    Alcorcón
-                  </strong>
-                  . Las plazas son limitadas.
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-base leading-tight">
+                      directions_bus
+                    </span>
+                    <span>
+                      <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
+                        Atocha
+                      </strong>{" "}
+                      ·{" "}
+                      <a
+                        href="https://maps.app.goo.gl/kzrEffrCiCv18p969"
+                        target="_blank"
+                        class="underline hover:text-primary transition-colors"
+                      >
+                        Frente a El Brillante
+                      </a>{" "}
+                      · Ida 12:30h
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-base leading-tight">
+                      directions_bus
+                    </span>
+                    <span>
+                      <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
+                        Alcorcón
+                      </strong>{" "}
+                      ·{" "}
+                      <a
+                        href="https://maps.app.goo.gl/uLq1j97mFJRCYQ239"
+                        target="_blank"
+                        class="underline hover:text-primary transition-colors"
+                      >
+                        Puerta del Sur
+                      </a>{" "}
+                      · Ida 12:50h
+                    </span>
+                  </div>
+                  <p class="text-xs text-gray-400 pt-1">
+                    Vuelta ambas rutas:{" "}
+                    <strong class="font-semibold">00:10h</strong>
+                  </p>
                 </>
               ) : (
                 <>
-                  There will be bus services from{" "}
-                  <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
-                    Atocha
-                  </strong>{" "}
-                  and{" "}
-                  <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
-                    Alcorcón
-                  </strong>
-                  . Seats are limited.
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-base leading-tight">
+                      directions_bus
+                    </span>
+                    <span>
+                      <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
+                        Atocha
+                      </strong>{" "}
+                      ·{" "}
+                      <a
+                        href="https://maps.app.goo.gl/kzrEffrCiCv18p969"
+                        target="_blank"
+                        class="underline hover:text-primary transition-colors"
+                      >
+                        In front of El Brillante
+                      </a>{" "}
+                      · Dep. 12:30 PM
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-base leading-tight">
+                      directions_bus
+                    </span>
+                    <span>
+                      <strong class="text-text-main-light dark:text-text-main-dark font-semibold">
+                        Alcorcón
+                      </strong>{" "}
+                      ·{" "}
+                      <a
+                        href="https://maps.app.goo.gl/uLq1j97mFJRCYQ239"
+                        target="_blank"
+                        class="underline hover:text-primary transition-colors"
+                      >
+                        Puerta del Sur
+                      </a>{" "}
+                      · Dep. 12:50 PM
+                    </span>
+                  </div>
+                  <p class="text-xs text-gray-400 pt-1">
+                    Return (both routes):{" "}
+                    <strong class="font-semibold">00:10 AM</strong>
+                  </p>
                 </>
               )
             }
-          </p>
+          </div>
         </div>
+        <a
+          href="#faq"
+          class="inline-flex items-center gap-2 text-sm font-body font-semibold text-primary hover:gap-4 transition-all group/link mb-4"
+        >
+          {lang === "es" ? "Más detalles" : "More details"}
+          <span
+            class="material-symbols-outlined text-base group-hover/link:translate-x-1 transition-transform"
+            >arrow_forward</span
+          >
+        </a>
         <div
           class="flex items-center gap-4 p-4 bg-primary/5 rounded-xl border border-primary/10"
         >
