@@ -1,6 +1,6 @@
 ﻿---
-import IntroGate from "../../../../components/IntroGate.astro";
-import Layout from "../../../../layouts/Layout.astro";
+import IntroGate from "../../../components/IntroGate.astro";
+import Layout from "../../../layouts/Layout.astro";
 
 export const prerender = false;
 
@@ -29,9 +29,9 @@ const invitaciones: Record<string, Invitacion> = {
   },
 };
 
-const { titulo, hash, persona } = Astro.params;
+const { persona } = Astro.params;
 
-const invitacion = hash ? invitaciones[hash] : undefined;
+const invitacion = invitaciones["traje2026"];
 
 if (!invitacion) {
   return Astro.redirect("/es/");
