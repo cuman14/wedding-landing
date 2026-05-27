@@ -1,0 +1,29 @@
+---
+import IntroGate from "../../../components/IntroGate.astro";
+import Layout from "../../../layouts/Layout.astro";
+import { invitacionesLectura } from "../../../data/lectura";
+
+export const prerender = false;
+
+const { persona } = Astro.params;
+
+const invitacion = invitacionesLectura["lectura2026"];
+
+if (!invitacion) {
+  return Astro.redirect("/es/");
+}
+
+const personaData = invitacion.personas.find(
+  (p) => p.id.toLowerCase() === persona?.toLowerCase()
+);
+
+if (!personaData) {
+  return Astro.redirect("/es/");
+}
+
+const message = `Hola, <strong>${personaData.nombre}</strong> \ud83d\ude4f<br/><br/>${personaData.message.replace(/\n/g, "<br/>")}`;
+---
+
+<Layout title={invitacion.title} description={invitacion.description}>
+  <IntroGate message={message} photo={personaData.foto} staticMode={true} />
+</Layout>
