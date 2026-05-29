@@ -21,8 +21,18 @@ const t = useTranslations(lang);
 
 const metaTitle = title || t("site.title");
 const metaDescription = description || t("site.description");
-const canonicalBase =
-  Astro.url?.origin || Astro.site || "https://wedding-landing-ashen.vercel.app";
+const isValidOrigin = (origin: string | undefined) => {
+  if (!origin) return false;
+  try {
+    const url = new URL(origin);
+    return !url.hostname.includes("localhost") && !url.hostname.includes("127.0.0.1");
+  } catch {
+    return false;
+  }
+};
+const canonicalBase = isValidOrigin(Astro.url?.origin)
+  ? Astro.url.origin
+  : Astro.site?.href.replace(/\/$/, "") || "https://www.marinayoswald.es";
 const canonicalURL = new URL(Astro.url.pathname, canonicalBase);
 ---
 
@@ -49,7 +59,7 @@ const canonicalURL = new URL(Astro.url.pathname, canonicalBase);
     <meta property="og:description" content={metaDescription} />
     <meta
       property="og:image"
-      content={new URL(image, canonicalURL.origin).href}
+      content={image.startsWith("http") ? image : `${canonicalBase}${image}`}
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -63,7 +73,7 @@ const canonicalURL = new URL(Astro.url.pathname, canonicalBase);
     <meta name="twitter:description" content={metaDescription} />
     <meta
       name="twitter:image"
-      content={new URL(image, canonicalURL.origin).href}
+      content={image.startsWith("http") ? image : `${canonicalBase}${image}`}
     />
 
     <!-- Google Fonts CDN fallback/alternative if explicit local control needed or strictly matching prototype -->
