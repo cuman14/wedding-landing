@@ -50,7 +50,7 @@ const canonicalURL = canonicalUrl
     <meta property="og:description" content={metaDescription} />
     <meta
       property="og:image"
-      content={image.startsWith("http") ? image : `${canonicalBase}${image}`}
+      content={image.startsWith("http") ? image : `${canonicalURL.origin}${image}`}
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -64,7 +64,7 @@ const canonicalURL = canonicalUrl
     <meta name="twitter:description" content={metaDescription} />
     <meta
       name="twitter:image"
-      content={image.startsWith("http") ? image : `${canonicalBase}${image}`}
+      content={image.startsWith("http") ? image : `${canonicalURL.origin}${image}`}
     />
 
     <!-- Google Fonts CDN fallback/alternative if explicit local control needed or strictly matching prototype -->
