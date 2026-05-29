@@ -25,7 +25,7 @@ const site = "https://www.marinayoswald.es";
 const message = `Hola, <strong>${personaData.nombre}</strong> 🙏<br/><br/>${personaData.message.replace(/\n/g, "<br/>")}`;
 const metaTitle = `💌 ${invitacion.title}`;
 const metaDescription = `${personaData.nombre}, tienes un mensaje muy especial de Marina & Oswald para ti.`;
-const ogImage = `${site}${personaData.foto}`;
+const ogImage = `${site}${personaData.foto.replace(".webp", ".jpg")}`;
 const ogUrl = `${site}/megustariaque/lectura/${personaData.id}`;
 ---
 
