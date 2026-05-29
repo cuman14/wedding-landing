@@ -24,7 +24,7 @@ const metaTitle = title || t("site.title");
 const metaDescription = description || t("site.description");
 const canonicalURL = canonicalUrl
   ? new URL(canonicalUrl)
-  : new URL(Astro.url.pathname, "https://www.marinayoswald.es");
+  : new URL(Astro.url?.pathname || "/", "https://www.marinayoswald.es");
 ---
 
 <!doctype html>
