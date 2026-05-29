@@ -29,6 +29,6 @@ const ogImage = `${site}${personaData.foto.replace(".webp", ".jpg")}`;
 const ogUrl = `${site}/megustariaque/lectura/${personaData.id}`;
 ---
 
-<Layout title={metaTitle} description={metaDescription} image={ogImage} canonicalUrl={ogUrl}>
+<Layout title={metaTitle} description={metaDescription} image={ogImage}>
   <IntroGate message={message} photo={personaData.foto} staticMode={true} />
 </Layout>
