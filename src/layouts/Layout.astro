@@ -13,27 +13,18 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  canonicalUrl?: string;
 }
 
-const { title, description, image = "/og.jpg" } = Astro.props;
+const { title, description, image = "/og.jpg", canonicalUrl } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const metaTitle = title || t("site.title");
 const metaDescription = description || t("site.description");
-const isValidOrigin = (origin: string | undefined) => {
-  if (!origin) return false;
-  try {
-    const url = new URL(origin);
-    return !url.hostname.includes("localhost") && !url.hostname.includes("127.0.0.1");
-  } catch {
-    return false;
-  }
-};
-const canonicalBase = isValidOrigin(Astro.url?.origin)
-  ? Astro.url.origin
-  : Astro.site?.href.replace(/\/$/, "") || "https://www.marinayoswald.es";
-const canonicalURL = new URL(Astro.url.pathname, canonicalBase);
+const canonicalURL = canonicalUrl
+  ? new URL(canonicalUrl)
+  : new URL(Astro.url.pathname, "https://www.marinayoswald.es");
 ---
 
 <!doctype html>
