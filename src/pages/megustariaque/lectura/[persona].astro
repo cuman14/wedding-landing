@@ -21,9 +21,11 @@ if (!personaData) {
   return Astro.redirect("/es/");
 }
 
-const message = `Hola, <strong>${personaData.nombre}</strong> \ud83d\ude4f<br/><br/>${personaData.message.replace(/\n/g, "<br/>")}`;
+const message = `Hola, <strong>${personaData.nombre}</strong> 🙏<br/><br/>${personaData.message.replace(/\n/g, "<br/>")}`;
+const metaTitle = `💌 ${invitacion.title}`;
+const metaDescription = `${personaData.nombre}, tienes un mensaje muy especial de Marina & Oswald para ti.`;
 ---
 
-<Layout title={invitacion.title} description={invitacion.description}>
+<Layout title={metaTitle} description={metaDescription} image={personaData.foto}>
   <IntroGate message={message} photo={personaData.foto} staticMode={true} />
 </Layout>

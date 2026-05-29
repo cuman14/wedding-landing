@@ -21,14 +21,14 @@ export const invitacionesLectura: Record<string, InvitacionLectura> = {
         nombre: "Irene",
         foto: "/irene.webp",
         message:
-          "Pasan los a\u00f1os y veo imposible imaginarme la vida sin estar tu a mi lado. No solo eres parte fundamental de mi d\u00eda a d\u00eda, eres adem\u00e1s ese faro en el que pienso cuando estoy perdido, esa amiga a la que admiro y quiero por partes iguales; y te quiero much\u00edsimo. Es por ello, que me encantar\u00eda que tu voz forme parte de mi boda con una breve e intensa lectura.",
+          "Eres de las personas que m\u00e1s admiro en este mundo y que seas mi amiga me llena de un orgullo tremendo. Tu forma de ser, de enfrentarte a los problemas, de transmitir tus ideales... pero sin perder ese toque de disfrute de la vida. Cuando hablamos, tengo la sensaci\u00f3n de sentirme entendido 100% y de aprender continuamente. No se me olvida un d\u00eda que estaba mal en C\u00f3rdoba, por la que va a ser mi mujer ahora, cuando lo fui a contar, t\u00fa saliste corriendo por una botella de vino y prestaste toda tu atenci\u00f3n en mi dolor. Quererte es decirte poco. Es por ello que me encantar\u00eda que leyeras en mi boda.",
       },
       {
         id: "silvia",
         nombre: "Silvia",
         foto: "/silvia.webp",
         message:
-          "Pasan los a\u00f1os y veo imposible imaginarme la vida sin estar tu a mi lado. No solo eres parte fundamental de mi d\u00eda a d\u00eda, eres adem\u00e1s ese faro en el que pienso cuando estoy perdido, esa amiga a la que admiro y quiero por partes iguales; y te quiero much\u00edsimo. Es por ello, que me encantar\u00eda que tu voz forme parte de mi boda con una breve e intensa lectura.",
+          "Uno de los mayores regalos que me ha dado la vida fue tenerte a ti como amiga, una persona tan creativa, tan atenta que sabe demostrar lo que le importan las personas que quiere de una forma que yo valoro mucho. Creo que siempre hemos tenido una gran complicidad y eso ha hecho que siempre nos sintamos el uno cerca del otro. S\u00e9 que si tengo que llorar tengo tu hombro y conf\u00edo en que t\u00fa sabes que tienes el m\u00edo. Es por ello, que como eres de las personas que mas quiero en el mundo, me encantar\u00eda que tu voz formara parte de una de las lecturas de mi boda.",
       },
       {
         id: "lorenasirene",
@@ -42,7 +42,7 @@ export const invitacionesLectura: Record<string, InvitacionLectura> = {
         nombre: "Tamara & Helena",
         foto: "/tamarahelena.webp",
         message:
-          "Chicas ❤️\n\nQui\u00e9n me iba a decir, cuando coincidimos en la uni, que tantos a\u00f1os despu\u00e9s seguir\u00edais siendo una parte tan importante de mi vida 🥹\n\nHemos compartido much\u00edsimas etapas juntas y, aunque la vida haya ido cambiando, siempre hay\u00e1is seguido ah\u00ed de una forma muy especial para m\u00ed. Por eso me har\u00eda much\u00edsima ilusi\u00f3n que fuerais vosotras quienes hicierais juntas una de las lecturas de mi boda 🤍",
+          "Chicas ❤️\n\nQui\u00e9n me iba a decir, cuando coincidimos en la uni, que tantos a\u00f1os despu\u00e9s seguir\u00edais siendo una parte tan importante de mi vida 🥹\n\nHemos compartido much\u00edsimas etapas juntas y aunque la vida haya ido cambiando, siempre hab\u00e9is seguido ah\u00ed de una forma muy especial para m\u00ed. Por eso me har\u00eda much\u00edsima ilusi\u00f3n que fuerais vosotras quienes hicierais juntas una de las lecturas de mi boda 🤍",
       },
     ],
   },
