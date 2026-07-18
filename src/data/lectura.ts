@@ -44,6 +44,13 @@ export const invitacionesLectura: Record<string, InvitacionLectura> = {
         message:
           "Chicas ❤️\n\nQui\u00e9n me iba a decir, cuando coincidimos en la uni, que tantos a\u00f1os despu\u00e9s seguir\u00edais siendo una parte tan importante de mi vida 🥹\n\nHemos compartido much\u00edsimas etapas juntas y aunque la vida haya ido cambiando, siempre hab\u00e9is seguido ah\u00ed de una forma muy especial para m\u00ed. Por eso me har\u00eda much\u00edsima ilusi\u00f3n que fuerais vosotras quienes hicierais juntas una de las lecturas de mi boda 🤍",
       },
+      {
+        id: "jaime",
+        nombre: "Jaime",
+        foto: "/jaime.webp",
+        message:
+          "Fuiste mi primer amigo en este pa\u00eds, el primero con el que compartir la pasi\u00f3n por la inform\u00e1tica, el primero con el que cre\u00e9 mi primera p\u00e1gina web. Da igual los a\u00f1os que pasen o los caminos que elijamos, que siempre tengo la sensaci\u00f3n de que nos encontraremos, de que nos entenderemos y de que nos querremos. Por eso no conozco mejor persona que pueda, en el d\u00eda m\u00e1s especial de mi vida, dedicar unas palabras en la ceremonia. Te quiero, hoy y siempre 🤍",
+      },
     ],
   },
 };
