@@ -91,7 +91,7 @@ export const ui = {
     "gifts.subtitle":
       "Vuestra presencia es nuestro mayor regalo, pero si deseáis tener un detalle con nosotros para ayudarnos en el inicio de nuestra vida juntos...",
     "gifts.accountHolder": "Titular de la cuenta",
-    "gifts.accountHolderName": "Marina S. & Oswald R.",
+    "gifts.accountHolderName": "Marina & Oswald",
     "gifts.concept": "Concepto",
     "gifts.conceptText": "Regalo",
     "gifts.iban": "Número de Cuenta (IBAN)",
