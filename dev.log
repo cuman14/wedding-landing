@@ -24,3 +24,14 @@ $ astro dev "--host" "::1" "--port" "4321"
 [2m22:06:06[22m [34m[200][39m /es/bodegon/javi [2m33ms[22m
 [2m22:06:06[22m [34m[200][39m [34m(rewrite) [39m/bodegon/consuelo [2m69ms[22m
 [2m22:06:06[22m [34m[200][39m [34m(rewrite) [39m/megustariaque/alberto [2m89ms[22m
+[2m22:12:06[22m [34m[watch][39m /src/styles/global.css
+[2m22:12:06[22m [34m[watch][39m /src/styles/global.css
+[2m22:12:06[22m [34m[watch][39m /src/styles/global.css
+[2m22:12:07[22m [34m[200][39m /es/bodegon/javi [2m237ms[22m
+[2m22:12:07[22m [34m[200][39m /es/bodegon/javi [2m66ms[22m
+[2m22:12:07[22m [34m[200][39m /es/bodegon/javi [2m52ms[22m
+[2m22:12:07[22m [34m[200][39m [34m(rewrite) [39m/megustariaque/alberto [2m51ms[22m
+[2m22:13:05[22m [34m[watch][39m /src/styles/global.css
+[2m22:13:06[22m [34m[200][39m /es/bodegon/javi [2m52ms[22m
+[2m22:13:06[22m [34m[200][39m [34m(rewrite) [39m/megustariaque/alberto [2m13ms[22m
+[2m22:13:10[22m [34m[200][39m [34m(rewrite) [39m/bodegon/javi [2m10ms[22m
