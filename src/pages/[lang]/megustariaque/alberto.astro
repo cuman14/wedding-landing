@@ -1,0 +1,25 @@
+---
+import IntroGate from "../../../components/IntroGate.astro";
+import Layout from "../../../layouts/Layout.astro";
+import { invitacionesLectura } from "../../../data/lectura";
+
+export const prerender = false;
+
+const invitacion = invitacionesLectura.lectura2026;
+const persona = invitacion.personas.find((persona) => persona.id === "alberto");
+
+if (!persona) {
+  return Astro.redirect("/es/");
+}
+
+const metaTitle = `💌 ${invitacion.title}`;
+const metaDescription = `${persona.nombre}, tienes un mensaje muy especial de Marina & Oswald para ti.`;
+---
+
+<Layout title={metaTitle} description={metaDescription}>
+  <IntroGate
+    message={`Hola, <strong>${persona.nombre}</strong> 🙏<br/><br/>${persona.message.replace(/\n/g, "<br/>")}`}
+    photo={persona.foto}
+    staticMode={true}
+  />
+</Layout>
