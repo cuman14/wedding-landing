@@ -1,0 +1,27 @@
+---
+import IntroGate from "../../../components/IntroGate.astro";
+import Layout from "../../../layouts/Layout.astro";
+import { personasBodegon } from "../../../data/bodegon";
+
+export const prerender = false;
+
+const { nombre } = Astro.params;
+
+const persona = personasBodegon.find(
+  (p) => p.id === nombre?.toLowerCase()
+);
+
+if (!persona) {
+  return Astro.redirect("/es/");
+}
+
+const texto = "\u{1F90D} Eres una de las personas m\u00e1s importantes de mi vida y siempre has demostrado querer lo mejor para m\u00ed. Por eso, ser\u00eda un orgullo que fueras una de las primeras personas en escribir un deseo para nosotros.<br/><br/>\u{1F4AD} La idea es la siguiente: en la ceremonia habr\u00e1 un bodeg\u00f3n de cristal. En un momento de la ceremonia, la maestra de ceremonias anunciar\u00e1 que 6 personas se levantar\u00e1n y dejar\u00e1n los primeros deseos para los novios. Es ah\u00ed cuando llega tu turno: dejar\u00e1s un pergamino con tus deseos, escrito previamente, dentro del bodeg\u00f3n.<br/><br/>\u{1F4DC} El pergaminillo te lo daremos a la llegada o, si es posible, unos d\u00edas antes, pero puedes ir empezando a pensar ese breve mensaje.<br/><br/>\u{1F92B} Muy importante: \u00a1no se lo digas a NADIE! Todo en la ceremonia son sorpresas y t\u00fa tienes el privilegio de conocer una de ellas antes que nadie.";
+
+const message = `Hola, <strong>${persona.nombre}</strong> \u{1F495}<br/><br/>${texto}`;
+const metaTitle = "Marina & Oswald \u2014 El Bodeg\u00f3n";
+const metaDescription = `${persona.nombre}, tienes un mensaje muy especial de Marina & Oswald para ti.`;
+---
+
+<Layout title={metaTitle} description={metaDescription}>
+  <IntroGate message={message} photo={persona.foto} staticMode={true} />
+</Layout>

@@ -1,0 +1,26 @@
+$ astro dev "--host" "::1" "--port" "4321"
+[2m21:56:50[22m [34m[vite][39m connected.
+[2m21:56:51[22m [34m[types][39m Generated [2m1ms[22m
+[2m21:56:51[22m [34m[vite][39m connected.
+[42m[1m astro [22m[49m [32mv7.2.9[39m [2mready in[22m 1974 [2mms[22m
+[2m┃[22m Local    [36mhttp://[::1]:4321/[39m
+[2m┃[22m Network  [2munable to find network to expose[22m
+[2m21:56:51[22m [32mwatching for file changes...[39m
+[2m21:56:52[22m [34m[200][39m /es/bodegon/javi [2m63ms[22m
+[2m21:57:22[22m [34m[200][39m [34m(rewrite) [39m/bodegon/javi [2m440ms[22m
+[2m21:57:22[22m [34m[200][39m [34m(rewrite) [39m/bodegon/consuelo [2m28ms[22m
+[2m21:57:22[22m [34m[200][39m [34m(rewrite) [39m/bodegon/sara [2m9ms[22m
+[2m21:57:22[22m [34m[200][39m [34m(rewrite) [39m/bodegon/samah [2m3ms[22m
+[2m21:57:41[22m [34m[200][39m [34m(rewrite) [39m/bodegon/samah [2m9ms[22m
+[2m22:03:11[22m [34m[200][39m [34m(rewrite) [39m/megustariaque/alberto [2m90ms[22m
+[2m22:03:37[22m [33m[302][39m /es/bodegon/consoli [2m4ms[22m
+[2m22:03:37[22m [34m[200][39m /es/ [2m86ms[22m
+[2m22:03:43[22m [34m[200][39m [34m(rewrite) [39m/bodegon/consuelo [2m4ms[22m
+[2m22:05:20[22m [34m[watch][39m /src/styles/global.css
+[2m22:05:20[22m [34m[200][39m /es/bodegon/javi [2m21ms[22m
+[2m22:05:20[22m [34m[200][39m [34m(rewrite) [39m/bodegon/consuelo [2m3ms[22m
+[2m22:05:20[22m [34m[200][39m [34m(rewrite) [39m/megustariaque/alberto [2m44ms[22m
+[2m22:06:06[22m [34m[watch][39m /src/styles/global.css
+[2m22:06:06[22m [34m[200][39m /es/bodegon/javi [2m33ms[22m
+[2m22:06:06[22m [34m[200][39m [34m(rewrite) [39m/bodegon/consuelo [2m69ms[22m
+[2m22:06:06[22m [34m[200][39m [34m(rewrite) [39m/megustariaque/alberto [2m89ms[22m
