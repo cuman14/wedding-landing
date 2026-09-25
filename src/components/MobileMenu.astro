@@ -22,10 +22,6 @@ const t = useTranslations(lang);
   <nav class="flex flex-col items-center gap-6">
     <a
       class="text-2xl font-body font-medium hover:text-primary transition-colors mobile-link"
-      href="#hero">{t("nav.home")}</a
-    >
-    <a
-      class="text-2xl font-body font-medium hover:text-primary transition-colors mobile-link"
       href="#video-section">{t("nav.place")}</a
     >
     <a
@@ -41,26 +37,6 @@ const t = useTranslations(lang);
       href="#regalos">{t("nav.gifts")}</a
     >
   </nav>
-
-  <a
-    href="#confirmar"
-    class="mobile-link mt-4 flex items-center justify-center gap-2 font-body font-medium text-xl uppercase tracking-wide px-8 py-4 rounded-full text-[#7e97b8] bg-[#e0e8ef] border-2 border-white/30 shadow-[-4px_-2px_16px_0_#ffffff,4px_2px_16px_0_rgb(95_157_231/48%)] transition-all hover:bg-[#E5EDF5] active:shadow-none"
-  >
-    <svg
-      viewBox="0 0 24 24"
-      width="20"
-      height="20"
-      stroke="currentColor"
-      stroke-width="2"
-      fill="none"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      aria-hidden="true"
-    >
-      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-    </svg>
-    {t("nav.confirm")}
-  </a>
 </div>
 
 <script>
