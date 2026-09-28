@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl } from "../i18n/utils";
+import WeatherCard from "./WeatherCard.astro";
 
 const lang = getLangFromUrl(Astro.url);
 ---
@@ -280,6 +281,9 @@ const lang = getLangFromUrl(Astro.url);
           >
         </a>
       </div>
+
+      <!-- Card 6: Tiempo previsto -->
+      <WeatherCard />
     </div>
   </div>
 </section>
