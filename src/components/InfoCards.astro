@@ -54,10 +54,24 @@ const lang = getLangFromUrl(Astro.url);
               Finca Condado de Cubillana, Toledo
             </strong>
           </p>
+          <p
+            class="mt-3 text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light flex items-start gap-2"
+          >
+            <span class="material-symbols-outlined text-primary text-lg"
+              >park</span
+            >
+            <span>
+              {
+                lang === "es"
+                  ? "Celebración al aire libre, rodeados de naturaleza. Si el tiempo no acompaña, tenemos plan B con porche y carpa."
+                  : "An outdoor celebration surrounded by nature. If the weather isn't on our side, we have a plan B with a porch and a marquee."
+              }
+            </span>
+          </p>
         </div>
         <div class="mt-6 flex flex-wrap gap-4">
           <a
-            href="https://maps.app.goo.gl/TF5a1xyAm3Gy3Xn2A"
+            href="https://www.google.com/maps/dir/?api=1&destination=Finca+Condado+de+Cubillana,+Camino+de+la+iva,+45920+La+Torre+de+Esteban+Hambr%C3%A1n,+Toledo"
             target="_blank"
             class="inline-flex items-center gap-2 text-sm font-body font-semibold text-primary hover:gap-4 transition-all group/link"
           >
