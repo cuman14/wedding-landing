@@ -9,6 +9,7 @@ import Hero from "./Hero.astro";
 import InfoCards from "./InfoCards.astro";
 import Progress from "./Progress.astro";
 import SeccionFormulario from "./SeccionFormulario.astro";
+import WeatherCard from "./WeatherCard.astro";
 import VideoSection from "./VideoSection.astro";
 
 interface Props {
@@ -23,6 +24,7 @@ const { lang } = Astro.props;
   <Header />
   <main class="flex flex-col min-h-screen w-full pt-16">
     <!-- <Hero /> -->
+    <WeatherCard />
     <InfoCards />
     <GiftDetails />
     <VideoSection />

@@ -1,6 +1,5 @@
 ---
 import { getLangFromUrl } from "../i18n/utils";
-import WeatherCard from "./WeatherCard.astro";
 
 const lang = getLangFromUrl(Astro.url);
 ---
@@ -225,35 +224,40 @@ const lang = getLangFromUrl(Astro.url);
                 >{lang === "es" ? "Ida" : "Outbound"}
               </p>
               <div class="space-y-1.5">
-                <a
-                  href="https://maps.app.goo.gl/kzrEffrCiCv18p969"
-                  target="_blank"
-                  class="flex items-center justify-between gap-2 text-sm rounded-lg px-2 py-1.5 -mx-2 hover:bg-primary/5 transition-colors group/stop"
-                >
-                  <span class="font-semibold text-text-main-light dark:text-text-main-dark group-hover/stop:text-primary transition-colors">
-                    Atocha
-                  </span>
-                  <span
-                    class="font-body text-xs font-bold text-primary bg-primary/10 rounded-full px-2 py-0.5 tabular-nums"
-                    >12:15h</span
-                  >
-                </a>
-                <a
-                  href="https://maps.app.goo.gl/uLq1j97mFJRCYQ239"
-                  target="_blank"
-                  class="flex items-center justify-between gap-2 text-sm rounded-lg px-2 py-1.5 -mx-2 hover:bg-primary/5 transition-colors group/stop"
-                >
-                  <span class="font-semibold text-text-main-light dark:text-text-main-dark group-hover/stop:text-primary transition-colors">
-                    Alcorcón{" "}
-                    <span class="font-normal text-gray-400 text-xs"
-                      >· Valmojado</span
-                    >
-                  </span>
-                  <span
-                    class="font-body text-xs font-bold text-primary bg-primary/10 rounded-full px-2 py-0.5 tabular-nums"
-                    >12:30h</span
-                  >
-                </a>
+                <!-- Ruta 1 -->
+                <div class="rounded-xl border border-primary/20 bg-secondary-mint/20 dark:bg-primary/5 px-3 py-2">
+                  <p class="font-body text-[10px] font-bold tracking-wider uppercase text-primary flex items-center gap-1 mb-1">
+                    <span class="material-symbols-outlined text-sm leading-none">alt_route</span>
+                    {lang === "es" ? "Ruta 1" : "Route 1"}
+                  </p>
+                  <a href="https://maps.app.goo.gl/kzrEffrCiCv18p969" target="_blank" class="flex items-center justify-between gap-2 text-sm rounded-lg px-2 py-1.5 -mx-2 hover:bg-primary/5 transition-colors group/stop">
+                    <span class="font-semibold text-text-main-light dark:text-text-main-dark group-hover/stop:text-primary transition-colors">Atocha</span>
+                    <span class="font-body text-xs font-bold text-primary bg-primary/10 rounded-full px-2 py-0.5 tabular-nums">12:15h</span>
+                  </a>
+                </div>
+                <!-- Ruta 2 -->
+                <div class="rounded-xl border border-primary/20 bg-secondary-mint/20 dark:bg-primary/5 px-3 py-2">
+                  <p class="font-body text-[10px] font-bold tracking-wider uppercase text-primary flex items-center gap-1 mb-1">
+                    <span class="material-symbols-outlined text-sm leading-none">alt_route</span>
+                    {lang === "es" ? "Ruta 2" : "Route 2"}
+                  </p>
+                  <a href="https://maps.app.goo.gl/uLq1j97mFJRCYQ239" target="_blank" class="flex items-center justify-between gap-2 text-sm rounded-lg px-2 py-1.5 -mx-2 hover:bg-primary/5 transition-colors group/stop">
+                    <span class="font-semibold text-text-main-light dark:text-text-main-dark group-hover/stop:text-primary transition-colors">Alcorcón</span>
+                    <span class="font-body text-xs font-bold text-primary bg-primary/10 rounded-full px-2 py-0.5 tabular-nums">12:30h</span>
+                  </a>
+                  <div class="flex items-center justify-between gap-2 text-sm px-2 py-1.5 -mx-2">
+                    <span class="font-semibold text-text-main-light dark:text-text-main-dark">
+                      <span class="text-primary mr-1">↳</span>Valmojado
+                    </span>
+                    <span class="font-body text-xs font-bold text-primary bg-primary/10 rounded-full px-2 py-0.5 tabular-nums">
+                      {lang === "es" ? "~13:10h" : "~1:10 PM"}
+                    </span>
+                  </div>
+                </div>
+                <p class="font-body text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1 pt-1">
+                  <span class="material-symbols-outlined text-sm leading-none">schedule</span>
+                  {lang === "es" ? "Se ruega puntualidad" : "Punctuality is kindly requested"}
+                </p>
               </div>
             </div>
 
@@ -295,9 +299,6 @@ const lang = getLangFromUrl(Astro.url);
           >
         </a>
       </div>
-
-      <!-- Card 6: Tiempo previsto -->
-      <WeatherCard />
     </div>
   </div>
 </section>
