@@ -164,7 +164,7 @@ const condition = weatherCodeToCondition(weather?.weatherCode ?? 0);
 ---
 
 <section
-  class="relative px-6 pt-8 md:pt-10 pb-16 md:pb-20 bg-background-light dark:bg-background-dark overflow-hidden"
+  class="relative px-6 pt-8 md:pt-10 pb-2 md:pb-4 bg-background-light dark:bg-background-dark overflow-hidden"
 >
   <div aria-hidden="true" class={`weather-bg weather-bg--${condition}`}>
     {(condition === "sunny" || condition === "partlyCloudy") && <div class="wx-sun" />}
