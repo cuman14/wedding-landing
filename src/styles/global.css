@@ -171,17 +171,20 @@ body {
   .weather-bg--storm { background: linear-gradient(to bottom, rgb(30 41 59 / 0.6), transparent 85%); }
 }
 
-/* Sol: esfera con halo y anillo de rayos girando en 3D */
+/* Sol: esfera glossy con brillo, halo y anillo de rayos girando en 3D */
 .wx-sun {
   top: 4%;
   right: 3%;
   width: 120px;
   height: 120px;
-  opacity: 0.6;
-  margin: 0;
   border-radius: 9999px;
-  background: radial-gradient(circle at 35% 32%, #fffbe0 0%, #ffe08a 35%, #ffb938 100%);
-  box-shadow: 0 0 60px 24px rgb(255 200 80 / 0.45);
+  background:
+    radial-gradient(circle at 30% 26%, rgb(255 255 255 / 0.9) 0, rgb(255 255 255 / 0) 22%),
+    radial-gradient(circle at 38% 34%, #fff0a6 0%, #ffd23f 42%, #ff9f1c 100%);
+  box-shadow:
+    inset -10px -12px 22px rgb(230 120 0 / 0.45),
+    0 0 50px 18px rgb(255 190 60 / 0.4);
+  opacity: 0.85;
   transform: translate3d(0, 0, -120px);
   animation: wx-sun-float 8s ease-in-out infinite;
 }
@@ -190,35 +193,31 @@ body {
   right: calc(3% - 70px);
   width: 250px;
   height: 250px;
-  opacity: 0.6;
   border-radius: 9999px;
-  background: repeating-conic-gradient(rgb(255 210 100 / 0.28) 0deg 5deg, transparent 5deg 20deg);
+  background: repeating-conic-gradient(rgb(255 210 100 / 0.3) 0deg 5deg, transparent 5deg 20deg);
   -webkit-mask-image: radial-gradient(circle, transparent 30%, #000 42%, transparent 70%);
   mask-image: radial-gradient(circle, transparent 30%, #000 42%, transparent 70%);
+  opacity: 0.6;
   transform: translate3d(0, 0, -140px) rotateX(55deg);
   animation: wx-rays 40s linear infinite;
 }
 
-/* Nubes: grupos de puffs con gradientes radiales (sin blur) a distinta profundidad */
+/* Nubes: silueta SVG con sombreado (luz arriba-izquierda), sin blur */
 .wx-cloud {
   left: 0;
-  width: 280px;
-  height: 90px;
-  background:
-    radial-gradient(closest-side, rgb(255 255 255 / 0.85), transparent) 0% 70% / 45% 70% no-repeat,
-    radial-gradient(closest-side, rgb(255 255 255 / 0.9), transparent) 30% 40% / 50% 100% no-repeat,
-    radial-gradient(closest-side, rgb(255 255 255 / 0.85), transparent) 62% 60% / 45% 80% no-repeat,
-    radial-gradient(closest-side, rgb(255 255 255 / 0.75), transparent) 100% 75% / 40% 60% no-repeat;
+  width: 210px;
+  height: 112px;
+  opacity: 0.85;
+  background: url("/weather/cloud.svg") center / contain no-repeat;
   transform: translate3d(-300px, 0, var(--z, 0px));
   animation: wx-drift var(--dur, 60s) linear var(--delay, 0s) infinite;
 }
 .weather-bg--cloudy .wx-cloud,
-.weather-bg--rain .wx-cloud {
-  filter: brightness(0.62) saturate(0.6);
-}
-.weather-bg--storm .wx-cloud { filter: brightness(0.38) saturate(0.5); }
+.weather-bg--rain .wx-cloud { filter: brightness(0.8) saturate(0.8); }
+.weather-bg--storm .wx-cloud { filter: brightness(0.5) saturate(0.7); opacity: 0.9; }
 @media (prefers-color-scheme: dark) {
-  .wx-cloud { opacity: 0.4; }
+  .wx-cloud { opacity: 0.5; }
+  .weather-bg--storm .wx-cloud { opacity: 0.75; }
 }
 
 /* Niebla: bandas elípticas en capas de profundidad */
@@ -237,10 +236,11 @@ body {
 /* Lluvia y nieve: partículas con profundidad real (translateZ) */
 .wx-drop {
   top: -40px;
-  width: 1.5px;
-  height: 20px;
-  border-radius: 2px;
-  background: linear-gradient(to bottom, transparent, rgb(120 150 190 / 0.8));
+  width: 3px;
+  height: 15px;
+  border-radius: 60% 60% 50% 50% / 70% 70% 40% 40%;
+  background: linear-gradient(to bottom, rgb(150 205 255 / 0.2), #6db3ff 55%, #3f8cf0);
+  box-shadow: 0 0 5px rgb(110 180 255 / 0.55);
   opacity: var(--o, 0.7);
   transform: translate3d(0, 0, var(--z, 0px)) rotate(8deg);
   animation: wx-fall var(--dur, 1s) linear var(--delay, 0s) infinite;
@@ -250,8 +250,8 @@ body {
   width: var(--s, 5px);
   height: var(--s, 5px);
   border-radius: 9999px;
-  background: rgb(255 255 255 / 0.95);
-  box-shadow: 0 0 4px rgb(186 230 253 / 0.8);
+  background: radial-gradient(circle at 32% 30%, #ffffff 0%, #eaf4ff 55%, #b9d8f5 100%);
+  box-shadow: 0 0 6px rgb(190 225 255 / 0.9);
   opacity: var(--o, 0.8);
   transform: translate3d(0, 0, var(--z, 0px));
   animation: wx-snowfall var(--dur, 9s) linear var(--delay, 0s) infinite;

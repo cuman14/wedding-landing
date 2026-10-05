@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 170">
+  <defs>
+    <linearGradient id="body" gradientUnits="userSpaceOnUse" x1="0" y1="30" x2="0" y2="150">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.55" stop-color="#e9eef8"/>
+      <stop offset="1" stop-color="#b4c0da"/>
+    </linearGradient>
+    <radialGradient id="hl" cx="0.35" cy="0.3" r="0.7">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="belly" gradientUnits="userSpaceOnUse" x1="0" y1="105" x2="0" y2="150">
+      <stop offset="0" stop-color="#9fb0d0" stop-opacity="0"/>
+      <stop offset="1" stop-color="#8fa1c6" stop-opacity="0.55"/>
+    </linearGradient>
+    <clipPath id="shape">
+      <rect x="14" y="92" width="292" height="58" rx="29"/>
+      <circle cx="82" cy="98" r="46"/>
+      <circle cx="152" cy="66" r="62"/>
+      <circle cx="228" cy="90" r="48"/>
+    </clipPath>
+  </defs>
+  <g fill="url(#body)">
+    <rect x="14" y="92" width="292" height="58" rx="29"/>
+    <circle cx="82" cy="98" r="46"/>
+    <circle cx="152" cy="66" r="62"/>
+    <circle cx="228" cy="90" r="48"/>
+  </g>
+  <g clip-path="url(#shape)">
+    <rect x="0" y="105" width="320" height="50" fill="url(#belly)"/>
+    <circle cx="70" cy="80" r="34" fill="url(#hl)"/>
+    <circle cx="135" cy="42" r="46" fill="url(#hl)"/>
+    <circle cx="210" cy="72" r="34" fill="url(#hl)"/>
+  </g>
+</svg>
