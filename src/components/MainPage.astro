@@ -4,7 +4,6 @@ import Countdown from "./Countdown.astro";
 import FAQ from "./FAQ.astro";
 import Footer from "./Footer.astro";
 import GiftDetails from "./GiftDetails.astro";
-import Header from "./Header.astro";
 import Hero from "./Hero.astro";
 import InfoCards from "./InfoCards.astro";
 import Progress from "./Progress.astro";
@@ -21,8 +20,7 @@ const { lang } = Astro.props;
 
 <Layout>
   <!--  <IntroGate /> -->
-  <Header />
-  <main class="flex flex-col min-h-screen w-full pt-16">
+  <main class="flex flex-col min-h-screen w-full">
     <!-- <Hero /> -->
     <WeatherCard />
     <InfoCards />

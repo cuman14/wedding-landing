@@ -119,13 +119,16 @@ body {
   @apply bg-background-dark text-text-main-dark;
 }
 
-/* ---------- Fondo animado del banner del tiempo ---------- */
+/* ---------- Fondo 3D del banner del tiempo ---------- */
+/* CSS 3D (perspective + translate3d): solo transform/opacity, compuesto en GPU. */
 .weather-bg {
   position: absolute;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
-  /* Se desvanece hacia el fondo de la página por abajo y por los lados */
+  contain: strict;
+  perspective: 700px;
+  perspective-origin: 50% 30%;
   -webkit-mask-image:
     linear-gradient(to bottom, #000 0%, #000 45%, transparent 100%),
     linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
@@ -135,8 +138,19 @@ body {
     linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
   mask-composite: intersect;
 }
-.weather-bg > * {
+.wx-stage {
   position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.4s ease-out;
+  will-change: transform;
+}
+.wx-stage > * {
+  position: absolute;
+}
+.weather-bg.is-paused .wx-stage * {
+  animation-play-state: paused !important;
 }
 
 /* Tinte base según condición */
@@ -157,109 +171,125 @@ body {
   .weather-bg--storm { background: linear-gradient(to bottom, rgb(30 41 59 / 0.6), transparent 85%); }
 }
 
-/* Sol */
+/* Sol: esfera con halo y anillo de rayos girando en 3D */
 .wx-sun {
-  top: -90px;
-  right: 8%;
-  width: 280px;
-  height: 280px;
+  top: 4%;
+  right: 3%;
+  width: 120px;
+  height: 120px;
+  opacity: 0.6;
+  margin: 0;
   border-radius: 9999px;
-  background: radial-gradient(circle, rgb(255 214 102 / 0.75) 0%, rgb(255 214 102 / 0.25) 45%, transparent 70%);
-  animation: wx-pulse 6s ease-in-out infinite;
+  background: radial-gradient(circle at 35% 32%, #fffbe0 0%, #ffe08a 35%, #ffb938 100%);
+  box-shadow: 0 0 60px 24px rgb(255 200 80 / 0.45);
+  transform: translate3d(0, 0, -120px);
+  animation: wx-sun-float 8s ease-in-out infinite;
 }
-.wx-sun::after {
-  content: "";
-  position: absolute;
-  inset: -60px;
+.wx-sun-rays {
+  top: calc(4% - 55px);
+  right: calc(3% - 70px);
+  width: 250px;
+  height: 250px;
+  opacity: 0.6;
   border-radius: 9999px;
-  background: repeating-conic-gradient(from 0deg, rgb(255 214 102 / 0.18) 0deg 6deg, transparent 6deg 24deg);
-  -webkit-mask-image: radial-gradient(circle, transparent 25%, #000 45%, transparent 70%);
-  mask-image: radial-gradient(circle, transparent 25%, #000 45%, transparent 70%);
-  animation: wx-spin 60s linear infinite;
+  background: repeating-conic-gradient(rgb(255 210 100 / 0.28) 0deg 5deg, transparent 5deg 20deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 30%, #000 42%, transparent 70%);
+  mask-image: radial-gradient(circle, transparent 30%, #000 42%, transparent 70%);
+  transform: translate3d(0, 0, -140px) rotateX(55deg);
+  animation: wx-rays 40s linear infinite;
 }
 
-/* Nubes */
+/* Nubes: grupos de puffs con gradientes radiales (sin blur) a distinta profundidad */
 .wx-cloud {
-  height: 70px;
-  border-radius: 9999px;
-  background: rgb(255 255 255 / 0.75);
-  filter: blur(14px);
-  animation: wx-drift linear infinite;
+  left: 0;
+  width: 280px;
+  height: 90px;
+  background:
+    radial-gradient(closest-side, rgb(255 255 255 / 0.85), transparent) 0% 70% / 45% 70% no-repeat,
+    radial-gradient(closest-side, rgb(255 255 255 / 0.9), transparent) 30% 40% / 50% 100% no-repeat,
+    radial-gradient(closest-side, rgb(255 255 255 / 0.85), transparent) 62% 60% / 45% 80% no-repeat,
+    radial-gradient(closest-side, rgb(255 255 255 / 0.75), transparent) 100% 75% / 40% 60% no-repeat;
+  transform: translate3d(-300px, 0, var(--z, 0px));
+  animation: wx-drift var(--dur, 60s) linear var(--delay, 0s) infinite;
 }
-.wx-cloud--1 { top: 8%; width: 260px; animation-duration: 55s; }
-.wx-cloud--2 { top: 38%; width: 340px; height: 90px; animation-duration: 80s; animation-delay: -30s; opacity: 0.8; }
-.wx-cloud--3 { top: 0%; width: 200px; animation-duration: 65s; animation-delay: -12s; opacity: 0.7; }
 .weather-bg--cloudy .wx-cloud,
-.weather-bg--rain .wx-cloud,
-.weather-bg--storm .wx-cloud { background: rgb(148 163 184 / 0.7); }
-.weather-bg--storm .wx-cloud { background: rgb(71 85 105 / 0.7); }
+.weather-bg--rain .wx-cloud {
+  filter: brightness(0.62) saturate(0.6);
+}
+.weather-bg--storm .wx-cloud { filter: brightness(0.38) saturate(0.5); }
 @media (prefers-color-scheme: dark) {
-  .wx-cloud { background: rgb(226 232 240 / 0.18); }
-  .weather-bg--storm .wx-cloud { background: rgb(15 23 42 / 0.6); }
+  .wx-cloud { opacity: 0.4; }
 }
 
-/* Niebla */
+/* Niebla: bandas elípticas en capas de profundidad */
 .wx-fog {
   left: -20%;
   width: 140%;
-  height: 90px;
+  height: 120px;
+  background: radial-gradient(ellipse closest-side, rgb(226 232 240 / 0.8), transparent);
+  transform: translate3d(0, 0, var(--z, 0px));
+  animation: wx-sway var(--dur, 20s) ease-in-out var(--delay, 0s) infinite alternate;
+}
+@media (prefers-color-scheme: dark) {
+  .wx-fog { opacity: 0.3; }
+}
+
+/* Lluvia y nieve: partículas con profundidad real (translateZ) */
+.wx-drop {
+  top: -40px;
+  width: 1.5px;
+  height: 20px;
+  border-radius: 2px;
+  background: linear-gradient(to bottom, transparent, rgb(120 150 190 / 0.8));
+  opacity: var(--o, 0.7);
+  transform: translate3d(0, 0, var(--z, 0px)) rotate(8deg);
+  animation: wx-fall var(--dur, 1s) linear var(--delay, 0s) infinite;
+}
+.wx-flake {
+  top: -20px;
+  width: var(--s, 5px);
+  height: var(--s, 5px);
   border-radius: 9999px;
-  background: rgb(226 232 240 / 0.85);
-  filter: blur(26px);
-  animation: wx-sway 18s ease-in-out infinite alternate;
-}
-.wx-fog--1 { top: 15%; }
-.wx-fog--2 { top: 50%; animation-duration: 24s; animation-direction: alternate-reverse; }
-@media (prefers-color-scheme: dark) {
-  .wx-fog { background: rgb(148 163 184 / 0.2); }
-}
-
-/* Lluvia */
-.wx-rain {
-  inset: -20% 0 0 0;
-  background-image:
-    repeating-linear-gradient(105deg, transparent 0 14px, rgb(100 130 170 / 0.45) 14px 15px, transparent 15px 34px),
-    repeating-linear-gradient(105deg, transparent 0 22px, rgb(100 130 170 / 0.3) 22px 23px, transparent 23px 52px);
-  background-size: 120px 140px, 180px 220px;
-  animation: wx-rain 0.7s linear infinite;
-}
-.wx-rain--2 {
-  opacity: 0.6;
-  background-size: 90px 100px, 140px 170px;
-  animation-duration: 1.1s;
-}
-
-/* Nieve */
-.wx-snow {
-  inset: -10% 0 0 0;
-  background-image:
-    radial-gradient(circle, rgb(255 255 255 / 0.95) 0 2px, transparent 3px),
-    radial-gradient(circle, rgb(255 255 255 / 0.8) 0 1.5px, transparent 2.5px),
-    radial-gradient(circle, rgb(255 255 255 / 0.7) 0 1px, transparent 2px);
-  background-size: 90px 110px, 140px 160px, 60px 80px;
-  background-position: 0 0, 40px 60px, 20px 30px;
-  animation: wx-snow 9s linear infinite;
-}
-.wx-snow--2 { opacity: 0.6; animation-duration: 14s; background-size: 70px 90px, 110px 130px, 50px 70px; }
-@media (prefers-color-scheme: dark) {
-  .wx-snow { filter: drop-shadow(0 0 2px rgb(186 230 253 / 0.6)); }
+  background: rgb(255 255 255 / 0.95);
+  box-shadow: 0 0 4px rgb(186 230 253 / 0.8);
+  opacity: var(--o, 0.8);
+  transform: translate3d(0, 0, var(--z, 0px));
+  animation: wx-snowfall var(--dur, 9s) linear var(--delay, 0s) infinite;
 }
 
 /* Relámpagos */
 .wx-flash {
   inset: 0;
-  background: rgb(255 255 255 / 0.55);
+  background: rgb(255 255 255 / 0.5);
   opacity: 0;
+  transform: translate3d(0, 0, 0);
   animation: wx-flash 7s linear infinite;
 }
 
-@keyframes wx-pulse { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.08); opacity: 1; } }
-@keyframes wx-spin { to { transform: rotate(360deg); } }
-@keyframes wx-drift { from { transform: translateX(-40vw); } to { transform: translateX(110vw); } }
-@keyframes wx-sway { from { transform: translateX(-6%); } to { transform: translateX(6%); } }
-@keyframes wx-rain { to { background-position: -30px 140px, -45px 220px; } }
-@keyframes wx-snow {
-  to { background-position: 30px 110px, 10px 220px, 50px 110px; }
+@keyframes wx-sun-float {
+  0%, 100% { transform: translate3d(0, 0, -120px) scale(1); }
+  50% { transform: translate3d(0, 10px, -90px) scale(1.05); }
+}
+@keyframes wx-rays {
+  from { transform: translate3d(0, 0, -140px) rotateX(55deg) rotateZ(0deg); }
+  to { transform: translate3d(0, 0, -140px) rotateX(55deg) rotateZ(360deg); }
+}
+@keyframes wx-drift {
+  from { transform: translate3d(-300px, 0, var(--z, 0px)); }
+  to { transform: translate3d(calc(100vw + 100px), 0, var(--z, 0px)); }
+}
+@keyframes wx-sway {
+  from { transform: translate3d(-6%, 0, var(--z, 0px)); }
+  to { transform: translate3d(6%, 0, var(--z, 0px)); }
+}
+@keyframes wx-fall {
+  from { transform: translate3d(0, 0, var(--z, 0px)) rotate(8deg); }
+  to { transform: translate3d(-50px, 620px, var(--z, 0px)) rotate(8deg); }
+}
+@keyframes wx-snowfall {
+  0% { transform: translate3d(0, 0, var(--z, 0px)); }
+  50% { transform: translate3d(var(--dx, 20px), 310px, var(--z, 0px)); }
+  100% { transform: translate3d(0, 620px, var(--z, 0px)); }
 }
 @keyframes wx-flash {
   0%, 90%, 94%, 100% { opacity: 0; }
@@ -269,5 +299,6 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .weather-bg *, .weather-bg *::after { animation: none !important; }
+  .wx-stage { transition: none; transform: none; }
+  .wx-stage * { animation: none !important; }
 }

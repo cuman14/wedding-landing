@@ -160,40 +160,72 @@ async function getWeather(): Promise<WeatherResult | null> {
 }
 
 const weather = await getWeather();
+function seeded(seed: number) {
+  let x = seed;
+  return () => {
+    x = (x * 16807) % 2147483647;
+    return (x - 1) / 2147483646;
+  };
+}
+const rnd = seeded(42);
+const range = (min: number, max: number) => min + rnd() * (max - min);
+const drops = Array.from({ length: 36 }, () => ({
+  left: range(0, 105),
+  z: Math.round(range(-250, 250)),
+  dur: range(0.7, 1.3).toFixed(2),
+  delay: (-range(0, 1.3)).toFixed(2),
+  o: range(0.35, 0.85).toFixed(2),
+}));
+const flakes = Array.from({ length: 30 }, () => ({
+  left: range(0, 100),
+  z: Math.round(range(-250, 250)),
+  dur: range(7, 13).toFixed(1),
+  delay: (-range(0, 13)).toFixed(1),
+  s: range(3, 7).toFixed(1),
+  dx: Math.round(range(-30, 30)),
+  o: range(0.5, 1).toFixed(2),
+}));
+const clouds = [
+  { top: 6, z: -200, dur: 90, delay: -20 },
+  { top: 30, z: 40, dur: 65, delay: -45 },
+  { top: 2, z: 160, dur: 50, delay: -8 },
+];
+const fogs = [
+  { top: 10, z: -150, dur: 24, delay: 0 },
+  { top: 45, z: 80, dur: 18, delay: -9 },
+];
 const condition = weatherCodeToCondition(weather?.weatherCode ?? 0);
 ---
 
 <section
   class="relative px-6 pt-8 md:pt-10 pb-2 md:pb-4 bg-background-light dark:bg-background-dark overflow-hidden"
 >
-  <div aria-hidden="true" class={`weather-bg weather-bg--${condition}`}>
-    {(condition === "sunny" || condition === "partlyCloudy") && <div class="wx-sun" />}
-    {(condition === "partlyCloudy" || condition === "cloudy" || condition === "rain" || condition === "storm") && (
-      <>
-        <div class="wx-cloud wx-cloud--1" />
-        <div class="wx-cloud wx-cloud--2" />
-        <div class="wx-cloud wx-cloud--3" />
-      </>
-    )}
-    {condition === "foggy" && (
-      <>
-        <div class="wx-fog wx-fog--1" />
-        <div class="wx-fog wx-fog--2" />
-      </>
-    )}
-    {(condition === "rain" || condition === "storm") && (
-      <>
-        <div class="wx-rain" />
-        <div class="wx-rain wx-rain--2" />
-      </>
-    )}
-    {condition === "storm" && <div class="wx-flash" />}
-    {condition === "snow" && (
-      <>
-        <div class="wx-snow" />
-        <div class="wx-snow wx-snow--2" />
-      </>
-    )}
+  <div id="weather-bg" aria-hidden="true" class={`weather-bg weather-bg--${condition}`}>
+    <div class="wx-stage" id="weather-stage">
+      {(condition === "sunny" || condition === "partlyCloudy") && (
+        <>
+          <div class="wx-sun-rays" />
+          <div class="wx-sun" />
+        </>
+      )}
+      {(condition === "partlyCloudy" || condition === "cloudy" || condition === "rain" || condition === "storm") &&
+        clouds.map((c) => (
+          <div class="wx-cloud" style={`top:${c.top}%;--z:${c.z}px;--dur:${c.dur}s;--delay:${c.delay}s`} />
+        ))}
+      {condition === "foggy" &&
+        fogs.map((f) => (
+          <div class="wx-fog" style={`top:${f.top}%;--z:${f.z}px;--dur:${f.dur}s;--delay:${f.delay}s`} />
+        ))}
+      {(condition === "rain" || condition === "storm") &&
+        drops.map((d) => (
+          <div class="wx-drop" style={`left:${d.left}%;--z:${d.z}px;--dur:${d.dur}s;--delay:${d.delay}s;--o:${d.o}`} />
+        ))}
+      {condition === "snow" &&
+        flakes.map((f) => (
+          <div class="wx-flake" style={`left:${f.left}%;--z:${f.z}px;--dur:${f.dur}s;--delay:${f.delay}s;--s:${f.s}px;--dx:${f.dx}px;--o:${f.o}`} />
+        ))}
+      {condition === "storm" && <div class="wx-flash" />}
+    </div>
   </div>
   <div class="max-w-6xl mx-auto relative z-10">
 <div id="weather-banner" class="w-full relative flex flex-col gap-6 py-2">
@@ -313,56 +345,38 @@ const condition = weatherCodeToCondition(weather?.weatherCode ?? 0);
   </div>
 </section>
 
-{
-  weather && (
-    <div
-      id="weather-sticky"
-      aria-hidden="true"
-      class="fixed top-16 left-0 w-full z-40 -translate-y-full opacity-0 pointer-events-none transition-all duration-300 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-pearl-grey dark:border-white/10 shadow-sm"
-    >
-      <a
-        href="#weather-banner"
-        class="max-w-6xl mx-auto px-4 md:px-6 py-2 flex items-center justify-center gap-3 md:gap-6 text-xs md:text-sm font-body text-text-main-light dark:text-text-main-dark"
-      >
-        <span
-          class="text-primary w-6 h-6 shrink-0"
-          set:html={weatherCodeToSvg(weather.weatherCode)}
-        />
-        <span class="hidden sm:inline font-semibold">{t("weather.title")}</span>
-        <span class="flex items-center gap-1 font-bold tabular-nums">
-          <span class="material-symbols-outlined text-base text-gray-400">thermostat</span>
-          {weather.tempMin}° / {weather.tempMax}°
-        </span>
-        <span class="hidden md:flex items-center gap-1 tabular-nums">
-          <span class="material-symbols-outlined text-base text-gray-400">device_thermostat</span>
-          {weather.feelsLikeMin}° / {weather.feelsLikeMax}°
-        </span>
-        <span class="flex items-center gap-1 tabular-nums">
-          <span class="material-symbols-outlined text-base text-primary">water_drop</span>
-          {weather.rainChance}%
-        </span>
-        <span class="hidden sm:flex items-center gap-1 tabular-nums">
-          <span class="material-symbols-outlined text-base text-gray-400">air</span>
-          {weather.windMax} km/h
-        </span>
-      </a>
-    </div>
-  )
-}
-
 <script>
-  const banner = document.getElementById("weather-banner");
-  const sticky = document.getElementById("weather-sticky");
-  if (banner && sticky) {
-    const HEADER_HEIGHT = 64;
-    const show = (visible: boolean) => {
-      sticky.classList.toggle("-translate-y-full", !visible);
-      sticky.classList.toggle("opacity-0", !visible);
-      sticky.classList.toggle("pointer-events-none", !visible);
-    };
-    new IntersectionObserver(
-      ([entry]) => show(!entry.isIntersecting && entry.boundingClientRect.top < 0),
-      { rootMargin: `-${HEADER_HEIGHT}px 0px 0px 0px` },
-    ).observe(banner);
+  const bg = document.getElementById("weather-bg");
+  const stage = document.getElementById("weather-stage");
+  if (bg && stage) {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let inView = true;
+    const sync = () => bg.classList.toggle("is-paused", !inView || document.hidden);
+
+    // Pausa la animación fuera de pantalla o con la pestaña oculta
+    new IntersectionObserver(([e]) => {
+      inView = e.isIntersecting;
+      sync();
+    }).observe(bg);
+    document.addEventListener("visibilitychange", sync);
+
+    // Ligero giro 3D siguiendo el puntero (solo ratón, throttled con rAF)
+    if (!reduce && window.matchMedia("(hover: hover)").matches) {
+      let raf = 0;
+      window.addEventListener(
+        "pointermove",
+        (ev) => {
+          if (raf || !inView) return;
+          raf = requestAnimationFrame(() => {
+            raf = 0;
+            const x = ev.clientX / window.innerWidth - 0.5;
+            const y = ev.clientY / window.innerHeight - 0.5;
+            stage.style.setProperty("--ry", `${x * 6}deg`);
+            stage.style.setProperty("--rx", `${-y * 4}deg`);
+          });
+        },
+        { passive: true },
+      );
+    }
   }
 </script>
