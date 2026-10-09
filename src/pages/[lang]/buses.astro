@@ -1,0 +1,242 @@
+---
+import { buses } from "../../data/buses";
+import { languages } from "../../i18n/ui";
+import { useTranslations } from "../../i18n/utils";
+import Layout from "../../layouts/Layout.astro";
+
+const { lang } = Astro.params;
+
+if (!lang || !Object.keys(languages).includes(lang)) {
+  return Astro.redirect("/es/buses");
+}
+
+const t = useTranslations(lang as keyof typeof languages);
+---
+
+<Layout title={`${t("buses.title")} | Marina & Oswald`} noindex>
+  <main
+    class="min-h-screen w-full pb-16 bg-background-light text-text-main-light [color-scheme:light]"
+    data-buses
+  >
+    <header
+      class="sticky top-0 z-20 bg-background-light/95 backdrop-blur border-b border-pearl-grey px-4 py-3"
+    >
+      <div class="max-w-2xl mx-auto">
+        <h1 class="font-display text-4xl text-primary-dark leading-none">
+          {t("buses.title")}
+        </h1>
+        <p class="text-sm opacity-70 mt-1">{t("buses.subtitle")}</p>
+
+        <div class="grid grid-cols-2 gap-2 mt-3" role="tablist">
+          {
+            (["ida", "vuelta"] as const).map((trip) => (
+              <button
+                type="button"
+                role="tab"
+                data-trip-btn={trip}
+                class="py-2 rounded-full border border-primary text-primary-dark font-medium aria-selected:bg-primary aria-selected:text-white"
+              >
+                {t(`buses.trip.${trip}`)}
+              </button>
+            ))
+          }
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 mt-2" role="tablist">
+          {
+            buses.map((bus) => (
+              <button
+                type="button"
+                role="tab"
+                data-bus-btn={bus.id}
+                class="py-2 rounded-xl bg-secondary-mint text-text-main-light text-sm font-medium aria-selected:ring-2 aria-selected:ring-primary-dark"
+              >
+                {bus.titulo.replace("Autobús de ", "")}
+                <span class="block text-xs opacity-70" data-bus-count={bus.id}></span>
+              </button>
+            ))
+          }
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 pt-6 space-y-8">
+      {
+        buses.map((bus) => (
+          <section data-bus={bus.id} class="space-y-8">
+            {[bus.lista, ...(bus.sublista ? [bus.sublista] : [])].map((lista) => {
+              return (
+                <div data-list={lista.id}>
+                  <div class="flex items-baseline justify-between mb-2">
+                    <h2 class="text-xl font-semibold">
+                      {lista.id === "valmojado" && (
+                        <span class="material-symbols-outlined align-middle text-[1.2em] mr-1">
+                          alt_route
+                        </span>
+                      )}
+                      {lista.titulo}
+                    </h2>
+                    <span class="text-sm font-medium text-primary-dark">
+                      <span data-list-count={lista.id} />{" "}
+                      {t("buses.boarded")}
+                    </span>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mb-3 text-sm">
+                    <a
+                      href={lista.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1 underline text-primary-dark"
+                    >
+                      <span class="material-symbols-outlined text-[1.2em]">
+                        location_on
+                      </span>
+                      {lista.lugar}
+                    </a>
+                    <span class="inline-flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[1.2em]">
+                        schedule
+                      </span>
+                      <span data-time-ida={lista.id}>
+                        {t("buses.pickup")} {lista.horaIda} h
+                      </span>
+                      <span data-time-vuelta={lista.id} hidden>
+                        {t("buses.departure")} {lista.horaVuelta} h · {lista.rutaVuelta}
+                      </span>
+                    </span>
+                  </div>
+                  <ul class="rounded-2xl border border-pearl-grey divide-y divide-pearl-grey overflow-hidden bg-white">
+                    {lista.pasajeros.map((p) => (
+                      <li>
+                        <label
+                          class="flex items-center gap-4 px-4 py-4 cursor-pointer has-[:checked]:bg-secondary-mint has-[:disabled]:opacity-40 has-[:disabled]:cursor-not-allowed"
+                        >
+                          <input
+                            type="checkbox"
+                            class="size-7 accent-primary-dark shrink-0"
+                            data-passenger={p.id}
+                            data-only-return={p.soloVuelta ? "1" : "0"}
+                          />
+                          <span class="flex-1 text-base leading-snug">
+                            {p.nombre}
+                          </span>
+                          {p.soloVuelta && (
+                            <span class="text-xs rounded-full bg-primary-light/60 px-2 py-1 shrink-0">
+                              {t("buses.onlyReturn")}
+                            </span>
+                          )}
+                        </label>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </section>
+        ))
+      }
+
+      <div class="text-center space-y-3 pt-4">
+        <p class="text-xs opacity-60">{t("buses.saved")}</p>
+        <button
+          type="button"
+          data-reset
+          data-confirm={t("buses.resetConfirm")}
+          class="text-sm underline opacity-70"
+        >
+          {t("buses.reset")}
+        </button>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  type Trip = "ida" | "vuelta";
+  const KEY = "buses-checks-v1";
+  const UI_KEY = "buses-ui-v1";
+
+  const root = document.querySelector<HTMLElement>("[data-buses]")!;
+  const boxes = [...root.querySelectorAll<HTMLInputElement>("[data-passenger]")];
+
+  let checks: Record<Trip, Record<string, boolean>> = { ida: {}, vuelta: {} };
+  let ui: { trip: Trip; bus: string } = {
+    trip: "ida",
+    bus: root.querySelector<HTMLElement>("[data-bus]")!.dataset.bus!,
+  };
+
+  try {
+    checks = { ...checks, ...JSON.parse(localStorage.getItem(KEY) || "{}") };
+    ui = { ...ui, ...JSON.parse(localStorage.getItem(UI_KEY) || "{}") };
+  } catch {}
+
+  const persist = () => {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(checks));
+      localStorage.setItem(UI_KEY, JSON.stringify(ui));
+    } catch {}
+  };
+
+  function render() {
+    for (const box of boxes) {
+      const unavailable = ui.trip === "ida" && box.dataset.onlyReturn === "1";
+      box.disabled = unavailable;
+      box.checked = !unavailable && !!checks[ui.trip][box.dataset.passenger!];
+    }
+
+    root.querySelectorAll<HTMLElement>("[data-trip-btn]").forEach((b) =>
+      b.setAttribute("aria-selected", String(b.dataset.tripBtn === ui.trip)),
+    );
+    root.querySelectorAll<HTMLElement>("[data-bus-btn]").forEach((b) =>
+      b.setAttribute("aria-selected", String(b.dataset.busBtn === ui.bus)),
+    );
+    root.querySelectorAll<HTMLElement>("[data-bus]").forEach((s) => {
+      s.hidden = s.dataset.bus !== ui.bus;
+    });
+    root.querySelectorAll<HTMLElement>("[data-time-ida]").forEach((e) => {
+      e.hidden = ui.trip !== "ida";
+    });
+    root.querySelectorAll<HTMLElement>("[data-time-vuelta]").forEach((e) => {
+      e.hidden = ui.trip !== "vuelta";
+    });
+
+    const count = (scope: Element) => {
+      const eligible = [...scope.querySelectorAll<HTMLInputElement>("[data-passenger]")].filter(
+        (b) => !b.disabled,
+      );
+      return `${eligible.filter((b) => b.checked).length}/${eligible.length}`;
+    };
+    root.querySelectorAll<HTMLElement>("[data-list]").forEach((l) => {
+      l.querySelector<HTMLElement>("[data-list-count]")!.textContent = count(l);
+    });
+    root.querySelectorAll<HTMLElement>("[data-bus]").forEach((s) => {
+      root.querySelector<HTMLElement>(`[data-bus-count="${s.dataset.bus}"]`)!.textContent =
+        count(s);
+    });
+  }
+
+  root.addEventListener("change", (e) => {
+    const box = e.target as HTMLInputElement;
+    if (!box.dataset.passenger) return;
+    checks[ui.trip][box.dataset.passenger] = box.checked;
+    persist();
+    render();
+  });
+
+  root.addEventListener("click", (e) => {
+    const el = (e.target as HTMLElement).closest<HTMLElement>(
+      "[data-trip-btn],[data-bus-btn],[data-reset]",
+    );
+    if (!el) return;
+    if (el.dataset.tripBtn) ui.trip = el.dataset.tripBtn as Trip;
+    else if (el.dataset.busBtn) ui.bus = el.dataset.busBtn;
+    else if (el.hasAttribute("data-reset")) {
+      if (!confirm(el.dataset.confirm)) return;
+      checks[ui.trip] = {};
+    }
+    persist();
+    render();
+  });
+
+  render();
+</script>
