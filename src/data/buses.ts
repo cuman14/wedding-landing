@@ -42,6 +42,11 @@ function pasajeros(prefijo: string, filas: string[]): PasajeroBus[] {
   );
 }
 
+export const empresaBus = {
+  nombre: "T-llevo",
+  foto: "/bus-tllevo.webp",
+};
+
 export const buses: Bus[] = [
   {
     id: "atocha",

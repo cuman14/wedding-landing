@@ -1,5 +1,5 @@
 ---
-import { buses } from "../../data/buses";
+import { buses, empresaBus } from "../../data/buses";
 import { languages } from "../../i18n/ui";
 import { useTranslations } from "../../i18n/utils";
 import Layout from "../../layouts/Layout.astro";
@@ -57,10 +57,42 @@ const t = useTranslations(lang as keyof typeof languages);
             ))
           }
         </div>
+
+        <div class="relative mt-2">
+          <span
+            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[1.3em] opacity-50 pointer-events-none"
+          >
+            search
+          </span>
+          <input
+            type="search"
+            data-search
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder={t("buses.search")}
+            aria-label={t("buses.search")}
+            class="w-full rounded-full border border-pearl-grey bg-white py-2 pl-10 pr-4 text-base outline-none focus:border-primary-dark"
+          />
+        </div>
       </div>
     </header>
 
     <div class="max-w-2xl mx-auto px-4 pt-6 space-y-8">
+      <figure class="rounded-2xl overflow-hidden border border-pearl-grey bg-white">
+        <img
+          src={empresaBus.foto}
+          alt={`${t("buses.identify")}: ${empresaBus.nombre}`}
+          width="788"
+          height="444"
+          class="w-full h-auto"
+        />
+        <figcaption class="px-4 py-3 text-sm">
+          <span class="opacity-70">{t("buses.company")}</span>
+          <strong class="block text-lg">{empresaBus.nombre}</strong>
+        </figcaption>
+      </figure>
+
       {
         buses.map((bus) => (
           <section data-bus={bus.id} class="space-y-8">
@@ -117,7 +149,7 @@ const t = useTranslations(lang as keyof typeof languages);
                             data-passenger={p.id}
                             data-only-return={p.soloVuelta ? "1" : "0"}
                           />
-                          <span class="flex-1 text-base leading-snug">
+                          <span data-name class="flex-1 text-base leading-snug">
                             {p.nombre}
                           </span>
                           {p.soloVuelta && (
@@ -135,6 +167,10 @@ const t = useTranslations(lang as keyof typeof languages);
           </section>
         ))
       }
+
+      <p data-no-results hidden class="text-center opacity-70">
+        {t("buses.noResults")}
+      </p>
 
       <div class="text-center space-y-3 pt-4">
         <p class="text-xs opacity-60">{t("buses.saved")}</p>
@@ -158,6 +194,10 @@ const t = useTranslations(lang as keyof typeof languages);
 
   const root = document.querySelector<HTMLElement>("[data-buses]")!;
   const boxes = [...root.querySelectorAll<HTMLInputElement>("[data-passenger]")];
+
+  const search = root.querySelector<HTMLInputElement>("[data-search]")!;
+  const normalize = (v: string) =>
+    v.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().trim();
 
   let checks: Record<Trip, Record<string, boolean>> = { ida: {}, vuelta: {} };
   let ui: { trip: Trip; bus: string } = {
@@ -190,9 +230,24 @@ const t = useTranslations(lang as keyof typeof languages);
     root.querySelectorAll<HTMLElement>("[data-bus-btn]").forEach((b) =>
       b.setAttribute("aria-selected", String(b.dataset.busBtn === ui.bus)),
     );
+    // Con búsqueda activa se busca en todos los autobuses a la vez.
+    const query = normalize(search.value);
+    let matches = 0;
     root.querySelectorAll<HTMLElement>("[data-bus]").forEach((s) => {
-      s.hidden = s.dataset.bus !== ui.bus;
+      s.hidden = !query && s.dataset.bus !== ui.bus;
     });
+    root.querySelectorAll<HTMLElement>("[data-list]").forEach((l) => {
+      let visible = 0;
+      l.querySelectorAll<HTMLElement>("li").forEach((li) => {
+        const show = !query || normalize(li.querySelector("[data-name]")?.textContent || "").includes(query);
+        li.hidden = !show;
+        if (show) visible++;
+      });
+      l.hidden = visible === 0;
+      matches += visible;
+    });
+    root.querySelector<HTMLElement>("[data-no-results]")!.hidden =
+      !query || matches > 0;
     root.querySelectorAll<HTMLElement>("[data-time-ida]").forEach((e) => {
       e.hidden = ui.trip !== "ida";
     });
@@ -222,6 +277,8 @@ const t = useTranslations(lang as keyof typeof languages);
     persist();
     render();
   });
+
+  search.addEventListener("input", render);
 
   root.addEventListener("click", (e) => {
     const el = (e.target as HTMLElement).closest<HTMLElement>(
