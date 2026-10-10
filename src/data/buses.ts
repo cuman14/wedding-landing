@@ -28,10 +28,12 @@ export interface Bus {
 }
 
 // "Nombre" o "Nombre (V)" => solo vuelta. Cada entrada del array es una fila
-// de la lista original; los acompañantes se separan con " + ".
+// de la lista original; los acompañantes se separan con " + ". Una fila vacía
+// se omite pero conserva su número, para que los ids (y los checks guardados
+// en localStorage) del resto de pasajeros no cambien.
 function pasajeros(prefijo: string, filas: string[]): PasajeroBus[] {
   return filas.flatMap((fila, i) =>
-    fila.split(" + ").map((raw, j) => {
+    (fila ? fila.split(" + ") : []).map((raw, j) => {
       const soloVuelta = raw.endsWith(" (V)");
       return {
         id: `${prefijo}-${i + 1}-${j + 1}`,
@@ -64,10 +66,10 @@ export const buses: Bus[] = [
         "Daniel Arribas + Sofía Carretero",
         "José María Hernández",
         "Carlos Martínez",
-        "Guarina Vara Casacret",
+        "", // Guarina → Alcorcón
         "Sara Sacristán Fernández",
         "Sonia Ortiz Burgos",
-        "Eduardo Pallet Vara",
+        "", // Eduardo → Alcorcón
         "Lorena Escribano Atanes",
         "Víctor Bedmar Lam + Cristina González Macho",
         "Clara Mesa Gil",
@@ -79,6 +81,7 @@ export const buses: Bus[] = [
         "Juliette Ruiz Vara + Alberto Fernández",
         "Laura Casado Rojo",
         "Samah Tibri Rmadi",
+        "Tomás Gutiérrez Agurto (V)",
       ]),
     },
   },
@@ -95,7 +98,7 @@ export const buses: Bus[] = [
       rutaVuelta: "Cubillana → Valmojado → Alcorcón",
       pasajeros: pasajeros("alcorcon", [
         "Carlos Collado Alonso + Julia Molano Vidal",
-        "Tomás Gutiérrez Agurto",
+        "", // Tomás → Atocha (solo vuelta)
         "Daniel Sánchez Rojas (V)",
         "Silvia Quintas Rosillo",
         "Irene Durán Pérez + Mario Gómez Ramos",
@@ -109,6 +112,8 @@ export const buses: Bus[] = [
         "Lorena Baudil Cerezo + Alejandro Lozano Olmos",
         "Jorge Alejandro Hernández Caballero + Laura Ortariz Gracia",
         "Alberto Fernández Muñoz (V) + Laura López Díaz (V)",
+        "Guarina Vara Casacret",
+        "Eduardo Pallet Vara",
       ]),
     },
     sublista: {
